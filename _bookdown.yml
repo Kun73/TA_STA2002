@@ -1,0 +1,10 @@
+book_filename: "bookdown"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+output_dir: "docs"
+output:
+  bookdown::pdf_book:
+    includes:
+      in_header: preamble.tex

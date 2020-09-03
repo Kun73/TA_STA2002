@@ -1,0 +1,1 @@
+This is a series of notes for the tutorial of STA2002 in CUHK,SZ. 
