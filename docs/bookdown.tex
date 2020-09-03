@@ -41,6 +41,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -75,6 +115,21 @@
 \author{Kun HUANG(SDS)}
 \date{2020-09-03}
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -82,9 +137,6 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\Var}{\mathrm{Var}}
-
 \hypertarget{prerequisites}{%
 \chapter{Prerequisites}\label{prerequisites}}
 
@@ -107,13 +159,83 @@
 \section{Q1}\label{q1}}
 
 \begin{itemize}
+\item
+  Moment-generating function \(M(t)\) of a random variable \(X\) defined in \(D\) that has a density function \(f(x)\).
+  \begin{align}
+  M(t) = \mathbb{E}(e^{tx}) &= \int_{D} e^{tx}f(x)dx\\
+  \mathbb{E}(X^{s}) &= M^{(s)}(0)
+  \end{align}
+\item
+  Relationship between \(\bar X=\frac{1}{n}\sum\limits_{i=1}^n X_i\) and \(S^2=\frac{1}{n-1}\sum\limits_{i=1}^n(X_i-\bar X)^2\), independent.
+\item
+  How to derive a quantity following \(t\) distribution from a norm population.
+  \begin{align}
+  T=\frac{\frac{\bar{X}-\mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{(n-1) S^{2}}{\sigma^{2}} /(n-1)}}=\frac{\bar{X}-\mu}{S / \sqrt{n}}
+  \end{align}
+\item
+  The \(t\) distribution is symmetric, i.e., \(t_{q}(n) = -t_{1-q}(n), q\in(0,1)\). For example,
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qt}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.306004
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{{-}}\KeywordTok{qt}\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\FloatTok{0.025}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.306004
+\end{verbatim}
+
+\begin{itemize}
 \tightlist
 \item
-  Moment-generating function \(M(t)\) of a random variable \(X\) defined in \(D\) and has density function \(f(x)\).
-  \begin{align}
-  M(t) = \E(e^{tx}) &= \int_{D} e^{tx}f(x)dx\\
-  \E(X^{s}) &= M^{(s)}(0)
-  \end{align}
+  Properties of \(F\) distribution.
+\end{itemize}
+
+\hypertarget{q2}{%
+\section{Q2}\label{q2}}
+
+\begin{itemize}
+\item
+  Standardize a norm distribution \(X\in\mathcal{N}(\mu,\sigma^2)\), i.e., \(\frac{X-\mu}{\sigma}\in\mathcal{N}(0,1)\).
+\item
+  The distribution of \(\bar X\) and \(S^2\).
+\end{itemize}
+
+\hypertarget{q3}{%
+\section{Q3}\label{q3}}
+
+\begin{itemize}
+\tightlist
+\item
+  Central Limit Theorem(CLT)
+\end{itemize}
+
+\begin{theorem}
+\protect\hypertarget{thm:clt}{}{\label{thm:clt} }\textbf{(Central Limit Theorem)} Let \(X_1,\ldots,X_n\) be independent, identically
+distributed (i.i.d.) random variables with finite expectation \(\mu\), and
+positive, finite variance \(\sigma^2\), and set \(S_n=X_1 + X_2 + \cdots + X_n\), \(n \ge 1\). Then
+\[
+    \frac{\bar{S}_n - n\mu}{\sigma \sqrt{n}}\xrightarrow{L} N(0, 1)
+    ~\mathrm{as}~n\rightarrow\infty.
+\]
+\end{theorem}
+
+\begin{itemize}
+\item
+  The relationship between Binimial distribution and Poisson distribution
+\item
+  Aware the power of CLT.
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}
