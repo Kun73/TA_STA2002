@@ -1,0 +1,26 @@
+--- 
+title: "Tutorial for STA2002"
+author: "Kun HUANG(SDS)"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output:
+  html_document:
+    df_print: paged
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Tutorial for STA2002."
+---
+
+
+# Prerequisites
+
+*Probability and Statistics I(STA2001)* is the prerequisite, which mainly includes the following contents, 
+
+- Some usual distributions, like Binomial, Poisson, Normal, Exponential, Gamma, and Chi-square distributions ([Relationships among some univariate
+distributions](https://www.tandfonline.com/doi/pdf/10.1080/07408170590948512?needAccess=true)[@song2005relationships]);
+
+- Basic terminologies, e.g.,independence, expectation, variation, correlation (coefficient), Bayes, and etc;
+
+- Large number theorem, like Central Limit Theorem(CLT).
