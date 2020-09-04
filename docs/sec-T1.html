@@ -180,7 +180,7 @@ T=\frac{\frac{\bar{X}-\mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{(n-1) S^{2}}{\sigma^{
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="sec-T1.html#cb3-1"></a><span class="op">-</span><span class="kw">qt</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.025</span>, <span class="dv">8</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 2.306004</code></pre>
 <ul>
-<li>Properties of <span class="math inline">\(F\)</span> distribution.</li>
+<li>Properties of <span class="math inline">\(F\)</span> distribution: <span class="math inline">\(F_{0.95}(9,24)= \frac{1}{F_{0.05}(24,9)}\)</span></li>
 </ul>
 </div>
 <div id="q2" class="section level2">
@@ -201,13 +201,13 @@ T=\frac{\frac{\bar{X}-\mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{(n-1) S^{2}}{\sigma^{
 distributed (i.i.d.) random variables with finite expectation <span class="math inline">\(\mu\)</span>, and
 positive, finite variance <span class="math inline">\(\sigma^2\)</span>, and set <span class="math inline">\(S_n=X_1 + X_2 + \cdots + X_n\)</span>, <span class="math inline">\(n \ge 1\)</span>. Then
 <span class="math display">\[
-    \frac{\bar{S}_n - n\mu}{\sigma \sqrt{n}}\xrightarrow{L} N(0, 1)
+    \frac{S_n - n\mu}{\sigma \sqrt{n}}\xrightarrow{L} N(0, 1)
     ~\mathrm{as}~n\rightarrow\infty.
 \]</span>
 </div>
 
 <ul>
-<li><p>The relationship between Binimial distribution and Poisson distribution</p></li>
+<li><p>The relationship between Binomial distribution <span class="math inline">\(b(n,p)\)</span> and Poisson distribution <span class="math inline">\(\mathrm{Pois}(\lambda)\)</span>: <span class="math inline">\(\infty &gt; np = \lambda, n\rightarrow\infty\)</span></p></li>
 <li><p>Aware the power of CLT.</p></li>
 </ul>
 

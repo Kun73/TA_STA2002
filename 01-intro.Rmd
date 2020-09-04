@@ -21,7 +21,7 @@ qt(0.025, 8, lower.tail = F)
 -qt(1 - 0.025, 8, lower.tail = F)
 ```
 
-- Properties of $F$ distribution.
+- Properties of $F$ distribution: $F_{0.95}(9,24)= \frac{1}{F_{0.05}(24,9)}$
 
 ## Q2
 
@@ -39,11 +39,11 @@ distributed (i.i.d.) random variables with finite expectation $\mu$, and
 positive, finite variance $\sigma^2$, and set $S_n=X_1 + X_2 + \cdots + X_n$, $n
 \ge 1$. Then
 $$
-    \frac{\bar{S}_n - n\mu}{\sigma \sqrt{n}}\xrightarrow{L} N(0, 1)
+    \frac{S_n - n\mu}{\sigma \sqrt{n}}\xrightarrow{L} N(0, 1)
     ~\mathrm{as}~n\rightarrow\infty.
 $$
 ```
 
-- The relationship between Binimial distribution and Poisson distribution
+- The relationship between Binomial distribution $b(n,p)$ and Poisson distribution $\mathrm{Pois}(\lambda)$: $\infty > np = \lambda, n\rightarrow\infty$
 
 - Aware the power of CLT.
