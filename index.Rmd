@@ -14,7 +14,7 @@ description: "Tutorial for STA2002."
 ---
 
 
-# Prerequisites
+# Prerequisites{-}
 
 *Probability and Statistics I(STA2001)* is the prerequisite, which mainly includes the following contents, 
 
