@@ -42,6 +42,11 @@ Let $X$ be a random variable with finite mean $\mu$ and variance $\sigma^2>0$. T
 \begin{equation*}
 P(|X-\mu|\geq k\sigma) \leq \frac{1}{k^2}
 \end{equation*}
+
+Additionally, let $k\sigma = \varepsilon$, the above becomes, 
+\begin{equation*}
+P(|X-\mu|\geq \varepsilon) \leq \frac{\sigma^2}{\varepsilon^2}
+\end{equation*}
 ```
 
 
