@@ -22,7 +22,7 @@ Let $N(t)$ be the number of events happens during the time interval $[0,t]$, if 
 we call $\{N(t),t\geq0\}$ is a Poisson process with rate $\lambda$.
 ```
 
-* Let $(W_n>t)$ be the $n-th$ random event happens after time $t$, then $W_n\sim Gamma(n, \lambda)$.
+* Let $(W_n>t)$ be the $n-th$ random event happens after time $t$, then $W_n\sim Gamma(n, \lambda)$. In fact, $Gamma(n,\lambda)$ can be seen as the time to be waited until the $n-th$ event.
 
 ## Q3 
 
