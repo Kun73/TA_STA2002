@@ -1,0 +1,28 @@
+# Tutorial 3
+
+## Method of moment estimator(MME)
+
+Suppose that the problem is to estimate $k$ unknown parameters $\boldsymbol{\theta} := (\theta_1,\theta_2,...,\theta_k)^{T}$ characterizing the distribution $f_X(x;\boldsymbol{\theta})$ of the random variable $X$. Suppose the first $k$ moments of the true distribution can be expressed by the function of $\boldsymbol{\theta}$, i.e.,
+\begin{align}
+\mu_{1} & \equiv \mathrm{E}[W]=g_{1}\left(\theta_{1}, \theta_{2}, \ldots, \theta_{k}\right) \\
+\mu_{2} & \equiv \mathrm{E}\left[W^{2}\right]=g_{2}\left(\theta_{1}, \theta_{2}, \ldots, \theta_{k}\right) \\
+& \vdots \\
+\mu_{k} & \equiv \mathrm{E}\left[W^{k}\right]=g_{k}\left(\theta_{1}, \theta_{2}, \ldots, \theta_{k}\right)
+\end{align}
+Suppose a sample of size $n$ is drawn, having the values of $x_1,x_2,...,x_n$, let 
+\begin{align}
+\mu_j = \frac{1}{n}\sum_{i=1}^n x_i^j, j=1,2,...,k
+\end{align}
+Solve the above $k$ equations, we derive the method of moment estimator of $\boldsymbol{\theta}$.
+
+## Maximum likelihood estimator(MLE).
+
+Suppose we have a sample of size $n$, $X_1,...,X_n$ i.i.d drawn from a population distribution $f_X(x;\boldsymbol{\theta}), \boldsymbol{\theta} = (\theta_1,\theta_2,...,\theta_k)^{T}$.  Define the likelihood function to be 
+$$
+L(\boldsymbol\theta) = \prod_{i=1}^n f(x_i;\boldsymbol{\theta})
+$$
+The log-likelihood function is defined by $\ell(\boldsymbol\theta)=\log L(\boldsymbol\theta)$. The maximum likelihood estimator $\hat{\boldsymbol\theta}$ is determined to maximize $L(\boldsymbol\theta)$, i.e., 
+\begin{equation}
+\hat{\boldsymbol\theta} =\underset{\boldsymbol\theta\in \Theta}{\max} L(\boldsymbol\theta)
+\end{equation}
+
