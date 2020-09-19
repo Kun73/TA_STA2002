@@ -11,7 +11,7 @@
 
 <meta name="author" content="Kun HUANG(SDS)" />
 
-<meta name="date" content="2020-09-16" />
+<meta name="date" content="2020-09-19" />
 
 <title>Tutorial for STA2002</title>
 
@@ -1636,7 +1636,7 @@ summary {
 
 <h1 class="title toc-ignore">Tutorial for STA2002</h1>
 <h4 class="author">Kun HUANG(SDS)</h4>
-<h4 class="date">2020-09-16</h4>
+<h4 class="date">2020-09-19</h4>
 
 </div>
 
@@ -1753,6 +1753,29 @@ P(|X-\mu|\geq \varepsilon) \leq \frac{\sigma^2}{\varepsilon^2}
 </div>
 
 <!--chapter:end:02-tutorial.Rmd-->
+</div>
+</div>
+<div id="tutorial-3" class="section level1">
+<h1>Tutorial 3</h1>
+<div id="method-of-moment-estimatormme" class="section level2">
+<h2>Method of moment estimator(MME)</h2>
+<p>Suppose that the problem is to estimate <span class="math inline">\(k\)</span> unknown parameters <span class="math inline">\(\boldsymbol{\theta} := (\theta_1,\theta_2,...,\theta_k)^{T}\)</span> characterizing the distribution <span class="math inline">\(f_X(x;\boldsymbol{\theta})\)</span> of the random variable <span class="math inline">\(X\)</span>. Suppose the first <span class="math inline">\(k\)</span> moments of the true distribution can be expressed by the function of <span class="math inline">\(\boldsymbol{\theta}\)</span>, i.e., <span class="math display">\[\begin{align}
+\mu_{1} &amp; \equiv \mathrm{E}[W]=g_{1}\left(\theta_{1}, \theta_{2}, \ldots, \theta_{k}\right) \\
+\mu_{2} &amp; \equiv \mathrm{E}\left[W^{2}\right]=g_{2}\left(\theta_{1}, \theta_{2}, \ldots, \theta_{k}\right) \\
+&amp; \vdots \\
+\mu_{k} &amp; \equiv \mathrm{E}\left[W^{k}\right]=g_{k}\left(\theta_{1}, \theta_{2}, \ldots, \theta_{k}\right)
+\end{align}\]</span> Suppose a sample of size <span class="math inline">\(n\)</span> is drawn, having the values of <span class="math inline">\(x_1,x_2,...,x_n\)</span>, let <span class="math display">\[\begin{align}
+\mu_j = \frac{1}{n}\sum_{i=1}^n x_i^j, j=1,2,...,k
+\end{align}\]</span> Solve the above <span class="math inline">\(k\)</span> equations, we derive the method of moment estimator of <span class="math inline">\(\boldsymbol{\theta}\)</span>.</p>
+</div>
+<div id="maximum-likelihood-estimatormle." class="section level2">
+<h2>Maximum likelihood estimator(MLE).</h2>
+<p>Suppose we have a sample of size <span class="math inline">\(n\)</span>, <span class="math inline">\(X_1,...,X_n\)</span> i.i.d drawn from a population distribution <span class="math inline">\(f_X(x;\boldsymbol{\theta}), \boldsymbol{\theta} = (\theta_1,\theta_2,...,\theta_k)^{T}\)</span>. Define the likelihood function to be <span class="math display">\[
+L(\boldsymbol\theta) = \prod_{i=1}^n f(x_i;\boldsymbol{\theta})
+\]</span> The log-likelihood function is defined by <span class="math inline">\(\ell(\boldsymbol\theta)=\log L(\boldsymbol\theta)\)</span>. The maximum likelihood estimator <span class="math inline">\(\hat{\boldsymbol\theta}\)</span> is determined to maximize <span class="math inline">\(L(\boldsymbol\theta)\)</span>, i.e., <span class="math display">\[\begin{equation}
+\hat{\boldsymbol\theta} =\underset{\boldsymbol\theta\in \Theta}{\max} L(\boldsymbol\theta)
+\end{equation}\]</span></p>
+<!--chapter:end:03-tutorial.Rmd-->
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
