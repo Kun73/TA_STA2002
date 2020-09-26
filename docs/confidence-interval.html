@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> Q1</h2>
 
 <div class="definition">
-<span id="def:unnamed-chunk-1" class="definition"><strong>Definition 4.1  (t-distribution)  </strong></span>Suppose <span class="math inline">\(X\sim N(0, 1)\)</span>, <span class="math inline">\(U\sim \chi^2(n)\)</span>, and <span class="math inline">\(X\)</span> are independent from <span class="math inline">\(Y\)</span>, then
+<span id="def:unnamed-chunk-4" class="definition"><strong>Definition 4.1  (t-distribution)  </strong></span>Suppose <span class="math inline">\(X\sim N(0, 1)\)</span>, <span class="math inline">\(U\sim \chi^2(n)\)</span>, and <span class="math inline">\(X\)</span> are independent from <span class="math inline">\(Y\)</span>, then
 <span class="math inline">\(\frac{X}{\sqrt{U/n}}\)</span> has a (student) t distribution with n degrees of freedom, i.e.,
 <span class="math display">\[
   \frac{X}{\sqrt{U/n}} \sim t(n)
@@ -202,8 +202,8 @@ We call such a method the pivotal approach. A pivotal quantity or pivot is a fun
 <span class="math display">\[\begin{equation}
 \bar X \pm t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}
 \end{equation}\]</span></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="confidence-interval.html#cb1-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">21.5</span>, <span class="fl">18.95</span>, <span class="fl">18.55</span>, <span class="fl">19.4</span>, <span class="fl">19.15</span>, <span class="fl">22.35</span>, <span class="fl">22.9</span>, <span class="fl">22.2</span>, <span class="fl">23.1</span>)</span>
-<span id="cb1-2"><a href="confidence-interval.html#cb1-2" aria-hidden="true"></a><span class="kw">t.test</span>(x, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="confidence-interval.html#cb5-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">21.5</span>, <span class="fl">18.95</span>, <span class="fl">18.55</span>, <span class="fl">19.4</span>, <span class="fl">19.15</span>, <span class="fl">22.35</span>, <span class="fl">22.9</span>, <span class="fl">22.2</span>, <span class="fl">23.1</span>)</span>
+<span id="cb5-2"><a href="confidence-interval.html#cb5-2" aria-hidden="true"></a><span class="kw">t.test</span>(x, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ## 	One Sample t-test
 ## 
@@ -220,7 +220,7 @@ We call such a method the pivotal approach. A pivotal quantity or pivot is a fun
 <h2><span class="header-section-number">4.2</span> Q2</h2>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-3" class="theorem"><strong>Theorem 4.1  (Welch’s t-interval)  </strong></span>Let <span class="math inline">\(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\)</span> be independent random variables. Then an approximate <span class="math inline">\((1-\alpha)\)</span> C.I. for <span class="math inline">\(\mu_X-\mu_Y\)</span> is
+<span id="thm:unnamed-chunk-6" class="theorem"><strong>Theorem 4.1  (Welch’s t-interval)  </strong></span>Let <span class="math inline">\(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\)</span> be independent random variables. Then an approximate <span class="math inline">\((1-\alpha)\)</span> C.I. for <span class="math inline">\(\mu_X-\mu_Y\)</span> is
 <span class="math display">\[
   \bar{X}-\bar{Y} \pm t_{\alpha / 2}(r) \sqrt{\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}}
 \]</span>
