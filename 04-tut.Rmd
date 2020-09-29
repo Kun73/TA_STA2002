@@ -36,10 +36,9 @@ We call such a method the pivotal approach. A pivotal quantity or pivot is a fun
 \end{equation}
 
 ```{r}
-x <- c(21.5, 18.95, 18.55, 19.4, 19.15, 22.35, 22.9, 22.2, 23.1)
-t.test(x, conf.level = 0.95)
+qt(0.05/2, 8, lower.tail = F)
+qnorm(0.01/2, lower.tail = F)
 ```
-
 ## Q2 
 
 ```{theorem, name = "Welch’s t-interval"}
@@ -79,6 +78,10 @@ The two samples are independent, hence,
 
 * $m=n$, then $Z_i = X_i-Y_i\sim\mathcal{N}(\mu_X-\mu_y,\sigma_Z)$ since $(X_i,Y_i)^T\sim \mathcal{N}\left((\mu_X,\mu_Y)^T, \Sigma\right)$. Then the same technique in Q1 can be used.
 
+```{r}
+qt(0.05 / 2, 8, lower.tail = F)
+```
+
 ## Q3
 
 If $X\sim \chi^2(n)$ and $Y\sim\chi^2(m)$ are independent, then 
@@ -90,6 +93,15 @@ Therefore, with samples from two independent normal population, i.e., let $X_1,X
 \frac{\frac{(n-1)S_X^2}{\sigma^2_X} / (n-1)}{\frac{(m-1)S_Y^2}{\sigma^2_Y}/(m-1)} = \frac{S_X^2/\sigma^2_X}{S_Y^2/\sigma^2_Y}\sim F(n-1, m-1)
 \end{equation}
 
+```{r}
+alpha <- 0.02
+qf(alpha / 2, 12, 8, lower.tail = F)
+qf(alpha / 2, 8, 12, lower.tail = F)
+```
+\begin{equation}
+F_{1-\alpha / 2}(r_1, r_2) = \frac{1}{F_{\alpha / 2}(r_2, r_1)}
+\end{equation}
+
 ## Q4
 
 According to the central limit theorem(CLT), we have an approximate pivot 
@@ -97,4 +109,77 @@ According to the central limit theorem(CLT), we have an approximate pivot
 \frac{\bar X - EX}{\sqrt{Var X}}\rightarrow \mathcal{N}(0,1)
 \end{equation}
 
+```{r}
+qnorm(0.05 / 2, lower.tail = F)
+```
+## Solutions
 
+### Q1
+```{r q1}
+x <- c(21.5, 18.95, 18.55, 19.4, 19.15, 22.35, 22.9, 22.2, 23.1)
+t.test(x, conf.level = 0.95)
+n <- qnorm(0.1/2, lower.tail = F)^2 * var(x) / (0.5)^2
+print(n)
+```
+
+### Q2
+
+```{r q2}
+x <- c(1612, 1352, 1456, 1222, 1560, 1456, 1924)
+y <- c(1082, 1300, 1092, 1040, 910, 1248, 1092, 1040, 1092, 1288)
+t.test(x,y, var.equal = FALSE, conf.level = 0.95)
+```
+Note that R use $t_{\alpha/2}(8.6)$, so the result of C.I. is different from what we use where the df=8 in t distribution. The pdf of t distribution is 
+\begin{equation}
+f(t)=\frac{\Gamma\left(\frac{\nu+1}{2}\right)}{\sqrt{\nu \pi} \Gamma\left(\frac{\nu}{2}\right)}\left(1+\frac{t^{2}}{\nu}\right)^{-\frac{\nu+1}{2}}
+\end{equation}
+where $\nu$ is the degree of freedom. 
+
+### Q3
+
+```{r}
+r1 <- 9 - 1
+r2 <- 13 - 1
+sx <- 128.41 / 12
+sy <- 36.72 / 8
+alpha <- 0.02
+ci2 <- sx / sy * c(qf(1 - alpha / 2, r1, r2, lower.tail = F), qf(alpha / 2, r1, r2, lower.tail = F))
+ci <- sqrt(ci2)
+print(ci2)
+print(ci)
+```
+
+### Q4
+
+$$
+\hat{p}_{1} \pm z_{0.05 / 2} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{p}_{1}\right)}{n_{1}}}
+$$
+
+```{r}
+n1 <- 194
+n2 <- 162
+y1 <- 28 
+y2 <- 11
+p1 <- y1 / n1
+s1 <- sqrt(n1 * p1 * (1 - p1)) / n1
+p1 + c(-1, 1) * qnorm(0.05/2, lower.tail = F) * s1
+```
+
+$$
+z_{\alpha / 2} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{p}_{1}\right)}{n}} = \varepsilon
+$$
+
+```{r}
+alpha <- 0.1
+ep <- 0.04
+qnorm(alpha / 2, lower.tail = F)^2 * p1 * (1 - p1) / ep^2
+```
+
+$$
+\left(\hat{p}_{1}-\hat{p}_{2}\right)-z_{0.05} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{\rho}_{1}\right)}{n_{1}}+\frac{\hat{\rho}_{2}\left(1-\hat{p}_{2}\right)}{n_{2}}}
+$$
+
+```{r}
+p2 <- y2 / n2
+p1 - p2 - qnorm(0.05, lower.tail = F) * sqrt(p1 * (1 - p1) / n1 + p2 * (1 -  p2) / n2)
+```
