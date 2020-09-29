@@ -1812,19 +1812,10 @@ P\left[a(X_1,X_2,...,X_n)&lt; \theta &lt;b(X_1,X_2,...,X_n)\right] = 1-\alpha
 \end{equation}\]</span> We call such a method the pivotal approach. A pivotal quantity or pivot is a function of observations and unobservable parameters such that the function’s probability distribution does not depend on the unknown parameters. For example, <span class="math inline">\(\frac{\bar X - \mu}{\sqrt{\sigma^2/n}}\sim \mathcal{N}(0,1)\)</span> is a pivot. From @ref(eq:tn), we derive the <span class="math inline">\((1-\alpha)\)</span> confidence interval for the mean <span class="math inline">\(\mu\)</span> when <span class="math inline">\(\sigma^2\)</span> is unknown, i.e., <span class="math display">\[\begin{equation}
 \bar X \pm t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}
 \end{equation}\]</span></p>
-<pre class="r"><code>x &lt;- c(21.5, 18.95, 18.55, 19.4, 19.15, 22.35, 22.9, 22.2, 23.1)
-t.test(x, conf.level = 0.95)</code></pre>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  x
-## t = 33.738, df = 8, p-value = 6.506e-10
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  19.47149 22.32851
-## sample estimates:
-## mean of x 
-##      20.9</code></pre>
+<pre class="r"><code>qt(0.05/2, 8, lower.tail = F)</code></pre>
+<pre><code>## [1] 2.306004</code></pre>
+<pre class="r"><code>qnorm(0.01/2, lower.tail = F)</code></pre>
+<pre><code>## [1] 2.575829</code></pre>
 </div>
 <div id="q2-2" class="section level2">
 <h2>Q2</h2>
@@ -1854,6 +1845,8 @@ t.test(x, conf.level = 0.95)</code></pre>
 <li><p><span class="math inline">\(\sigma_X\neq\sigma_Y\)</span> and they are both unknown, use Welch’s t-interval or CLT approximation.</p></li>
 <li><p><span class="math inline">\(m=n\)</span>, then <span class="math inline">\(Z_i = X_i-Y_i\sim\mathcal{N}(\mu_X-\mu_y,\sigma_Z)\)</span> since <span class="math inline">\((X_i,Y_i)^T\sim \mathcal{N}\left((\mu_X,\mu_Y)^T, \Sigma\right)\)</span>. Then the same technique in Q1 can be used.</p></li>
 </ul>
+<pre class="r"><code>qt(0.05 / 2, 8, lower.tail = F)</code></pre>
+<pre><code>## [1] 2.306004</code></pre>
 </div>
 <div id="q3-2" class="section level2">
 <h2>Q3</h2>
@@ -1862,13 +1855,106 @@ t.test(x, conf.level = 0.95)</code></pre>
 \]</span> Therefore, with samples from two independent normal population, i.e., let <span class="math inline">\(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\)</span> be independent, we have a pivot <span class="math display">\[\begin{equation}
 \frac{\frac{(n-1)S_X^2}{\sigma^2_X} / (n-1)}{\frac{(m-1)S_Y^2}{\sigma^2_Y}/(m-1)} = \frac{S_X^2/\sigma^2_X}{S_Y^2/\sigma^2_Y}\sim F(n-1, m-1)
 \end{equation}\]</span></p>
+<pre class="r"><code>alpha &lt;- 0.02
+qf(alpha / 2, 12, 8, lower.tail = F)</code></pre>
+<pre><code>## [1] 5.666719</code></pre>
+<pre class="r"><code>qf(alpha / 2, 8, 12, lower.tail = F)</code></pre>
+<pre><code>## [1] 4.499365</code></pre>
+<p><span class="math display">\[\begin{equation}
+F_{1-\alpha / 2}(r_1, r_2) = \frac{1}{F_{\alpha / 2}(r_2, r_1)}
+\end{equation}\]</span></p>
 </div>
 <div id="q4-1" class="section level2">
 <h2>Q4</h2>
 <p>According to the central limit theorem(CLT), we have an approximate pivot <span class="math display">\[\begin{equation}
 \frac{\bar X - EX}{\sqrt{Var X}}\rightarrow \mathcal{N}(0,1)
 \end{equation}\]</span></p>
+<pre class="r"><code>qnorm(0.05 / 2, lower.tail = F)</code></pre>
+<pre><code>## [1] 1.959964</code></pre>
+</div>
+<div id="solutions" class="section level2">
+<h2>Solutions</h2>
+<div id="q1-3" class="section level3">
+<h3>Q1</h3>
+<pre class="r"><code>x &lt;- c(21.5, 18.95, 18.55, 19.4, 19.15, 22.35, 22.9, 22.2, 23.1)
+t.test(x, conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = 33.738, df = 8, p-value = 6.506e-10
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  19.47149 22.32851
+## sample estimates:
+## mean of x 
+##      20.9</code></pre>
+<pre class="r"><code>n &lt;- qnorm(0.1/2, lower.tail = F)^2 * var(x) / (0.5)^2
+print(n)</code></pre>
+<pre><code>## [1] 37.37708</code></pre>
+</div>
+<div id="q2-3" class="section level3">
+<h3>Q2</h3>
+<pre class="r"><code>x &lt;- c(1612, 1352, 1456, 1222, 1560, 1456, 1924)
+y &lt;- c(1082, 1300, 1092, 1040, 910, 1248, 1092, 1040, 1092, 1288)
+t.test(x,y, var.equal = FALSE, conf.level = 0.95)</code></pre>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  x and y
+## t = 4.235, df = 8.5995, p-value = 0.002427
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  181.7191 604.9095
+## sample estimates:
+## mean of x mean of y 
+##  1511.714  1118.400</code></pre>
+<p>Note that R use <span class="math inline">\(t_{\alpha/2}(8.6)\)</span>, so the result of C.I. is different from what we use where the df=8 in t distribution. The pdf of t distribution is <span class="math display">\[\begin{equation}
+f(t)=\frac{\Gamma\left(\frac{\nu+1}{2}\right)}{\sqrt{\nu \pi} \Gamma\left(\frac{\nu}{2}\right)}\left(1+\frac{t^{2}}{\nu}\right)^{-\frac{\nu+1}{2}}
+\end{equation}\]</span> where <span class="math inline">\(\nu\)</span> is the degree of freedom.</p>
+</div>
+<div id="q3-3" class="section level3">
+<h3>Q3</h3>
+<pre class="r"><code>r1 &lt;- 9 - 1
+r2 &lt;- 13 - 1
+sx &lt;- 128.41 / 12
+sy &lt;- 36.72 / 8
+alpha &lt;- 0.02
+ci2 &lt;- sx / sy * c(qf(1 - alpha / 2, r1, r2, lower.tail = F), qf(alpha / 2, r1, r2, lower.tail = F))
+ci &lt;- sqrt(ci2)
+print(ci2)</code></pre>
+<pre><code>## [1]  0.4114085 10.4895333</code></pre>
+<pre class="r"><code>print(ci)</code></pre>
+<pre><code>## [1] 0.6414113 3.2387549</code></pre>
+</div>
+<div id="q4-2" class="section level3">
+<h3>Q4</h3>
+<p><span class="math display">\[
+\hat{p}_{1} \pm z_{0.05 / 2} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{p}_{1}\right)}{n_{1}}}
+\]</span></p>
+<pre class="r"><code>n1 &lt;- 194
+n2 &lt;- 162
+y1 &lt;- 28 
+y2 &lt;- 11
+p1 &lt;- y1 / n1
+s1 &lt;- sqrt(n1 * p1 * (1 - p1)) / n1
+p1 + c(-1, 1) * qnorm(0.05/2, lower.tail = F) * s1</code></pre>
+<pre><code>## [1] 0.0948785 0.1937813</code></pre>
+<p><span class="math display">\[
+z_{\alpha / 2} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{p}_{1}\right)}{n}} = \varepsilon
+\]</span></p>
+<pre class="r"><code>alpha &lt;- 0.1
+ep &lt;- 0.04
+qnorm(alpha / 2, lower.tail = F)^2 * p1 * (1 - p1) / ep^2</code></pre>
+<pre><code>## [1] 208.8321</code></pre>
+<p><span class="math display">\[
+\left(\hat{p}_{1}-\hat{p}_{2}\right)-z_{0.05} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{\rho}_{1}\right)}{n_{1}}+\frac{\hat{\rho}_{2}\left(1-\hat{p}_{2}\right)}{n_{2}}}
+\]</span></p>
+<pre class="r"><code>p2 &lt;- y2 / n2
+p1 - p2 - qnorm(0.05, lower.tail = F) * sqrt(p1 * (1 - p1) / n1 + p2 * (1 -  p2) / n2)</code></pre>
+<pre><code>## [1] 0.02370925</code></pre>
 <!--chapter:end:04-tut.Rmd-->
+</div>
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">
