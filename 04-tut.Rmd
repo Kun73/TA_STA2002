@@ -1,5 +1,15 @@
 # Confidence Interval
 
+```{definition, name = "Confidence Interval"}
+Given a sample $X_1,X_2,...,X_n$ of the population $X\sim f(x;\theta)$ and $\alpha\in[0,1]$, a $(1-\alpha)$ confidence interval $\left(a(X_1,X_2,...,X_n), b(X_1,X_2,...,X_n)\right)$ for the parameter $\theta$ is defined such that, 
+\begin{equation}
+P\left[a(X_1,X_2,...,X_n)< \theta <b(X_1,X_2,...,X_n)\right] = 1-\alpha
+\end{equation}
+```
+
+
+**[Interpretation and misunderstanding](https://en.wikipedia.org/wiki/Confidence_interval#Meaning_and_interpretation)**
+
 ## Q1 
 
 ```{definition, name = "t-distribution"}
@@ -42,6 +52,32 @@ $$
   r=\left\lfloor\frac{\left(\frac{S_{\mathrm{X}}^{2}}{n}+\frac{S_{\mathrm{X}}^{2}}{m}\right)^{2}}{\frac{1}{n-1}\left(\frac{S_{\mathrm{X}}^{2}}{n}\right)^{2}+\frac{1}{m-1}\left(\frac{S_{\mathrm{Y}}^{2}}{m}\right)^{2}}\right\rfloor
 $$
 ```
+
+Let $X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)$ and $Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)$ be independent random variables. We have the following, 
+\begin{align}
+\bar X&\sim \mathcal{N}(\mu_X, \frac{\sigma_X^2}{n}), \quad 
+\bar Y \sim \mathcal{N}(\mu_Y, \frac{\sigma_Y^2}{n})\\
+\frac{(n-1)S^2_X}{\sigma_X^2} &\sim \chi^2(n-1), \quad \frac{(m-1)S^2_Y}{\sigma_Y^2} \sim \chi^2(m-1)
+\end{align}
+The two samples are independent, hence, 
+\begin{equation}
+\bar X - \bar Y \sim \mathcal{N}(\mu_X-\mu_Y,\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m})
+\end{equation}
+
+* $\sigma_X=\sigma_Y=\sigma$ and $\sigma$ is known, then, 
+\begin{equation}
+\frac{\bar X - \bar Y - (\mu_X-\mu_Y)}{\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}}\sim \mathcal{N}(0,1)
+\end{equation}
+
+* $\sigma_X=\sigma_Y=\sigma$ and $\sigma$ is unknown, then, 
+\begin{align}
+\frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2}&\sim \chi^2(n+m-2)\\
+\frac{\bar X - \bar Y-(\mu_X-\mu_Y)/\left(\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}\right)}{\sqrt{\frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2(n+m-2)}}}&\sim t(n+m-2)
+\end{align}
+
+* $\sigma_X\neq\sigma_Y$ and they are both unknown, use Welch’s t-interval or CLT approximation.
+
+* $m=n$, then $Z_i = X_i-Y_i\sim\mathcal{N}(\mu_X-\mu_y,\sigma_Z)$ since $(X_i,Y_i)^T\sim \mathcal{N}\left((\mu_X,\mu_Y)^T, \Sigma\right)$. Then the same technique in Q1 can be used.
 
 ## Q3
 
