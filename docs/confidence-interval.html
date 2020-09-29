@@ -24,7 +24,7 @@
 <meta name="author" content="Kun HUANG(SDS)" />
 
 
-<meta name="date" content="2020-09-26" />
+<meta name="date" content="2020-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -179,11 +179,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="confidence-interval" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Confidence Interval</h1>
+
+<div class="definition">
+<span id="def:unnamed-chunk-4" class="definition"><strong>Definition 4.1  (Confidence Interval)  </strong></span>Given a sample <span class="math inline">\(X_1,X_2,...,X_n\)</span> of the population <span class="math inline">\(X\sim f(x;\theta)\)</span> and <span class="math inline">\(\alpha\in[0,1]\)</span>, a <span class="math inline">\((1-\alpha)\)</span> confidence interval <span class="math inline">\(\left(a(X_1,X_2,...,X_n), b(X_1,X_2,...,X_n)\right)\)</span> for the parameter <span class="math inline">\(\theta\)</span> is defined such that,
+<span class="math display">\[\begin{equation}
+P\left[a(X_1,X_2,...,X_n)&lt; \theta &lt;b(X_1,X_2,...,X_n)\right] = 1-\alpha
+\end{equation}\]</span>
+</div>
+<p><strong><a href="https://en.wikipedia.org/wiki/Confidence_interval#Meaning_and_interpretation">Interpretation and misunderstanding</a></strong></p>
 <div id="q1" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Q1</h2>
 
 <div class="definition">
-<span id="def:unnamed-chunk-4" class="definition"><strong>Definition 4.1  (t-distribution)  </strong></span>Suppose <span class="math inline">\(X\sim N(0, 1)\)</span>, <span class="math inline">\(U\sim \chi^2(n)\)</span>, and <span class="math inline">\(X\)</span> are independent from <span class="math inline">\(Y\)</span>, then
+<span id="def:unnamed-chunk-5" class="definition"><strong>Definition 4.2  (t-distribution)  </strong></span>Suppose <span class="math inline">\(X\sim N(0, 1)\)</span>, <span class="math inline">\(U\sim \chi^2(n)\)</span>, and <span class="math inline">\(X\)</span> are independent from <span class="math inline">\(Y\)</span>, then
 <span class="math inline">\(\frac{X}{\sqrt{U/n}}\)</span> has a (student) t distribution with n degrees of freedom, i.e.,
 <span class="math display">\[
   \frac{X}{\sqrt{U/n}} \sim t(n)
@@ -220,7 +228,7 @@ We call such a method the pivotal approach. A pivotal quantity or pivot is a fun
 <h2><span class="header-section-number">4.2</span> Q2</h2>
 
 <div class="theorem">
-<span id="thm:unnamed-chunk-6" class="theorem"><strong>Theorem 4.1  (Welch’s t-interval)  </strong></span>Let <span class="math inline">\(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\)</span> be independent random variables. Then an approximate <span class="math inline">\((1-\alpha)\)</span> C.I. for <span class="math inline">\(\mu_X-\mu_Y\)</span> is
+<span id="thm:unnamed-chunk-7" class="theorem"><strong>Theorem 4.1  (Welch’s t-interval)  </strong></span>Let <span class="math inline">\(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\)</span> be independent random variables. Then an approximate <span class="math inline">\((1-\alpha)\)</span> C.I. for <span class="math inline">\(\mu_X-\mu_Y\)</span> is
 <span class="math display">\[
   \bar{X}-\bar{Y} \pm t_{\alpha / 2}(r) \sqrt{\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}}
 \]</span>
@@ -229,6 +237,29 @@ where
   r=\left\lfloor\frac{\left(\frac{S_{\mathrm{X}}^{2}}{n}+\frac{S_{\mathrm{X}}^{2}}{m}\right)^{2}}{\frac{1}{n-1}\left(\frac{S_{\mathrm{X}}^{2}}{n}\right)^{2}+\frac{1}{m-1}\left(\frac{S_{\mathrm{Y}}^{2}}{m}\right)^{2}}\right\rfloor
 \]</span>
 </div>
+<p>Let <span class="math inline">\(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\)</span> be independent random variables. We have the following,
+<span class="math display">\[\begin{align}
+\bar X&amp;\sim \mathcal{N}(\mu_X, \frac{\sigma_X^2}{n}), \quad 
+\bar Y \sim \mathcal{N}(\mu_Y, \frac{\sigma_Y^2}{n})\\
+\frac{(n-1)S^2_X}{\sigma_X^2} &amp;\sim \chi^2(n-1), \quad \frac{(m-1)S^2_Y}{\sigma_Y^2} \sim \chi^2(m-1)
+\end{align}\]</span>
+The two samples are independent, hence,
+<span class="math display">\[\begin{equation}
+\bar X - \bar Y \sim \mathcal{N}(\mu_X-\mu_Y,\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m})
+\end{equation}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\sigma_X=\sigma_Y=\sigma\)</span> and <span class="math inline">\(\sigma\)</span> is known, then,
+<span class="math display">\[\begin{equation}
+\frac{\bar X - \bar Y - (\mu_X-\mu_Y)}{\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}}\sim \mathcal{N}(0,1)
+\end{equation}\]</span></p></li>
+<li><p><span class="math inline">\(\sigma_X=\sigma_Y=\sigma\)</span> and <span class="math inline">\(\sigma\)</span> is unknown, then,
+<span class="math display">\[\begin{align}
+\frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2}&amp;\sim \chi^2(n+m-2)\\
+\frac{\bar X - \bar Y-(\mu_X-\mu_Y)/\left(\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}\right)}{\sqrt{\frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2(n+m-2)}}}&amp;\sim t(n+m-2)
+\end{align}\]</span></p></li>
+<li><p><span class="math inline">\(\sigma_X\neq\sigma_Y\)</span> and they are both unknown, use Welch’s t-interval or CLT approximation.</p></li>
+<li><p><span class="math inline">\(m=n\)</span>, then <span class="math inline">\(Z_i = X_i-Y_i\sim\mathcal{N}(\mu_X-\mu_y,\sigma_Z)\)</span> since <span class="math inline">\((X_i,Y_i)^T\sim \mathcal{N}\left((\mu_X,\mu_Y)^T, \Sigma\right)\)</span>. Then the same technique in Q1 can be used.</p></li>
+</ul>
 </div>
 <div id="q3" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Q3</h2>
