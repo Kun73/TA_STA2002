@@ -35,3 +35,19 @@ The MLE for $\sigma$ is
 \begin{equation}
 \hat{\sigma^{2}}=\frac{1}{n} \sum_{i=1}^{n}\left[y_{i}-\hat{\alpha}-\hat{\beta}\left(x_{i}-\bar{x}\right)\right]^{2}
 \end{equation}
+
+## A toy example
+```{r}
+# Simulated data
+#' y = 4 + 3x + \epsilon
+x <- runif(20, min = 5, max = 20)
+y <- 4 + 3 * x + rnorm(20)
+slr <- lm(y ~ x)
+summary(slr)
+```
+
+```{r}
+names(slr)
+fitted(slr)
+```
+
