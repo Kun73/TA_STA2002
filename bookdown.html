@@ -11,7 +11,7 @@
 
 <meta name="author" content="Kun HUANG(SDS)" />
 
-<meta name="date" content="2020-09-29" />
+<meta name="date" content="2020-10-12" />
 
 <title>Tutorial for STA2002</title>
 
@@ -1649,7 +1649,7 @@ summary {
 
 <h1 class="title toc-ignore">Tutorial for STA2002</h1>
 <h4 class="author">Kun HUANG(SDS)</h4>
-<h4 class="date">2020-09-29</h4>
+<h4 class="date">2020-10-12</h4>
 
 </div>
 
@@ -1955,6 +1955,73 @@ p1 - p2 - qnorm(0.05, lower.tail = F) * sqrt(p1 * (1 - p1) / n1 + p2 * (1 -  p2)
 <pre><code>## [1] 0.02370925</code></pre>
 <!--chapter:end:04-tut.Rmd-->
 </div>
+</div>
+</div>
+<div id="simple-linear-regression" class="section level1">
+<h1>Simple Linear Regression</h1>
+<p>Consider a simple linear regression model, <span class="math display">\[\begin{equation}
+Y = \alpha + \beta(X-\bar X) + \varepsilon,
+(\#eq:slr)
+\end{equation}\]</span> where <span class="math inline">\(\varepsilon\sim \mathcal{N}(0, \sigma^2)\)</span>. Given <span class="math inline">\(X\)</span> is not random, we have, <span class="math display">\[\begin{equation}
+Y\sim \mathcal{N}(\alpha + \beta(X-\bar X), \sigma^2)
+\end{equation}\]</span></p>
+<div id="fitting-a-simple-linear-regression-model" class="section level2">
+<h2>Fitting a Simple Linear Regression Model</h2>
+<p>Suppose we a series of samples <span class="math inline">\((x_i,y_i), i=1,2,...,n\)</span> and we want to fit a simple linear regression which has the form of @ref(eq:slr). Then the fitted <span class="math inline">\((\hat \alpha,\hat\beta)\)</span> should minimize the residual, i.e.,</p>
+<p><span class="math display">\[\begin{equation}
+(\hat \alpha,\hat\beta) = \underset{\alpha,\beta\in \mathbb{R}}{\arg\min}\sum_{i=1}^n(y_i-\alpha-\beta(x_i-\bar x))^2
+(\#eq:residual)
+\end{equation}\]</span></p>
+<p>Solving @ref(eq:residual), we derive <span class="math display">\[\begin{equation}
+\hat\alpha = \bar y, \hat\beta = \frac{\sum_{i=1}^{n} y_{i}\left(x_{i}-\bar{x}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}
+\end{equation}\]</span></p>
+<p>Noting that <span class="math inline">\(y_i = \alpha+\beta(x_i-\bar x)+\varepsilon_i\sim\mathcal{N}(\alpha+\beta(x_i-\bar x), \sigma^2)\)</span>, we have <span class="math display">\[\begin{align}
+\hat\alpha &amp;= \bar y \sim \mathcal{N}(\alpha, \frac{\sigma^2}{n})\\
+\hat\beta &amp;= \frac{\sum_{i=1}^{n} y_{i}\left(x_{i}-\bar{x}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}
+\sim \mathcal{N}(\beta, \frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar x)^2})
+\end{align}\]</span></p>
+<p>The MLE for <span class="math inline">\(\sigma\)</span> is <span class="math display">\[\begin{equation}
+\hat{\sigma^{2}}=\frac{1}{n} \sum_{i=1}^{n}\left[y_{i}-\hat{\alpha}-\hat{\beta}\left(x_{i}-\bar{x}\right)\right]^{2}
+\end{equation}\]</span></p>
+</div>
+<div id="a-toy-example" class="section level2">
+<h2>A toy example</h2>
+<pre class="r"><code># Simulated data
+#&#39; y = 4 + 3x + \epsilon
+x &lt;- runif(20, min = 5, max = 20)
+y &lt;- 4 + 3 * x + rnorm(20)
+slr &lt;- lm(y ~ x)
+summary(slr)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.12157 -0.41660 -0.00983  0.49763  1.20059 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  4.55823    0.52082   8.752 6.66e-08 ***
+## x            2.96485    0.03787  78.298  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.674 on 18 degrees of freedom
+## Multiple R-squared:  0.9971, Adjusted R-squared:  0.9969 
+## F-statistic:  6131 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>names(slr)</code></pre>
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
+##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
+##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
+<pre class="r"><code>fitted(slr)</code></pre>
+<pre><code>##        1        2        3        4        5        6        7        8 
+## 27.48489 44.01074 43.85501 36.37622 31.51335 57.42021 45.97750 30.24852 
+##        9       10       11       12       13       14       15       16 
+## 21.70682 43.03834 52.58035 20.77555 52.60150 55.29051 58.83748 50.55300 
+##       17       18       19       20 
+## 47.72141 62.30280 45.90111 43.65957</code></pre>
+<!--chapter:end:05-slr.Rmd-->
 </div>
 </div>
 <div id="references" class="section level1 unnumbered">

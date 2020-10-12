@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Tutorial 2 | Tutorial for STA2002</title>
-  <meta name="description" content="Chapter 2 Tutorial 2 | Tutorial for STA2002." />
+  <title>Chapter 5 Simple Linear Regression | Tutorial for STA2002</title>
+  <meta name="description" content="Chapter 5 Simple Linear Regression | Tutorial for STA2002." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Tutorial 2 | Tutorial for STA2002" />
+  <meta property="og:title" content="Chapter 5 Simple Linear Regression | Tutorial for STA2002" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 2 Tutorial 2 | Tutorial for STA2002." />
+  <meta property="og:description" content="Chapter 5 Simple Linear Regression | Tutorial for STA2002." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Tutorial 2 | Tutorial for STA2002" />
+  <meta name="twitter:title" content="Chapter 5 Simple Linear Regression | Tutorial for STA2002" />
   
-  <meta name="twitter:description" content="Chapter 2 Tutorial 2 | Tutorial for STA2002." />
+  <meta name="twitter:description" content="Chapter 5 Simple Linear Regression | Tutorial for STA2002." />
   
 
 <meta name="author" content="Kun HUANG(SDS)" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sec-T1.html"/>
-<link rel="next" href="tutorial-3.html"/>
+<link rel="prev" href="confidence-interval.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -189,57 +189,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sec:T2" class="section level1" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Tutorial 2</h1>
-<div id="q1" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Q1</h2>
-<ul>
-<li><p>Derive moments from a given pdf <span class="math inline">\(f(x)\)</span>. <span class="math inline">\(EX = \int xf(x)dx, EX^2=\int x^2f(x)dx\)</span>.</p></li>
-<li><p>Derive variance from the first and second moments,i.e., <span class="math inline">\(Var(X)=EX^2-E^2X\)</span>.</p></li>
-<li><p><span class="math inline">\(E(aX+bY+c) = aEX + bEY+c\)</span>, <span class="math inline">\(Var(aX+bY+c) = a^2Var(X)+b^2Var(Y)\)</span>. The latter needs <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent.</p></li>
-<li><p>CLT approximation.</p></li>
-</ul>
+<div id="simple-linear-regression" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Simple Linear Regression</h1>
+<p>Consider a simple linear regression model,
+<span class="math display" id="eq:slr">\[\begin{equation}
+Y = \alpha + \beta(X-\bar X) + \varepsilon,
+\tag{5.1}
+\end{equation}\]</span>
+where <span class="math inline">\(\varepsilon\sim \mathcal{N}(0, \sigma^2)\)</span>. Given <span class="math inline">\(X\)</span> is not random, we have,
+<span class="math display">\[\begin{equation}
+Y\sim \mathcal{N}(\alpha + \beta(X-\bar X), \sigma^2)
+\end{equation}\]</span></p>
+<div id="fitting-a-simple-linear-regression-model" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Fitting a Simple Linear Regression Model</h2>
+<p>Suppose we a series of samples <span class="math inline">\((x_i,y_i), i=1,2,...,n\)</span> and we want to fit a simple linear regression which has the form of <a href="simple-linear-regression.html#eq:slr">(5.1)</a>. Then the fitted <span class="math inline">\((\hat \alpha,\hat\beta)\)</span> should minimize the residual, i.e.,</p>
+<p><span class="math display" id="eq:residual">\[\begin{equation}
+(\hat \alpha,\hat\beta) = \underset{\alpha,\beta\in \mathbb{R}}{\arg\min}\sum_{i=1}^n(y_i-\alpha-\beta(x_i-\bar x))^2
+\tag{5.2}
+\end{equation}\]</span></p>
+<p>Solving <a href="simple-linear-regression.html#eq:residual">(5.2)</a>, we derive
+<span class="math display">\[\begin{equation}
+\hat\alpha = \bar y, \hat\beta = \frac{\sum_{i=1}^{n} y_{i}\left(x_{i}-\bar{x}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}
+\end{equation}\]</span></p>
+<p>Noting that <span class="math inline">\(y_i = \alpha+\beta(x_i-\bar x)+\varepsilon_i\sim\mathcal{N}(\alpha+\beta(x_i-\bar x), \sigma^2)\)</span>, we have
+<span class="math display">\[\begin{align}
+\hat\alpha &amp;= \bar y \sim \mathcal{N}(\alpha, \frac{\sigma^2}{n})\\
+\hat\beta &amp;= \frac{\sum_{i=1}^{n} y_{i}\left(x_{i}-\bar{x}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}
+\sim \mathcal{N}(\beta, \frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar x)^2})
+\end{align}\]</span></p>
+<p>The MLE for <span class="math inline">\(\sigma\)</span> is
+<span class="math display">\[\begin{equation}
+\hat{\sigma^{2}}=\frac{1}{n} \sum_{i=1}^{n}\left[y_{i}-\hat{\alpha}-\hat{\beta}\left(x_{i}-\bar{x}\right)\right]^{2}
+\end{equation}\]</span></p>
 </div>
-<div id="q2" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Q2</h2>
-
-<div class="definition">
-<p><span id="def:unnamed-chunk-1" class="definition"><strong>Definition 2.1  (Poisson Process)  </strong></span>Let <span class="math inline">\(N(t)\)</span> be the number of events happens during the time interval <span class="math inline">\([0,t]\)</span>, if <span class="math inline">\(N(t)\)</span> satisfies the following:</p>
-<ul>
-<li>N(0) = 0;</li>
-<li>has independent increments, and</li>
-<li><span class="math inline">\(\forall \tau&gt;0\)</span>, <span class="math inline">\(P(N(t+\tau)-N(t) = n)= \frac{(\lambda \tau)^n}{n!}e^{-\lambda \tau}\)</span></li>
-</ul>
-we call <span class="math inline">\(\{N(t),t\geq0\}\)</span> is a Poisson process with rate <span class="math inline">\(\lambda\)</span>.
-</div>
-<ul>
-<li>Let <span class="math inline">\((W_n&gt;t)\)</span> be the <span class="math inline">\(n-th\)</span> random event happens after time <span class="math inline">\(t\)</span>, then <span class="math inline">\(W_n\sim Gamma(n, \lambda)\)</span>. In fact, <span class="math inline">\(Gamma(n,\lambda)\)</span> can be seen as the time to be waited until the <span class="math inline">\(n-th\)</span> event.</li>
-</ul>
-</div>
-<div id="q3" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Q3</h2>
-
-<div class="proposition">
-<span id="prp:unnamed-chunk-2" class="proposition"><strong>Proposition 2.1  </strong></span>Suppose the random variable <span class="math inline">\(X\)</span> has a pdf <span class="math inline">\(f(x)\)</span>, let <span class="math inline">\(Y = T(X)\)</span>, where <span class="math inline">\(T:\mathbb{R}\rightarrow \mathbb{R}\)</span> is an invertible transformation. Then the pdf <span class="math inline">\(g(y)\)</span> of <span class="math inline">\(Y\)</span> is
-<span class="math display">\[\begin{equation*}
-g(y) = f(T^{-1}(y))\frac{d T^{-1}(y)}{dy}
-\end{equation*}\]</span>
-</div>
-<p>For example, suppose <span class="math inline">\(X\sim\mathcal{N}(\mu,\sigma^2)\)</span>, then <span class="math inline">\(Y=aX+b\sim\mathcal{N}(a\mu+b, (a\sigma)^2)\)</span>.</p>
-</div>
-<div id="q4" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Q4</h2>
-
-<div class="theorem">
-<p><span id="thm:unnamed-chunk-3" class="theorem"><strong>Theorem 2.1  (Chebyshev’s Inequality)  </strong></span>Let <span class="math inline">\(X\)</span> be a random variable with finite mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2&gt;0\)</span>. Then <span class="math inline">\(\forall k&gt;0\)</span>,
-<span class="math display">\[\begin{equation*}
-P(|X-\mu|\geq k\sigma) \leq \frac{1}{k^2}
-\end{equation*}\]</span></p>
-Additionally, let <span class="math inline">\(k\sigma = \varepsilon\)</span>, the above becomes,
-<span class="math display">\[\begin{equation*}
-P(|X-\mu|\geq \varepsilon) \leq \frac{\sigma^2}{\varepsilon^2}
-\end{equation*}\]</span>
-</div>
+<div id="a-toy-example" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> A toy example</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="simple-linear-regression.html#cb33-1" aria-hidden="true"></a><span class="co"># Simulated data</span></span>
+<span id="cb33-2"><a href="simple-linear-regression.html#cb33-2" aria-hidden="true"></a><span class="co">#&#39; y = 4 + 3x + \epsilon</span></span>
+<span id="cb33-3"><a href="simple-linear-regression.html#cb33-3" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">20</span>)</span>
+<span id="cb33-4"><a href="simple-linear-regression.html#cb33-4" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>)</span>
+<span id="cb33-5"><a href="simple-linear-regression.html#cb33-5" aria-hidden="true"></a>slr &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)</span>
+<span id="cb33-6"><a href="simple-linear-regression.html#cb33-6" aria-hidden="true"></a><span class="kw">summary</span>(slr)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.5568 -0.4740 -0.1036  0.5514  2.3683 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.53417    0.63432   5.572 2.74e-05 ***
+## x            3.03769    0.04979  61.014  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.9954 on 18 degrees of freedom
+## Multiple R-squared:  0.9952,	Adjusted R-squared:  0.9949 
+## F-statistic:  3723 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="simple-linear-regression.html#cb35-1" aria-hidden="true"></a><span class="kw">names</span>(slr)</span></code></pre></div>
+<pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
+##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
+##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="simple-linear-regression.html#cb37-1" aria-hidden="true"></a><span class="kw">fitted</span>(slr)</span></code></pre></div>
+<pre><code>##        1        2        3        4        5        6        7        8 
+## 25.24268 60.05817 35.73002 49.99921 39.40235 18.83348 64.26214 19.80648 
+##        9       10       11       12       13       14       15       16 
+## 49.66206 28.04389 38.70550 37.03684 24.21601 53.36976 57.25349 26.62021 
+##       17       18       19       20 
+## 50.16135 36.75693 29.19630 51.15714</code></pre>
 
 </div>
 </div>
@@ -248,8 +267,8 @@ P(|X-\mu|\geq \varepsilon) \leq \frac{\sigma^2}{\varepsilon^2}
           </div>
         </div>
       </div>
-<a href="sec-T1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tutorial-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="confidence-interval.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
