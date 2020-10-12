@@ -1,0 +1,37 @@
+# Simple Linear Regression
+
+Consider a simple linear regression model, 
+\begin{equation}
+Y = \alpha + \beta(X-\bar X) + \varepsilon,
+(\#eq:slr)
+\end{equation}
+where $\varepsilon\sim \mathcal{N}(0, \sigma^2)$. Given $X$ is not random, we have, 
+\begin{equation}
+Y\sim \mathcal{N}(\alpha + \beta(X-\bar X), \sigma^2)
+\end{equation}
+
+## Fitting a Simple Linear Regression Model
+
+Suppose we a series of samples $(x_i,y_i), i=1,2,...,n$ and we want to fit a simple linear regression which has the form of \@ref(eq:slr). Then the fitted $(\hat \alpha,\hat\beta)$ should minimize the residual, i.e., 
+
+\begin{equation}
+(\hat \alpha,\hat\beta) = \underset{\alpha,\beta\in \mathbb{R}}{\arg\min}\sum_{i=1}^n(y_i-\alpha-\beta(x_i-\bar x))^2
+(\#eq:residual)
+\end{equation}
+
+Solving \@ref(eq:residual), we derive
+\begin{equation}
+\hat\alpha = \bar y, \hat\beta = \frac{\sum_{i=1}^{n} y_{i}\left(x_{i}-\bar{x}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}
+\end{equation}
+
+Noting that $y_i = \alpha+\beta(x_i-\bar x)+\varepsilon_i\sim\mathcal{N}(\alpha+\beta(x_i-\bar x), \sigma^2)$, we have 
+\begin{align}
+\hat\alpha &= \bar y \sim \mathcal{N}(\alpha, \frac{\sigma^2}{n})\\
+\hat\beta &= \frac{\sum_{i=1}^{n} y_{i}\left(x_{i}-\bar{x}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}
+\sim \mathcal{N}(\beta, \frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar x)^2})
+\end{align}
+
+The MLE for $\sigma$ is 
+\begin{equation}
+\hat{\sigma^{2}}=\frac{1}{n} \sum_{i=1}^{n}\left[y_{i}-\hat{\alpha}-\hat{\beta}\left(x_{i}-\bar{x}\right)\right]^{2}
+\end{equation}
