@@ -24,7 +24,7 @@
 <meta name="author" content="Kun HUANG(SDS)" />
 
 
-<meta name="date" content="2020-10-12" />
+<meta name="date" content="2020-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="sec-T2.html"/>
 <link rel="next" href="confidence-interval.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -169,7 +169,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#fitting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>5.1</b> Fitting a Simple Linear Regression Model</a></li>
-<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-toy-example"><i class="fa fa-check"></i><b>5.2</b> A toy example</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-toy-example"><i class="fa fa-check"></i><b>5.2</b> A Toy Example</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-hypothesis-testing-by-normal-population"><i class="fa fa-check"></i><b>6.1</b> Summary of Hypothesis Testing by Normal Population</a></li>
+<li class="chapter" data-level="6.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercise"><i class="fa fa-check"></i><b>6.2</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -189,9 +194,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tutorial-3" class="section level1" number="3">
+<div id="tutorial-3" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Tutorial 3</h1>
-<div id="method-of-moment-estimatormme" class="section level2" number="3.1">
+<div id="method-of-moment-estimatormme" class="section level2">
 <h2><span class="header-section-number">3.1</span> Method of moment estimator(MME)</h2>
 <p>Suppose that the problem is to estimate <span class="math inline">\(k\)</span> unknown parameters <span class="math inline">\(\boldsymbol{\theta} := (\theta_1,\theta_2,...,\theta_k)^{T}\)</span> characterizing the distribution <span class="math inline">\(f_X(x;\boldsymbol{\theta})\)</span> of the random variable <span class="math inline">\(X\)</span>. Suppose the first <span class="math inline">\(k\)</span> moments of the true distribution can be expressed by the function of <span class="math inline">\(\boldsymbol{\theta}\)</span>, i.e.,
 <span class="math display">\[\begin{align}
@@ -206,7 +211,7 @@ Suppose a sample of size <span class="math inline">\(n\)</span> is drawn, having
 \end{align}\]</span>
 Solve the above <span class="math inline">\(k\)</span> equations, we derive the method of moment estimator of <span class="math inline">\(\boldsymbol{\theta}\)</span>.</p>
 </div>
-<div id="maximum-likelihood-estimatormle." class="section level2" number="3.2">
+<div id="maximum-likelihood-estimatormle." class="section level2">
 <h2><span class="header-section-number">3.2</span> Maximum likelihood estimator(MLE).</h2>
 <p>Suppose we have a sample of size <span class="math inline">\(n\)</span>, <span class="math inline">\(X_1,...,X_n\)</span> i.i.d drawn from a population distribution <span class="math inline">\(f_X(x;\boldsymbol{\theta}), \boldsymbol{\theta} = (\theta_1,\theta_2,...,\theta_k)^{T}\)</span>. Define the likelihood function to be
 <span class="math display">\[

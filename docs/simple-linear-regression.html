@@ -24,7 +24,7 @@
 <meta name="author" content="Kun HUANG(SDS)" />
 
 
-<meta name="date" content="2020-10-12" />
+<meta name="date" content="2020-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +32,7 @@
   
   
 <link rel="prev" href="confidence-interval.html"/>
-<link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<link rel="next" href="hypothesis-testing.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -169,7 +169,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#fitting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>5.1</b> Fitting a Simple Linear Regression Model</a></li>
-<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-toy-example"><i class="fa fa-check"></i><b>5.2</b> A toy example</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-toy-example"><i class="fa fa-check"></i><b>5.2</b> A Toy Example</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-hypothesis-testing-by-normal-population"><i class="fa fa-check"></i><b>6.1</b> Summary of Hypothesis Testing by Normal Population</a></li>
+<li class="chapter" data-level="6.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercise"><i class="fa fa-check"></i><b>6.2</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -189,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="simple-linear-regression" class="section level1" number="5">
+<div id="simple-linear-regression" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Simple Linear Regression</h1>
 <p>Consider a simple linear regression model,
 <span class="math display" id="eq:slr">\[\begin{equation}
@@ -200,7 +205,7 @@ where <span class="math inline">\(\varepsilon\sim \mathcal{N}(0, \sigma^2)\)</sp
 <span class="math display">\[\begin{equation}
 Y\sim \mathcal{N}(\alpha + \beta(X-\bar X), \sigma^2)
 \end{equation}\]</span></p>
-<div id="fitting-a-simple-linear-regression-model" class="section level2" number="5.1">
+<div id="fitting-a-simple-linear-regression-model" class="section level2">
 <h2><span class="header-section-number">5.1</span> Fitting a Simple Linear Regression Model</h2>
 <p>Suppose we a series of samples <span class="math inline">\((x_i,y_i), i=1,2,...,n\)</span> and we want to fit a simple linear regression which has the form of <a href="simple-linear-regression.html#eq:slr">(5.1)</a>. Then the fitted <span class="math inline">\((\hat \alpha,\hat\beta)\)</span> should minimize the residual, i.e.,</p>
 <p><span class="math display" id="eq:residual">\[\begin{equation}
@@ -222,43 +227,43 @@ Y\sim \mathcal{N}(\alpha + \beta(X-\bar X), \sigma^2)
 \hat{\sigma^{2}}=\frac{1}{n} \sum_{i=1}^{n}\left[y_{i}-\hat{\alpha}-\hat{\beta}\left(x_{i}-\bar{x}\right)\right]^{2}
 \end{equation}\]</span></p>
 </div>
-<div id="a-toy-example" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> A toy example</h2>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="simple-linear-regression.html#cb33-1" aria-hidden="true"></a><span class="co"># Simulated data</span></span>
-<span id="cb33-2"><a href="simple-linear-regression.html#cb33-2" aria-hidden="true"></a><span class="co">#&#39; y = 4 + 3x + \epsilon</span></span>
-<span id="cb33-3"><a href="simple-linear-regression.html#cb33-3" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">20</span>)</span>
-<span id="cb33-4"><a href="simple-linear-regression.html#cb33-4" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>)</span>
-<span id="cb33-5"><a href="simple-linear-regression.html#cb33-5" aria-hidden="true"></a>slr &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)</span>
-<span id="cb33-6"><a href="simple-linear-regression.html#cb33-6" aria-hidden="true"></a><span class="kw">summary</span>(slr)</span></code></pre></div>
+<div id="a-toy-example" class="section level2">
+<h2><span class="header-section-number">5.2</span> A Toy Example</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="simple-linear-regression.html#cb33-1"></a><span class="co"># Simulated data</span></span>
+<span id="cb33-2"><a href="simple-linear-regression.html#cb33-2"></a><span class="co">#&#39; y = 4 + 3x + \epsilon</span></span>
+<span id="cb33-3"><a href="simple-linear-regression.html#cb33-3"></a>x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dt">min =</span> <span class="dv">5</span>, <span class="dt">max =</span> <span class="dv">20</span>)</span>
+<span id="cb33-4"><a href="simple-linear-regression.html#cb33-4"></a>y &lt;-<span class="st"> </span><span class="dv">4</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">*</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>)</span>
+<span id="cb33-5"><a href="simple-linear-regression.html#cb33-5"></a>slr &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)</span>
+<span id="cb33-6"><a href="simple-linear-regression.html#cb33-6"></a><span class="kw">summary</span>(slr)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.5568 -0.4740 -0.1036  0.5514  2.3683 
+## -2.0079 -0.6543  0.0842  0.5907  2.1196 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  3.53417    0.63432   5.572 2.74e-05 ***
-## x            3.03769    0.04979  61.014  &lt; 2e-16 ***
+## (Intercept)  3.04439    0.92866   3.278  0.00418 ** 
+## x            3.04955    0.06689  45.589  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9954 on 18 degrees of freedom
-## Multiple R-squared:  0.9952,	Adjusted R-squared:  0.9949 
-## F-statistic:  3723 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="simple-linear-regression.html#cb35-1" aria-hidden="true"></a><span class="kw">names</span>(slr)</span></code></pre></div>
+## Residual standard error: 1.098 on 18 degrees of freedom
+## Multiple R-squared:  0.9914,	Adjusted R-squared:  0.9909 
+## F-statistic:  2078 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="simple-linear-regression.html#cb35-1"></a><span class="kw">names</span>(slr)</span></code></pre></div>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
 ##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="simple-linear-regression.html#cb37-1" aria-hidden="true"></a><span class="kw">fitted</span>(slr)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="simple-linear-regression.html#cb37-1"></a><span class="kw">fitted</span>(slr)</span></code></pre></div>
 <pre><code>##        1        2        3        4        5        6        7        8 
-## 25.24268 60.05817 35.73002 49.99921 39.40235 18.83348 64.26214 19.80648 
+## 30.86310 54.84368 52.83315 32.25351 49.14133 35.86516 60.09584 28.26297 
 ##        9       10       11       12       13       14       15       16 
-## 49.66206 28.04389 38.70550 37.03684 24.21601 53.36976 57.25349 26.62021 
+## 51.37029 52.98155 39.79552 34.86019 25.91306 46.89144 34.11411 59.11620 
 ##       17       18       19       20 
-## 50.16135 36.75693 29.19630 51.15714</code></pre>
+## 35.67519 63.69172 39.66908 49.24042</code></pre>
 
 </div>
 </div>
@@ -268,7 +273,7 @@ Y\sim \mathcal{N}(\alpha + \beta(X-\bar X), \sigma^2)
         </div>
       </div>
 <a href="confidence-interval.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

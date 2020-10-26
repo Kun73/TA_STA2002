@@ -24,7 +24,7 @@
 <meta name="author" content="Kun HUANG(SDS)" />
 
 
-<meta name="date" content="2020-10-12" />
+<meta name="date" content="2020-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="tutorial-3.html"/>
 <link rel="next" href="simple-linear-regression.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -169,7 +169,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#fitting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>5.1</b> Fitting a Simple Linear Regression Model</a></li>
-<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-toy-example"><i class="fa fa-check"></i><b>5.2</b> A toy example</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-toy-example"><i class="fa fa-check"></i><b>5.2</b> A Toy Example</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-hypothesis-testing-by-normal-population"><i class="fa fa-check"></i><b>6.1</b> Summary of Hypothesis Testing by Normal Population</a></li>
+<li class="chapter" data-level="6.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercise"><i class="fa fa-check"></i><b>6.2</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
@@ -189,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="confidence-interval" class="section level1" number="4">
+<div id="confidence-interval" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Confidence Interval</h1>
 
 <div class="definition">
@@ -199,7 +204,7 @@ P\left[a(X_1,X_2,...,X_n)&lt; \theta &lt;b(X_1,X_2,...,X_n)\right] = 1-\alpha
 \end{equation}\]</span>
 </div>
 <p><strong><a href="https://en.wikipedia.org/wiki/Confidence_interval#Meaning_and_interpretation">Interpretation and misunderstanding</a></strong></p>
-<div id="q1" class="section level2" number="4.1">
+<div id="q1" class="section level2">
 <h2><span class="header-section-number">4.1</span> Q1</h2>
 
 <div class="definition">
@@ -222,12 +227,12 @@ We call such a method the pivotal approach. A pivotal quantity or pivot is a fun
 <span class="math display">\[\begin{equation}
 \bar X \pm t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}
 \end{equation}\]</span></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="confidence-interval.html#cb5-1" aria-hidden="true"></a><span class="kw">qt</span>(<span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>, <span class="dv">8</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="confidence-interval.html#cb5-1"></a><span class="kw">qt</span>(<span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>, <span class="dv">8</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 2.306004</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="confidence-interval.html#cb7-1" aria-hidden="true"></a><span class="kw">qnorm</span>(<span class="fl">0.01</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="confidence-interval.html#cb7-1"></a><span class="kw">qnorm</span>(<span class="fl">0.01</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 2.575829</code></pre>
 </div>
-<div id="q2" class="section level2" number="4.2">
+<div id="q2" class="section level2">
 <h2><span class="header-section-number">4.2</span> Q2</h2>
 
 <div class="theorem">
@@ -263,10 +268,10 @@ The two samples are independent, hence,
 <li><p><span class="math inline">\(\sigma_X\neq\sigma_Y\)</span> and they are both unknown, use Welch’s t-interval or CLT approximation.</p></li>
 <li><p><span class="math inline">\(m=n\)</span>, then <span class="math inline">\(Z_i = X_i-Y_i\sim\mathcal{N}(\mu_X-\mu_y,\sigma_Z)\)</span> since <span class="math inline">\((X_i,Y_i)^T\sim \mathcal{N}\left((\mu_X,\mu_Y)^T, \Sigma\right)\)</span>. Then the same technique in Q1 can be used.</p></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="confidence-interval.html#cb9-1" aria-hidden="true"></a><span class="kw">qt</span>(<span class="fl">0.05</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">8</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="confidence-interval.html#cb9-1"></a><span class="kw">qt</span>(<span class="fl">0.05</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">8</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 2.306004</code></pre>
 </div>
-<div id="q3" class="section level2" number="4.3">
+<div id="q3" class="section level2">
 <h2><span class="header-section-number">4.3</span> Q3</h2>
 <p>If <span class="math inline">\(X\sim \chi^2(n)\)</span> and <span class="math inline">\(Y\sim\chi^2(m)\)</span> are independent, then
 <span class="math display">\[
@@ -276,30 +281,30 @@ Therefore, with samples from two independent normal population, i.e., let <span 
 <span class="math display">\[\begin{equation}
 \frac{\frac{(n-1)S_X^2}{\sigma^2_X} / (n-1)}{\frac{(m-1)S_Y^2}{\sigma^2_Y}/(m-1)} = \frac{S_X^2/\sigma^2_X}{S_Y^2/\sigma^2_Y}\sim F(n-1, m-1)
 \end{equation}\]</span></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="confidence-interval.html#cb11-1" aria-hidden="true"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.02</span></span>
-<span id="cb11-2"><a href="confidence-interval.html#cb11-2" aria-hidden="true"></a><span class="kw">qf</span>(alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="confidence-interval.html#cb11-1"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.02</span></span>
+<span id="cb11-2"><a href="confidence-interval.html#cb11-2"></a><span class="kw">qf</span>(alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">8</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 5.666719</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="confidence-interval.html#cb13-1" aria-hidden="true"></a><span class="kw">qf</span>(alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">12</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="confidence-interval.html#cb13-1"></a><span class="kw">qf</span>(alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">12</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 4.499365</code></pre>
 <p><span class="math display">\[\begin{equation}
 F_{1-\alpha / 2}(r_1, r_2) = \frac{1}{F_{\alpha / 2}(r_2, r_1)}
 \end{equation}\]</span></p>
 </div>
-<div id="q4" class="section level2" number="4.4">
+<div id="q4" class="section level2">
 <h2><span class="header-section-number">4.4</span> Q4</h2>
 <p>According to the central limit theorem(CLT), we have an approximate pivot
 <span class="math display">\[\begin{equation}
 \frac{\bar X - EX}{\sqrt{Var X}}\rightarrow \mathcal{N}(0,1)
 \end{equation}\]</span></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="confidence-interval.html#cb15-1" aria-hidden="true"></a><span class="kw">qnorm</span>(<span class="fl">0.05</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="confidence-interval.html#cb15-1"></a><span class="kw">qnorm</span>(<span class="fl">0.05</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 </div>
-<div id="solutions" class="section level2" number="4.5">
+<div id="solutions" class="section level2">
 <h2><span class="header-section-number">4.5</span> Solutions</h2>
-<div id="q1-1" class="section level3" number="4.5.1">
+<div id="q1-1" class="section level3">
 <h3><span class="header-section-number">4.5.1</span> Q1</h3>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="confidence-interval.html#cb17-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">21.5</span>, <span class="fl">18.95</span>, <span class="fl">18.55</span>, <span class="fl">19.4</span>, <span class="fl">19.15</span>, <span class="fl">22.35</span>, <span class="fl">22.9</span>, <span class="fl">22.2</span>, <span class="fl">23.1</span>)</span>
-<span id="cb17-2"><a href="confidence-interval.html#cb17-2" aria-hidden="true"></a><span class="kw">t.test</span>(x, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="confidence-interval.html#cb17-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">21.5</span>, <span class="fl">18.95</span>, <span class="fl">18.55</span>, <span class="fl">19.4</span>, <span class="fl">19.15</span>, <span class="fl">22.35</span>, <span class="fl">22.9</span>, <span class="fl">22.2</span>, <span class="fl">23.1</span>)</span>
+<span id="cb17-2"><a href="confidence-interval.html#cb17-2"></a><span class="kw">t.test</span>(x, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ## 	One Sample t-test
 ## 
@@ -311,15 +316,15 @@ F_{1-\alpha / 2}(r_1, r_2) = \frac{1}{F_{\alpha / 2}(r_2, r_1)}
 ## sample estimates:
 ## mean of x 
 ##      20.9</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="confidence-interval.html#cb19-1" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.1</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F)<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">var</span>(x) <span class="op">/</span><span class="st"> </span>(<span class="fl">0.5</span>)<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb19-2"><a href="confidence-interval.html#cb19-2" aria-hidden="true"></a><span class="kw">print</span>(n)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="confidence-interval.html#cb19-1"></a>n &lt;-<span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.1</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F)<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">var</span>(x) <span class="op">/</span><span class="st"> </span>(<span class="fl">0.5</span>)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb19-2"><a href="confidence-interval.html#cb19-2"></a><span class="kw">print</span>(n)</span></code></pre></div>
 <pre><code>## [1] 37.37708</code></pre>
 </div>
-<div id="q2-1" class="section level3" number="4.5.2">
+<div id="q2-1" class="section level3">
 <h3><span class="header-section-number">4.5.2</span> Q2</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="confidence-interval.html#cb21-1" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1612</span>, <span class="dv">1352</span>, <span class="dv">1456</span>, <span class="dv">1222</span>, <span class="dv">1560</span>, <span class="dv">1456</span>, <span class="dv">1924</span>)</span>
-<span id="cb21-2"><a href="confidence-interval.html#cb21-2" aria-hidden="true"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1082</span>, <span class="dv">1300</span>, <span class="dv">1092</span>, <span class="dv">1040</span>, <span class="dv">910</span>, <span class="dv">1248</span>, <span class="dv">1092</span>, <span class="dv">1040</span>, <span class="dv">1092</span>, <span class="dv">1288</span>)</span>
-<span id="cb21-3"><a href="confidence-interval.html#cb21-3" aria-hidden="true"></a><span class="kw">t.test</span>(x,y, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="confidence-interval.html#cb21-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1612</span>, <span class="dv">1352</span>, <span class="dv">1456</span>, <span class="dv">1222</span>, <span class="dv">1560</span>, <span class="dv">1456</span>, <span class="dv">1924</span>)</span>
+<span id="cb21-2"><a href="confidence-interval.html#cb21-2"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1082</span>, <span class="dv">1300</span>, <span class="dv">1092</span>, <span class="dv">1040</span>, <span class="dv">910</span>, <span class="dv">1248</span>, <span class="dv">1092</span>, <span class="dv">1040</span>, <span class="dv">1092</span>, <span class="dv">1288</span>)</span>
+<span id="cb21-3"><a href="confidence-interval.html#cb21-3"></a><span class="kw">t.test</span>(x,y, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
 ## 	Welch Two Sample t-test
 ## 
@@ -337,45 +342,45 @@ f(t)=\frac{\Gamma\left(\frac{\nu+1}{2}\right)}{\sqrt{\nu \pi} \Gamma\left(\frac{
 \end{equation}\]</span>
 where <span class="math inline">\(\nu\)</span> is the degree of freedom.</p>
 </div>
-<div id="q3-1" class="section level3" number="4.5.3">
+<div id="q3-1" class="section level3">
 <h3><span class="header-section-number">4.5.3</span> Q3</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="confidence-interval.html#cb23-1" aria-hidden="true"></a>r1 &lt;-<span class="st"> </span><span class="dv">9</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb23-2"><a href="confidence-interval.html#cb23-2" aria-hidden="true"></a>r2 &lt;-<span class="st"> </span><span class="dv">13</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb23-3"><a href="confidence-interval.html#cb23-3" aria-hidden="true"></a>sx &lt;-<span class="st"> </span><span class="fl">128.41</span> <span class="op">/</span><span class="st"> </span><span class="dv">12</span></span>
-<span id="cb23-4"><a href="confidence-interval.html#cb23-4" aria-hidden="true"></a>sy &lt;-<span class="st"> </span><span class="fl">36.72</span> <span class="op">/</span><span class="st"> </span><span class="dv">8</span></span>
-<span id="cb23-5"><a href="confidence-interval.html#cb23-5" aria-hidden="true"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.02</span></span>
-<span id="cb23-6"><a href="confidence-interval.html#cb23-6" aria-hidden="true"></a>ci2 &lt;-<span class="st"> </span>sx <span class="op">/</span><span class="st"> </span>sy <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="kw">qf</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, r1, r2, <span class="dt">lower.tail =</span> F), <span class="kw">qf</span>(alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, r1, r2, <span class="dt">lower.tail =</span> F))</span>
-<span id="cb23-7"><a href="confidence-interval.html#cb23-7" aria-hidden="true"></a>ci &lt;-<span class="st"> </span><span class="kw">sqrt</span>(ci2)</span>
-<span id="cb23-8"><a href="confidence-interval.html#cb23-8" aria-hidden="true"></a><span class="kw">print</span>(ci2)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="confidence-interval.html#cb23-1"></a>r1 &lt;-<span class="st"> </span><span class="dv">9</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb23-2"><a href="confidence-interval.html#cb23-2"></a>r2 &lt;-<span class="st"> </span><span class="dv">13</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb23-3"><a href="confidence-interval.html#cb23-3"></a>sx &lt;-<span class="st"> </span><span class="fl">128.41</span> <span class="op">/</span><span class="st"> </span><span class="dv">12</span></span>
+<span id="cb23-4"><a href="confidence-interval.html#cb23-4"></a>sy &lt;-<span class="st"> </span><span class="fl">36.72</span> <span class="op">/</span><span class="st"> </span><span class="dv">8</span></span>
+<span id="cb23-5"><a href="confidence-interval.html#cb23-5"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.02</span></span>
+<span id="cb23-6"><a href="confidence-interval.html#cb23-6"></a>ci2 &lt;-<span class="st"> </span>sx <span class="op">/</span><span class="st"> </span>sy <span class="op">*</span><span class="st"> </span><span class="kw">c</span>(<span class="kw">qf</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, r1, r2, <span class="dt">lower.tail =</span> F), <span class="kw">qf</span>(alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, r1, r2, <span class="dt">lower.tail =</span> F))</span>
+<span id="cb23-7"><a href="confidence-interval.html#cb23-7"></a>ci &lt;-<span class="st"> </span><span class="kw">sqrt</span>(ci2)</span>
+<span id="cb23-8"><a href="confidence-interval.html#cb23-8"></a><span class="kw">print</span>(ci2)</span></code></pre></div>
 <pre><code>## [1]  0.4114085 10.4895333</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="confidence-interval.html#cb25-1" aria-hidden="true"></a><span class="kw">print</span>(ci)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="confidence-interval.html#cb25-1"></a><span class="kw">print</span>(ci)</span></code></pre></div>
 <pre><code>## [1] 0.6414113 3.2387549</code></pre>
 </div>
-<div id="q4-1" class="section level3" number="4.5.4">
+<div id="q4-1" class="section level3">
 <h3><span class="header-section-number">4.5.4</span> Q4</h3>
 <p><span class="math display">\[
 \hat{p}_{1} \pm z_{0.05 / 2} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{p}_{1}\right)}{n_{1}}}
 \]</span></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="confidence-interval.html#cb27-1" aria-hidden="true"></a>n1 &lt;-<span class="st"> </span><span class="dv">194</span></span>
-<span id="cb27-2"><a href="confidence-interval.html#cb27-2" aria-hidden="true"></a>n2 &lt;-<span class="st"> </span><span class="dv">162</span></span>
-<span id="cb27-3"><a href="confidence-interval.html#cb27-3" aria-hidden="true"></a>y1 &lt;-<span class="st"> </span><span class="dv">28</span> </span>
-<span id="cb27-4"><a href="confidence-interval.html#cb27-4" aria-hidden="true"></a>y2 &lt;-<span class="st"> </span><span class="dv">11</span></span>
-<span id="cb27-5"><a href="confidence-interval.html#cb27-5" aria-hidden="true"></a>p1 &lt;-<span class="st"> </span>y1 <span class="op">/</span><span class="st"> </span>n1</span>
-<span id="cb27-6"><a href="confidence-interval.html#cb27-6" aria-hidden="true"></a>s1 &lt;-<span class="st"> </span><span class="kw">sqrt</span>(n1 <span class="op">*</span><span class="st"> </span>p1 <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p1)) <span class="op">/</span><span class="st"> </span>n1</span>
-<span id="cb27-7"><a href="confidence-interval.html#cb27-7" aria-hidden="true"></a>p1 <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F) <span class="op">*</span><span class="st"> </span>s1</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="confidence-interval.html#cb27-1"></a>n1 &lt;-<span class="st"> </span><span class="dv">194</span></span>
+<span id="cb27-2"><a href="confidence-interval.html#cb27-2"></a>n2 &lt;-<span class="st"> </span><span class="dv">162</span></span>
+<span id="cb27-3"><a href="confidence-interval.html#cb27-3"></a>y1 &lt;-<span class="st"> </span><span class="dv">28</span> </span>
+<span id="cb27-4"><a href="confidence-interval.html#cb27-4"></a>y2 &lt;-<span class="st"> </span><span class="dv">11</span></span>
+<span id="cb27-5"><a href="confidence-interval.html#cb27-5"></a>p1 &lt;-<span class="st"> </span>y1 <span class="op">/</span><span class="st"> </span>n1</span>
+<span id="cb27-6"><a href="confidence-interval.html#cb27-6"></a>s1 &lt;-<span class="st"> </span><span class="kw">sqrt</span>(n1 <span class="op">*</span><span class="st"> </span>p1 <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p1)) <span class="op">/</span><span class="st"> </span>n1</span>
+<span id="cb27-7"><a href="confidence-interval.html#cb27-7"></a>p1 <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="op">*</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F) <span class="op">*</span><span class="st"> </span>s1</span></code></pre></div>
 <pre><code>## [1] 0.0948785 0.1937813</code></pre>
 <p><span class="math display">\[
 z_{\alpha / 2} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{p}_{1}\right)}{n}} = \varepsilon
 \]</span></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="confidence-interval.html#cb29-1" aria-hidden="true"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.1</span></span>
-<span id="cb29-2"><a href="confidence-interval.html#cb29-2" aria-hidden="true"></a>ep &lt;-<span class="st"> </span><span class="fl">0.04</span></span>
-<span id="cb29-3"><a href="confidence-interval.html#cb29-3" aria-hidden="true"></a><span class="kw">qnorm</span>(alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F)<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>p1 <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p1) <span class="op">/</span><span class="st"> </span>ep<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="confidence-interval.html#cb29-1"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.1</span></span>
+<span id="cb29-2"><a href="confidence-interval.html#cb29-2"></a>ep &lt;-<span class="st"> </span><span class="fl">0.04</span></span>
+<span id="cb29-3"><a href="confidence-interval.html#cb29-3"></a><span class="kw">qnorm</span>(alpha <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F)<span class="op">^</span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>p1 <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p1) <span class="op">/</span><span class="st"> </span>ep<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 208.8321</code></pre>
 <p><span class="math display">\[
 \left(\hat{p}_{1}-\hat{p}_{2}\right)-z_{0.05} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{\rho}_{1}\right)}{n_{1}}+\frac{\hat{\rho}_{2}\left(1-\hat{p}_{2}\right)}{n_{2}}}
 \]</span></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="confidence-interval.html#cb31-1" aria-hidden="true"></a>p2 &lt;-<span class="st"> </span>y2 <span class="op">/</span><span class="st"> </span>n2</span>
-<span id="cb31-2"><a href="confidence-interval.html#cb31-2" aria-hidden="true"></a>p1 <span class="op">-</span><span class="st"> </span>p2 <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.05</span>, <span class="dt">lower.tail =</span> F) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(p1 <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p1) <span class="op">/</span><span class="st"> </span>n1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st">  </span>p2) <span class="op">/</span><span class="st"> </span>n2)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="confidence-interval.html#cb31-1"></a>p2 &lt;-<span class="st"> </span>y2 <span class="op">/</span><span class="st"> </span>n2</span>
+<span id="cb31-2"><a href="confidence-interval.html#cb31-2"></a>p1 <span class="op">-</span><span class="st"> </span>p2 <span class="op">-</span><span class="st"> </span><span class="kw">qnorm</span>(<span class="fl">0.05</span>, <span class="dt">lower.tail =</span> F) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(p1 <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p1) <span class="op">/</span><span class="st"> </span>n1 <span class="op">+</span><span class="st"> </span>p2 <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st">  </span>p2) <span class="op">/</span><span class="st"> </span>n2)</span></code></pre></div>
 <pre><code>## [1] 0.02370925</code></pre>
 
 </div>
