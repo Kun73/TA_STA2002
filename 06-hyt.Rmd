@@ -1,0 +1,83 @@
+# Hypothesis Testing
+
+## Summary of Hypothesis Testing by Normal Population
+
+Let samples $X_1,X_2,...,X_n$ draw from a normal population $\mathcal{N}(\mu_X,\sigma^2_X)$, then, 
+
+| Null Hypothesis                        |                   Distribution Under $H_0$                   | Critical Region                                              |
+| :-----------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------- |
+|  $H_0:\mu=\mu_0$,<br> $\sigma$ known  | $\frac{\bar X-\mu_0}{\sigma/\sqrt{n}}\sim\mathcal{N}(0, 1)$  | $H_1:\mu>\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\geq z_{\alpha}$ <br> $H_1:\mu<\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\leq z_{1-\alpha}=-z_{\alpha}$<br>  $H_1:\mu\neq\mu_0,\quad |\frac{\bar x-\mu_0}{\sigma/\sqrt{n}}|\geq z_{\alpha/2}$ |
+| $H_0:\mu=\mu_0$,<br> $\sigma$ unknown | $\frac{\sqrt{n}(\bar X-\mu_0)/\sigma}{\sqrt{\frac{(n-1)S_X^2}{\sigma^2}/(n-1)}}$ <br>$=\frac{\bar X-\mu_0}{S_X/\sqrt{n}}\sim t(n-1)$ | $H_1:\mu>\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\geq t_{\alpha}(n-1)$<br> $H_1:\mu<\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\leq t_{1-\alpha}(n-1)=-t_{\alpha}(n-1)$<br> $H_1:\mu\neq\mu_0,\quad |\frac{\bar X-\mu_0}{S_X/\sqrt{n}}|\geq t_{\alpha/2}$ |
+|      $H_0:\sigma^2 = \sigma^2_0$      |       $\frac{(n-1)S_X^2}{\sigma_0^2}\sim \chi^2(n-1)$        | $H_1:\sigma^2>\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha}(n-1)$<br> $H_1:\sigma^2<\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha}(n-1)$<br>$H_1:\sigma^2\neq\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha/2}(n-1)$ <br> $\text{ or } \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha/2}(n-1)$ |
+
+Let samples $X_1,X_2,...,X_n$ draw from a normal population $\mathcal{N}(\mu_X,\sigma^2_X)$ and $Y_1,Y_2,...,Y_m$ from another normal population $\mathcal{N}(\mu_Y,\sigma^2_Y)$.
+
+| Null Hypothesis                                            | Distribution Under $H_0$                                     | Critical Region                                              |
+| ---------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| $H_0:\mu_X=\mu_Y$ ,<br> $\sigma_X=\sigma_Y=\sigma$, known | $Z_1=\frac{\bar X-\bar Y}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma^2_Y}{m}}}\sim\mathcal{N}(0,1)$ | $H_1:\mu_X>\mu_Y,\quad Z_1\geq z_{\alpha}$<br>$H_1:\mu_X<\mu_Y,\quad Z_1\leq z_{1-\alpha}=-z_{\alpha}$<br>$H_1:\mu_X\neq\mu_Y,\quad |Z_1|\geq z_{\alpha/2}$ |
+| $H_0:\mu_X=\mu_Y$, <br>$\sigma_X=\sigma_Y=\sigma$, unknown | $T_1=\frac{(\bar X-\bar Y)/\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}}{\sqrt{\frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2}/(n+m-2)}}$ <br>$=\frac{\bar X-\bar Y}{S_p\sqrt{\frac{1}{n}+\frac{1}{m}}}\sim t(n+m-2)$ | $H_1:\mu_X>\mu_Y,\quad T_1\geq t_{\alpha}(n+m-2)$<br>$H_1:\mu_X<\mu_Y,\quad T_1\leq -t_{\alpha}(n+m-2)$<br>$H_1:\mu_X\neq\mu_Y,\quad |T_1|\geq t_{\alpha/2}(n+m-2)$ |
+| $H_0:\mu_X=\mu_Y$,<br>$\sigma_X\neq\sigma_Y$, unknown      | $T_2=\frac{\bar X-\bar Y}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma^2_Y}{m}}}\sim t(r)$, <br>$r=\left\lfloor\frac{\left(\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}\right)^{2}}{\frac{1}{n-1}\left(\frac{S_{X}^{2}}{n}\right)^{2}+\frac{1}{m-1}\left(\frac{S_{Y}^{2}}{m}\right)^{2}} \right\rfloor$ | $H_1:\mu_X>\mu_Y,\quad T_2\geq t_{\alpha}(r)$<br>$H_1:\mu_X<\mu_Y,\quad T_2\leq -t_{\alpha}(r)$<br>$H_1:\mu_X\neq\mu_Y,\quad |T_2|\geq t_{\alpha/2}(r)$ |
+| $H_0:\mu_X=\mu_Y$,<br>$m=n$                                | $D_i:=X_i-Y_i$ <br>$\sim \mathcal{N}(\mu_X-\mu_Y,\sigma^2_Z)$ <br>transform it into the one sample situation with $\sigma^2_Z$ unknown |                                                              |
+| $H_0:\sigma_X^2=\sigma_Y^2$                                | $F = \frac{\frac{(n-1)S_X^2}{\sigma_X^2}/(n-1)}{\frac{(m-1)S_Y^2}{\sigma_Y^2}/(m-1)}=\frac{S_X^2}{S_Y^2}$<br>$\sim F(n-1,m-1)$ | $H_1:\sigma_X^2>\sigma_Y^2,\quad F\geq F_{\alpha}(n-1,m-1)$<br>$H_1:\sigma_X^2<\sigma_Y^2,\quad F\leq F_{1-\alpha}(n-1,m-1)$<br>$H_1:\sigma_X^\neq\sigma_Y^2,\quad F\geq F_{\alpha/2}(n-1,m-1)$<br> or $F\leq F_{1-\alpha/2}(n-1,m-1)$ |
+
+We next consider the situation of testing proportion. Let $X_i\stackrel{i.i.d.}{\sim} Bernoulli(p_X)$ drawn from a specific event and $Y_i\stackrel{i.i.d.}{\sim} Bernoulli(p_Y)$. We want to infer $p_X$ and the relationship between $p_X$ and $p_Y$. Let $Z=\sum\limits_{i=1}^n X_i\sim Bin(n,p)$. $\hat p:=\frac{Z}{n}$ is an unbiased estimator for $p$. According to the central limit theorem(CLT), we have, 
+\begin{equation}
+\hat p \rightarrow \mathcal{N}(p,\frac{p(1-p)}{n}), n\rightarrow \infty
+\end{equation}
+
+Under $H_0:p_X=p_Y=p$, $\hat p_{XY}:=\frac{\sum\limits_{i=1}^n X_i+\sum\limits_{i=1}^m Y_i}{n+m}$ is an unbiased estimator of $p$. Since, 
+\begin{equation}
+\mathbb{E}(\hat p_{XY}) = \frac{\sum\limits_{i=1}^n \mathbb{E} X_i+\sum\limits_{i=1}^m \mathbb{E} Y_i}{n+m}=\frac{np + mp}{m+n}=p
+\end{equation}
+
+| Null Hypothesis | Distribution Under $H_0$                                     | Criticall Region                                             |
+| --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| $H_0:p=p_0$     | $Z_p=\frac{\hat p-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\stackrel{approx}{\sim}N(0,1)$ | $H_1:p>p_0,\quad Z_p\geq z_{\alpha}$<br>$H_1:p<p_0,\quad Z_p\leq z_{1-\alpha}$<br>$H_1:p\neq p_0,\quad |Z_p|\geq z_{\alpha/2}$ |
+| $H_0:p_X=p_Y$   | $Z_{XY} = \frac{\hat p_X-\hat p_Y}{\sqrt{\frac{\hat p_{XY}(1-\hat p_{XY})}{n} + \frac{\hat p_{XY}(1-\hat p_{XY})}{m}}}$ <br>$\stackrel{apprrox}{\sim} \mathcal{N}(0,1),\hat p_{XY}:=\frac{\sum\limits_{i=1}^n X_i+\sum\limits_{i=1}^m Y_i}{n+m}$ | $H_1:p_X>p_Y,\quad Z_{XY}\geq z_{\alpha}$<br>$H_1:p_X<p_Y,\quad Z_{XY}\leq z_{1-\alpha}=-z_{\alpha}$<br>$H_1:p_X\neq p_Y,\quad |Z_{XY}|\geq z_{\alpha/2}$ |
+
+## Exercise 
+
+```{exercise, q71}
+To measure air pollution in a home, let $X$ and $Y$ equal the amount of suspended particulate matter (in $\mathrm{g} / \mathrm{m} 3$ ) measured during a 24-hour period in a home in which there is no smoker and a home in which there is a smoker, respectively. We shall test the null hypothesis $H_{0}: \sigma_{X}^{2} / \sigma_{Y}^{2}=1$ against the one-sided alternative hypothesis $H_{1}: \sigma_{X}^{2} / \sigma_{Y}^{2}>1$.
+
+1.  If a random sample of size $n=9$ yielded $\bar{x}=93$ and $S_{x}=12.9$ while a random sample of size $m=11$ yielded $y=132$ and $S_{y}=7.1,$ define a critical region and give your conclusion if $\alpha=0.05$.
+
+2. Now test $H_{0}: \mu_{X}=\mu_{Y}$ against $H_{1}: \mu_{X}<\mu_{Y}$ if $\alpha=0.05$.
+
+```
+
+
+```{exercise, q72}
+Let $Y$ be $b(192, p) .$ We reject $H_{0}: p=0.75$ and accept $H_{1}: p>0.75$ if and only if $Y \geq 152 .$ Use the normal approximation to determine
+
+1. $\alpha=P(Y \geq 152 ; p=0.75)$.
+
+2. $\beta=P(Y<152)$ when $p=0.80$.
+	
+
+```
+
+```{exercise, q73}
+Let $p$ equal the proportion of drivers who use a seat belt in a state that does not have a mandatory seat belt law. It was claimed that $p=0.14$ An advertising campaign was conducted to increase this proportion. Two months after the campaign, $y=104$ out of a random sample of $n=590$ drivers were wearing their seat belts. Was the campaign successful?
+  
+1. Define the null and alternative hypotheses.
+
+2. Define a critical region with an $\alpha=0.01$ significance level.
+
+3. What is your conclusion?
+
+```
+
+```{exercise, q74}
+  For developing countries in Africa and the Americas, let $p_{1}$ and $p_{2}$ be the respective proportions of babies with a low birth weight (below 2500 grams). We shall test $H_{0}: p_{1}=p_{2}$ against the alternative hypothesis $H_{1}: p_{1}>p_{2}$
+  
+
+1. Define a critical region that has an $\alpha=0.05$ significance level.
+
+2. If respective random samples of sizes $n_{1}=900$ and $n_{2}=700$ yielded $y_{1}=135$ and $y_{2}=77$ babies with a low birth weight, what is your conclusion?
+  
+3. What would your decision be with a significance level of $\alpha=0.01 ?$
+  
+4. What is the $p$-value of your test?
+```
+
