@@ -36,7 +36,7 @@ The MLE for $\sigma$ is
 \hat{\sigma^{2}}=\frac{1}{n} \sum_{i=1}^{n}\left[y_{i}-\hat{\alpha}-\hat{\beta}\left(x_{i}-\bar{x}\right)\right]^{2}
 \end{equation}
 
-## A toy example
+## A Toy Example
 ```{r}
 # Simulated data
 #' y = 4 + 3x + \epsilon
