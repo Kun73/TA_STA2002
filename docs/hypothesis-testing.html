@@ -199,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="summary-of-hypothesis-testing-by-normal-population" class="section level2">
 <h2><span class="header-section-number">6.1</span> Summary of Hypothesis Testing by Normal Population</h2>
 <p>Let samples <span class="math inline">\(X_1,X_2,...,X_n\)</span> draw from a normal population <span class="math inline">\(\mathcal{N}(\mu_X,\sigma^2_X)\)</span>, then,</p>
-<div style="font-size: 50px">
+<div style="font-size: 30px">
 <table>
 <colgroup>
 <col width="23%" />
@@ -233,6 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>Let samples <span class="math inline">\(X_1,X_2,...,X_n\)</span> draw from a normal population <span class="math inline">\(\mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y_1,Y_2,...,Y_m\)</span> from another normal population <span class="math inline">\(\mathcal{N}(\mu_Y,\sigma^2_Y)\)</span>.</p>
+<div style="font-size: 30px">
 <table>
 <colgroup>
 <col width="32%" />
@@ -274,6 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
+</div>
 <p>We next consider the situation of testing proportion. Let <span class="math inline">\(X_i\stackrel{i.i.d.}{\sim} Bernoulli(p_X)\)</span> drawn from a specific event and <span class="math inline">\(Y_i\stackrel{i.i.d.}{\sim} Bernoulli(p_Y)\)</span>. We want to infer <span class="math inline">\(p_X\)</span> and the relationship between <span class="math inline">\(p_X\)</span> and <span class="math inline">\(p_Y\)</span>. Let <span class="math inline">\(Z=\sum\limits_{i=1}^n X_i\sim Bin(n,p)\)</span>. <span class="math inline">\(\hat p:=\frac{Z}{n}\)</span> is an unbiased estimator for <span class="math inline">\(p\)</span>. According to the central limit theorem(CLT), we have,
 <span class="math display">\[\begin{equation}
 \hat p \rightarrow \mathcal{N}(p,\frac{p(1-p)}{n}), n\rightarrow \infty
@@ -282,6 +284,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[\begin{equation}
 \mathbb{E}(\hat p_{XY}) = \frac{\sum\limits_{i=1}^n \mathbb{E} X_i+\sum\limits_{i=1}^m \mathbb{E} Y_i}{n+m}=\frac{np + mp}{m+n}=p
 \end{equation}\]</span></p>
+<div style="font-size: 30px">
 <table>
 <colgroup>
 <col width="11%" />
@@ -309,16 +312,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
+</div>
 <div id="exercise" class="section level2">
 <h2><span class="header-section-number">6.2</span> Exercise</h2>
+<div style="font-size: 40px">
 
 <div class="exercise">
-<p><span id="exr:q71" class="exercise"><strong>Exercise 6.1  </strong></span>To measure air pollution in a home, let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> equal the amount of suspended particulate matter (in <span class="math inline">\(\mathrm{g} / \mathrm{m} 3\)</span> ) measured during a 24-hour period in a home in which there is no smoker and a home in which there is a smoker, respectively. We shall test the null hypothesis <span class="math inline">\(H_{0}: \sigma_{X}^{2} / \sigma_{Y}^{2}=1\)</span> against the one-sided alternative hypothesis <span class="math inline">\(H_{1}: \sigma_{X}^{2} / \sigma_{Y}^{2}&gt;1\)</span>.</p>
+<p><span id="exr:q71" class="exercise"><strong>Exercise 6.1  </strong></span>To measure air pollution in a home, let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> equal the amount of suspended particulate matter (in <span class="math inline">\(\mathrm{g} / \mathrm{m} 3\)</span> ) measured during a 24-hour period in a home in which there is no smoker and a home in which there is a smoker, respectively. We shall test the null hypothesis <span class="math inline">\(H_{0}: \sigma_{X}^{2} / \sigma_{Y}^{2}=1\)</span> against the one-sided alternative hypothesis <span class="math inline">\(H_{1}: \sigma_{X}^{2} / \sigma_{Y}^{2}&gt;1\)</span>. Suppose both samples are drawn from normal distribution.</p>
 <ol style="list-style-type: decimal">
 <li><p>If a random sample of size <span class="math inline">\(n=9\)</span> yielded <span class="math inline">\(\bar{x}=93\)</span> and <span class="math inline">\(S_{x}=12.9\)</span> while a random sample of size <span class="math inline">\(m=11\)</span> yielded <span class="math inline">\(y=132\)</span> and <span class="math inline">\(S_{y}=7.1,\)</span> define a critical region and give your conclusion if <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
-<li><p>Now test <span class="math inline">\(H_{0}: \mu_{X}=\mu_{Y}\)</span> against <span class="math inline">\(H_{1}: \mu_{X}&lt;\mu_{Y}\)</span> if <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
+<li><p>Now test <span class="math inline">\(H_{0}: \mu_{X}=\mu_{Y}\)</span> against <span class="math inline">\(H_{1}: \mu_{X}&lt;\mu_{Y}\)</span> if <span class="math inline">\(\alpha=0.05\)</span>. <span class="math inline">\(t_{0.05}(11)=1.796\)</span></p></li>
 </ol>
 </div>
+<p>Solutions:<br />
+</p>
+<ol style="list-style-type: decimal">
+<li><p>To test <span class="math inline">\(H_0:\sigma_X^2=\sigma_Y^2\)</span> against <span class="math inline">\(H_1:\sigma^2_X&gt;\sigma_Y^2\)</span> under normal populations.<br />
+<span class="math display">\[\begin{equation}
+F=\frac{S_{x}^{2}}{S_{y}^{2}}=\frac{12.9^{2}}{7.1^{2}}=3.30&gt;3.07=F_{0.05}(8,10)
+\end{equation}\]</span>
+So we reject <span class="math inline">\(H_0\)</span> and conclude that <span class="math inline">\(\sigma_X^2\neq\sigma_Y^2\)</span>.</p></li>
+<li><p>To test <span class="math inline">\(H_0:\mu_X=\mu_Y\)</span> against <span class="math inline">\(H_1:\mu_X&lt;\mu_Y\)</span> under normal populations with variance not being equal.</p></li>
+</ol>
+<p><span class="math display">\[\begin{equation}
+r=\left[\frac{\left(\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}\right)^{2}}{\frac{\left(s_{1}^{2} / n_{1}\right)^{2}}{n_{1}-1}+\frac{\left(s_{2}^{2} / n_{2}\right)^{2}}{n_{2}-1}}\right]=\left[\frac{\left(\frac{12.9^{2}}{9}+\frac{7.1^{2}}{13}\right)^{2}}{\frac{\left(12.9^{2} / 9\right)^{2}}{9-1}+\frac{\left(7.1^{2} / 11\right)^{2}}{11-1}}\right]=11, \quad t_{1-0.05}(11)=-t_{0.05}(11)=-1.796
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+t=\frac{\bar{x}_{1}-\bar{y}_{2}}{\sqrt{\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}}}=\frac{93-132}{\sqrt{\frac{12.9^{2}}{9}+\frac{7.1^{2}}{11}}} \approx-8.119&lt;t_{0.95}=-1.796 \Rightarrow \text { Reject } H_{0}
+\end{equation}\]</span></p>
 
 <div class="exercise">
 <p><span id="exr:q72" class="exercise"><strong>Exercise 6.2  </strong></span>Let <span class="math inline">\(Y\)</span> be <span class="math inline">\(b(192, p) .\)</span> We reject <span class="math inline">\(H_{0}: p=0.75\)</span> and accept <span class="math inline">\(H_{1}: p&gt;0.75\)</span> if and only if <span class="math inline">\(Y \geq 152 .\)</span> Use the normal approximation to determine</p>
@@ -327,25 +348,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><span class="math inline">\(\beta=P(Y&lt;152)\)</span> when <span class="math inline">\(p=0.80\)</span>.</p></li>
 </ol>
 </div>
+<p>Solution:<br />
+</p>
+<p>Proportion for one sample. <span class="math inline">\(n=192\)</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\sum_{i=1}^n X_i = 152\)</span>, according to CLT and half-unit correction
+<span class="math display">\[\begin{align}
+z&amp;=\frac{x-n p}{\sqrt{n p(1-p)}}=\frac{151.5-192(0.75)}{\sqrt{192(0.75)(1-0.75)}} \approx 1.25, z\stackrel{approx}{\sim}\mathcal{N}(0,1)\\
+\alpha&amp;=P(Y \geq 152 ; p=0.75)=P(Y&gt;151.5)=P(z&gt;1.25)=0.1056
+\end{align}\]</span></p></li>
+<li><p><span class="math inline">\(p=0.8\)</span> now, similarly,</p></li>
+</ol>
+<p><span class="math display">\[\begin{align}
+
+z &amp;=\frac{x-n p}{\sqrt{n p(1-p)}}=\frac{151.5-192(0.80)}{\sqrt{192(0.8)(1-0.8)}} \approx-0.38 \\
+\beta &amp;=P(Y&lt;152)=P(Y&lt;151.5)=P(z&lt;-0.38)=P(z&gt;0.38)=0.3520
+
+\end{align}\]</span></p>
 
 <div class="exercise">
 <p><span id="exr:q73" class="exercise"><strong>Exercise 6.3  </strong></span>Let <span class="math inline">\(p\)</span> equal the proportion of drivers who use a seat belt in a state that does not have a mandatory seat belt law. It was claimed that <span class="math inline">\(p=0.14\)</span> An advertising campaign was conducted to increase this proportion. Two months after the campaign, <span class="math inline">\(y=104\)</span> out of a random sample of <span class="math inline">\(n=590\)</span> drivers were wearing their seat belts. Was the campaign successful?</p>
 <ol style="list-style-type: decimal">
 <li><p>Define the null and alternative hypotheses.</p></li>
-<li><p>Define a critical region with an <span class="math inline">\(\alpha=0.01\)</span> significance level.</p></li>
+<li><p>Define a critical region with an <span class="math inline">\(\alpha=0.01\)</span> significance level. <span class="math inline">\(z_{0.01} = 2.326\)</span></p></li>
 <li><p>What is your conclusion?</p></li>
 </ol>
 </div>
+<p>Solution:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(H_{0}: p=0.14 \quad \text { against } \quad H_{1}: p&gt;0.14\)</span></p></li>
+<li><p>One sided proportion problem, <span class="math inline">\(z_{0.01} = 2.326\)</span>.</p></li>
+</ol>
+<p><span class="math display">\[\begin{equation}
+C=\{z: z \geq 2.326\} \quad \text { where } \quad z=\frac{y / n-0.14}{\sqrt{(0.14)(0.86) / n}}
+\end{equation}\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>For this problem, <span class="math inline">\(y=104, n=590\)</span>, the value of test statistics is,
+<span class="math display">\[\begin{equation}
+z=\frac{104 / 590-0.14}{\sqrt{(0.14)(0.86) / 590}}=2.539&gt;2.326
+\end{equation}\]</span></li>
+</ol>
+<p>Hence, we reject <span class="math inline">\(H_0\)</span> and conclude that the advertising campaign indeed increases this proportion.</p>
 
 <div class="exercise">
 <p><span id="exr:q74" class="exercise"><strong>Exercise 6.4  </strong></span> For developing countries in Africa and the Americas, let <span class="math inline">\(p_{1}\)</span> and <span class="math inline">\(p_{2}\)</span> be the respective proportions of babies with a low birth weight (below 2500 grams). We shall test <span class="math inline">\(H_{0}: p_{1}=p_{2}\)</span> against the alternative hypothesis <span class="math inline">\(H_{1}: p_{1}&gt;p_{2}\)</span></p>
 <ol style="list-style-type: decimal">
-<li><p>Define a critical region that has an <span class="math inline">\(\alpha=0.05\)</span> significance level.</p></li>
+<li><p>Define a critical region that has an <span class="math inline">\(\alpha=0.05\)</span> significance level. <span class="math inline">\(z_{0.05}=1.645\)</span></p></li>
 <li><p>If respective random samples of sizes <span class="math inline">\(n_{1}=900\)</span> and <span class="math inline">\(n_{2}=700\)</span> yielded <span class="math inline">\(y_{1}=135\)</span> and <span class="math inline">\(y_{2}=77\)</span> babies with a low birth weight, what is your conclusion?</p></li>
-<li><p>What would your decision be with a significance level of <span class="math inline">\(\alpha=0.01 ?\)</span></p></li>
+<li><p>What would your decision be with a significance level of <span class="math inline">\(\alpha=0.01 ?\)</span> <span class="math inline">\(z_{0.01}=2.326\)</span></p></li>
 <li><p>What is the <span class="math inline">\(p\)</span>-value of your test?</p>
 </div></li>
 </ol>
+<p>Solution:</p>
+<p>Two samples proportion problem with <span class="math inline">\(H_0:p_1=p_2\)</span> against <span class="math inline">\(H_1:p_1&gt;p_2\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math display">\[\begin{align}
+C=\{z=\frac{\hat{p}_{1}-\hat{p}_{2}}{\sqrt{\hat{p}(1-\hat{p})\left(1 / n_{1}+1 / n_{2}\right)}} \geq 1.645\}
+\end{align}\]</span>
+where <span class="math inline">\(\hat p_1 = y_1/n_1,\hat p_2 = y_2/n_2\)</span>, and <span class="math inline">\(\hat p = \frac{y_1+y_2}{n_1+n_2}\)</span>.</p></li>
+<li><p>Calculate the test statistic,</p></li>
+</ol>
+<p><span class="math display">\[\begin{align}
+z=\frac{0.15-0.11}{\sqrt{(0.1325)(0.8675)(1 / 900+1 / 700)}}=2.341&gt;1.645
+\end{align}\]</span>
+Hence, we reject <span class="math inline">\(H_0\)</span> and conclude that the proportions of babies with a low birth weight in Africa is larger than that in Americas.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Since <span class="math inline">\(z=2.341&gt;2.326=z_{0.01}\)</span>, we reject <span class="math inline">\(H_0\)</span> and conclude that the proportions of babies with a low birth weight in Africa is larger than that in Americas.</p></li>
+<li><p>The p-value is</p></li>
+</ol>
+<p><span class="math display">\[\begin{equation}
+P(z \geq 2.341)=0.0096
+\end{equation}\]</span>
+where <span class="math inline">\(z\)</span> asymptotically follows <span class="math inline">\(\mathcal{N}(0,1)\)</span>.</p>
+</div>
 
 </div>
 </div>
