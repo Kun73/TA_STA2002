@@ -4,11 +4,15 @@
 
 Let samples $X_1,X_2,...,X_n$ draw from a normal population $\mathcal{N}(\mu_X,\sigma^2_X)$, then, 
 
+<div style="font-size: 50px">
+
 | Null Hypothesis                        |                   Distribution Under $H_0$                   | Critical Region                                              |
 | :-----------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------- |
 |  $H_0:\mu=\mu_0$,<br> $\sigma$ known  | $\frac{\bar X-\mu_0}{\sigma/\sqrt{n}}\sim\mathcal{N}(0, 1)$  | $H_1:\mu>\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\geq z_{\alpha}$ <br> $H_1:\mu<\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\leq z_{1-\alpha}=-z_{\alpha}$<br>  $H_1:\mu\neq\mu_0,\quad |\frac{\bar x-\mu_0}{\sigma/\sqrt{n}}|\geq z_{\alpha/2}$ |
 | $H_0:\mu=\mu_0$,<br> $\sigma$ unknown | $\frac{\sqrt{n}(\bar X-\mu_0)/\sigma}{\sqrt{\frac{(n-1)S_X^2}{\sigma^2}/(n-1)}}$ <br>$=\frac{\bar X-\mu_0}{S_X/\sqrt{n}}\sim t(n-1)$ | $H_1:\mu>\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\geq t_{\alpha}(n-1)$<br> $H_1:\mu<\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\leq t_{1-\alpha}(n-1)$<br> $H_1:\mu\neq\mu_0,\quad |\frac{\bar X-\mu_0}{S_X/\sqrt{n}}|\geq t_{\alpha/2}$ |
 |      $H_0:\sigma^2 = \sigma^2_0$      |       $\frac{(n-1)S_X^2}{\sigma_0^2}\sim \chi^2(n-1)$        | $H_1:\sigma^2>\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha}(n-1)$<br> $H_1:\sigma^2<\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha}(n-1)$<br>$H_1:\sigma^2\neq\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha/2}(n-1)$ <br> $\text{ or } \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha/2}(n-1)$ |
+
+</div >
 
 Let samples $X_1,X_2,...,X_n$ draw from a normal population $\mathcal{N}(\mu_X,\sigma^2_X)$ and $Y_1,Y_2,...,Y_m$ from another normal population $\mathcal{N}(\mu_Y,\sigma^2_Y)$.
 
