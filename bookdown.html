@@ -11,7 +11,7 @@
 
 <meta name="author" content="Kun HUANG(SDS)" />
 
-<meta name="date" content="2020-10-26" />
+<meta name="date" content="2020-10-27" />
 
 <title>Tutorial for STA2002</title>
 
@@ -1636,7 +1636,7 @@ summary {
 
 <h1 class="title toc-ignore">Tutorial for STA2002</h1>
 <h4 class="author">Kun HUANG(SDS)</h4>
-<h4 class="date">2020-10-26</h4>
+<h4 class="date">2020-10-27</h4>
 
 </div>
 
@@ -1984,30 +1984,30 @@ summary(slr)</code></pre>
 ## lm(formula = y ~ x)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -2.11676 -0.42335  0.03752  0.30008  1.97411 
+##     Min      1Q  Median      3Q     Max 
+## -2.0647 -0.7446 -0.3156  0.7687  3.5140 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  3.72303    0.57872   6.433  4.7e-06 ***
-## x            3.04081    0.04949  61.449  &lt; 2e-16 ***
+## (Intercept)  1.78531    1.01327   1.762   0.0951 .  
+## x            3.18520    0.07366  43.241   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9584 on 18 degrees of freedom
-## Multiple R-squared:  0.9953, Adjusted R-squared:  0.995 
-## F-statistic:  3776 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1.273 on 18 degrees of freedom
+## Multiple R-squared:  0.9905, Adjusted R-squared:  0.9899 
+## F-statistic:  1870 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>names(slr)</code></pre>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
 ##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
 <pre class="r"><code>fitted(slr)</code></pre>
 <pre><code>##        1        2        3        4        5        6        7        8 
-## 21.26751 21.90450 23.44125 21.88919 54.04087 22.92527 34.54835 39.47618 
+## 50.50597 40.98474 32.23536 45.66430 19.70215 41.40742 54.63680 51.83157 
 ##        9       10       11       12       13       14       15       16 
-## 32.97256 62.74471 47.16215 32.42563 49.54715 25.30706 26.86495 44.60111 
+## 60.66321 38.35278 31.80602 25.90351 57.61514 36.47640 31.48264 58.91509 
 ##       17       18       19       20 
-## 50.72170 22.02609 46.20462 55.06181</code></pre>
+## 56.99034 64.29929 35.45914 41.80077</code></pre>
 <!--chapter:end:05-slr.Rmd-->
 </div>
 </div>
@@ -2038,7 +2038,7 @@ summary(slr)</code></pre>
 <tr class="even">
 <td align="center"><span class="math inline">\(H_0:\mu=\mu_0\)</span>,<br> <span class="math inline">\(\sigma\)</span> unknown</td>
 <td align="center"><span class="math inline">\(\frac{\sqrt{n}(\bar X-\mu_0)/\sigma}{\sqrt{\frac{(n-1)S_X^2}{\sigma^2}/(n-1)}}\)</span> <br><span class="math inline">\(=\frac{\bar X-\mu_0}{S_X/\sqrt{n}}\sim t(n-1)\)</span></td>
-<td align="left"><span class="math inline">\(H_1:\mu&gt;\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\geq t_{\alpha}(n-1)\)</span><br> <span class="math inline">\(H_1:\mu&lt;\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\leq t_{1-\alpha}(n-1)=-t_{\alpha}(n-1)\)</span><br> <span class="math inline">\(H_1:\mu\neq\mu_0,\quad |\frac{\bar X-\mu_0}{S_X/\sqrt{n}}|\geq t_{\alpha/2}\)</span></td>
+<td align="left"><span class="math inline">\(H_1:\mu&gt;\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\geq t_{\alpha}(n-1)\)</span><br> <span class="math inline">\(H_1:\mu&lt;\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\leq t_{1-\alpha}(n-1)\)</span><br> <span class="math inline">\(H_1:\mu\neq\mu_0,\quad |\frac{\bar X-\mu_0}{S_X/\sqrt{n}}|\geq t_{\alpha/2}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="center"><span class="math inline">\(H_0:\sigma^2 = \sigma^2_0\)</span></td>
@@ -2117,7 +2117,7 @@ summary(slr)</code></pre>
 <tr class="even">
 <td><span class="math inline">\(H_0:p_X=p_Y\)</span></td>
 <td><span class="math inline">\(Z_{XY} = \frac{\hat p_X-\hat p_Y}{\sqrt{\frac{\hat p_{XY}(1-\hat p_{XY})}{n} + \frac{\hat p_{XY}(1-\hat p_{XY})}{m}}}\)</span> <br><span class="math inline">\(\stackrel{apprrox}{\sim} \mathcal{N}(0,1),\hat p_{XY}:=\frac{\sum\limits_{i=1}^n X_i+\sum\limits_{i=1}^m Y_i}{n+m}\)</span></td>
-<td><span class="math inline">\(H_1:p_X&gt;p_Y,\quad Z_{XY}\geq z_{\alpha}\)</span><br><span class="math inline">\(H_1:p_X&lt;p_Y,\quad Z_{XY}\leq z_{1-\alpha}=-z_{\alpha}\)</span><br><span class="math inline">\(H_1:p_X\neq p_Y,\quad |Z_{XY}|\geq z_{\alpha/2}\)</span></td>
+<td><span class="math inline">\(H_1:p_X&gt;p_Y,\quad Z_{XY}\geq z_{\alpha}\)</span><br><span class="math inline">\(H_1:p_X&lt;p_Y,\quad Z_{XY}\leq z_{1-\alpha}\)</span><br><span class="math inline">\(H_1:p_X\neq p_Y,\quad |Z_{XY}|\geq z_{\alpha/2}\)</span></td>
 </tr>
 </tbody>
 </table>
