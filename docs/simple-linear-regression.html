@@ -240,30 +240,30 @@ Y\sim \mathcal{N}(\alpha + \beta(X-\bar X), \sigma^2)
 ## lm(formula = y ~ x)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.91475 -0.26477 -0.06095  0.51734  1.28342 
+##     Min      1Q  Median      3Q     Max 
+## -1.5816 -0.6691 -0.3608  0.6244  2.1932 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   4.0298     0.6322   6.375 5.28e-06 ***
-## x             2.9935     0.0442  67.731  &lt; 2e-16 ***
+## (Intercept)  3.31390    0.65225   5.081  7.8e-05 ***
+## x            3.03386    0.04994  60.747  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.8711 on 18 degrees of freedom
-## Multiple R-squared:  0.9961,	Adjusted R-squared:  0.9959 
-## F-statistic:  4587 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1.088 on 18 degrees of freedom
+## Multiple R-squared:  0.9951,	Adjusted R-squared:  0.9949 
+## F-statistic:  3690 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="simple-linear-regression.html#cb35-1"></a><span class="kw">names</span>(slr)</span></code></pre></div>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
 ##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="simple-linear-regression.html#cb37-1"></a><span class="kw">fitted</span>(slr)</span></code></pre></div>
 <pre><code>##        1        2        3        4        5        6        7        8 
-## 30.25548 40.99899 63.73381 23.77825 63.56835 55.90605 30.35867 49.92185 
+## 58.63378 22.10356 45.06126 62.49363 30.87574 39.28774 50.44134 62.17469 
 ##        9       10       11       12       13       14       15       16 
-## 19.13825 41.34689 59.36204 43.37016 34.03702 29.00059 52.38937 48.47525 
+## 20.07823 27.91175 48.05279 30.13737 63.44699 24.85539 45.49931 28.07182 
 ##       17       18       19       20 
-## 40.65327 58.32684 54.52719 56.12708</code></pre>
+## 21.28275 33.83211 29.22096 58.04575</code></pre>
 
 </div>
 </div>
