@@ -1,9 +1,40 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Hypothesis Testing
 
 ## Summary of Hypothesis Testing by Normal Population
 
 Let samples $X_1,X_2,...,X_n$ draw from a normal population $\mathcal{N}(\mu_X,\sigma^2_X)$, then, 
 
+\begin{longtable}[]{@{}ccl@{}}
+\toprule
+& Distribution Under \(H_0\) & Critical Region\tabularnewline
+\midrule
+\endhead
+\(H_0:\mu=\mu_0\),\textless br\textgreater{} \(\sigma\) known &
+\(\frac{\bar X-\mu_0}{\sigma/\sqrt{n}}\sim\mathcal{N}(0, 1)\) &
+\(H_1:\mu>\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\geq z_{\alpha}\)
+\textless br\textgreater{}
+\(H_1:\mu<\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\leq z_{1-\alpha}=-z_{\alpha}\)\textless br\textgreater{}
+\(H_1:\mu\neq\mu_0,\quad |\frac{\bar x-\mu_0}{\sigma/\sqrt{n}}|\geq z_{\alpha/2}\)\tabularnewline
+\(H_0:\mu=\mu_0\),\textless br\textgreater{} \(\sigma\) unknown &
+\(\frac{\sqrt{n}(\bar X-\mu_0)/\sigma}{\sqrt{\frac{(n-1)S_X^2}{\sigma^2}/(n-1)}}\)
+\textless br\textgreater{}\(=\frac{\bar X-\mu_0}{S_X/\sqrt{n}}\sim t(n-1)\)
+&
+\(H_1:\mu>\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\geq t_{\alpha}(n-1)\)\textless br\textgreater{}
+\(H_1:\mu<\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\leq t_{1-\alpha}(n-1)=-t_{\alpha}(n-1)\)\textless br\textgreater{}
+\(H_1:\mu\neq\mu_0,\quad |\frac{\bar X-\mu_0}{S_X/\sqrt{n}}|\geq t_{\alpha/2}\)\tabularnewline
+\(H_0:\sigma^2 = \sigma^2_0\) &
+\(\frac{(n-1)S_X^2}{\sigma_0^2}\sim \chi^2(n-1)\) &
+\(H_1:\sigma^2>\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha}(n-1)\)\textless br\textgreater{}
+\(H_1:\sigma^2<\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha}(n-1)\)\textless br\textgreater{}\(H_1:\sigma^2\neq\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha/2}(n-1)\)
+\textless br\textgreater{}
+\(\text{ or } \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha/2}(n-1)\)\tabularnewline
+\bottomrule
+\end{longtable}
 <div style="font-size: 30px">
 
 | Null Hypothesis                        |                   Distribution Under $H_0$                   | Critical Region                                              |
@@ -15,6 +46,42 @@ Let samples $X_1,X_2,...,X_n$ draw from a normal population $\mathcal{N}(\mu_X,\
 </div >
 
 Let samples $X_1,X_2,...,X_n$ draw from a normal population $\mathcal{N}(\mu_X,\sigma^2_X)$ and $Y_1,Y_2,...,Y_m$ from another normal population $\mathcal{N}(\mu_Y,\sigma^2_Y)$.
+
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Null Hypothesis & Distribution Under \(H_0\) & Critical
+Region\tabularnewline
+\midrule
+\endhead
+\(H_0:\mu_X=\mu_Y\) ,\textless br\textgreater{}
+\(\sigma_X=\sigma_Y=\sigma \), known &
+\(Z_1=\frac{\bar X-\bar Y}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma^2_Y}{m}}}\sim\mathcal{N}(0,1)\)
+&
+\(H_1:\mu_X>\mu_Y,\quad Z_1\geq z_{\alpha}\)\textless br\textgreater{}\(H_1:\mu_X<\mu_Y,\quad Z_1\leq z_{1-\alpha}=-z_{\alpha}\)\textless br\textgreater{}\(H_1:\mu_X\neq\mu_Y,\quad |Z_1|\geq z_{\alpha/2}\)\tabularnewline
+\(H_0:\mu_X=\mu_Y\),
+\textless br\textgreater{}\(\sigma_X=\sigma_Y=\sigma\), unknown &
+\(T_1=\frac{(\bar X-\bar Y)/\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}}{\sqrt{\frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2}/(n+m-2)}}\)
+\textless br\textgreater{}\(=\frac{\bar X-\bar Y}{S_p\sqrt{\frac{1}{n}+\frac{1}{m}}}\sim t(n+m-2)\)
+&
+\(H_1:\mu_X>\mu_Y,\quad T_1\geq t_{\alpha}(n+m-2)\)\textless br\textgreater{}\(H_1:\mu_X<\mu_Y,\quad T_1\leq -t_{\alpha}(n+m-2)\)\textless br\textgreater{}\(H_1:\mu_X\neq\mu_Y,\quad |T_1|\geq t_{\alpha/2}(n+m-2)\)\tabularnewline
+\(H_0:\mu_X=\mu_Y\),\textless br\textgreater{}\(\sigma_X\neq\sigma_Y\),
+unknown &
+\(T_2=\frac{\bar X-\bar Y}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma^2_Y}{m}}}\sim t(r)\),
+\textless br\textgreater{}\(r=\left\lfloor\frac{\left(\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}\right)^{2}}{\frac{1}{n-1}\left(\frac{S_{X}^{2}}{n}\right)^{2}+\frac{1}{m-1}\left(\frac{S_{Y}^{2}}{m}\right)^{2}} \right\rfloor\)
+&
+\(H_1:\mu_X>\mu_Y,\quad T_2\geq t_{\alpha}(r)\)\textless br\textgreater{}\(H_1:\mu_X<\mu_Y,\quad T_2\leq -t_{\alpha}(r)\)\textless br\textgreater{}\(H_1:\mu_X\neq\mu_Y,\quad |T_2|\geq t_{\alpha/2}(r)\)\tabularnewline
+\(H_0:\mu_X=\mu_Y\),\textless br\textgreater{}\(m=n\) & \(D_i:=X_i-Y_i\)
+\textless br\textgreater{}\(\sim \mathcal{N}(\mu_X-\mu_Y,\sigma^2_Z)\)
+\textless br\textgreater{}transform it into the one sample situation
+with \(\sigma^2_Z\) unknown &\tabularnewline
+\(H_0:\sigma_X^2=\sigma_Y^2\) &
+\(F = \frac{\frac{(n-1)S_X^2}{\sigma_X^2}/(n-1)}{\frac{(m-1)S_Y^2}{\sigma_Y^2}/(m-1)}=\frac{S_X^2}{S_Y^2}\)\textless br\textgreater{}\(\sim F(n-1,m-1)\)
+&
+\(H_1:\sigma_X^2>\sigma_Y^2,\quad F\geq F_{\alpha}(n-1,m-1)\)\textless br\textgreater{}\(H_1:\sigma_X^2<\sigma_Y^2,\quad F\leq F_{1-\alpha}(n-1,m-1)\)\textless br\textgreater{}\(H_1:\sigma_X^\neq\sigma_Y^2,\quad F\geq F_{\alpha/2}(n-1,m-1)\)\textless br\textgreater{}
+or \(F\leq F_{1-\alpha/2}(n-1,m-1)\)\tabularnewline
+\bottomrule
+\end{longtable}
 
 <div style="font-size: 30px">
 
@@ -37,6 +104,26 @@ Under $H_0:p_X=p_Y=p$, $\hat p_{XY}:=\frac{\sum\limits_{i=1}^n X_i+\sum\limits_{
 \begin{equation}
 \mathbb{E}(\hat p_{XY}) = \frac{\sum\limits_{i=1}^n \mathbb{E} X_i+\sum\limits_{i=1}^m \mathbb{E} Y_i}{n+m}=\frac{np + mp}{m+n}=p
 \end{equation}
+
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Null Hypothesis & Distribution Under \(H_0\) & Criticall
+Region\tabularnewline
+\midrule
+\endhead
+\(H_0:p=p_0\) &
+\(Z_p=\frac{\hat p-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\stackrel{approx}{\sim}N(0,1)\)
+&
+\(H_1:p>p_0,\quad Z_p\geq z_{\alpha}\)\textless br\textgreater{}\(H_1:p<p_0,\quad Z_p\leq z_{1-\alpha}\)\textless br\textgreater{}\(H_1:p\neq p_0,\quad |Z_p|\geq z_{\alpha/2}\)\tabularnewline
+\(H_0:p_X=p_Y\) &
+\(Z_{XY} = \frac{\hat p_X-\hat p_Y}{\sqrt{\frac{\hat p_{XY}(1-\hat p_{XY})}{n} + \frac{\hat p_{XY}(1-\hat p_{XY})}{m}}}\)
+\textless br\textgreater{}\(\stackrel{apprrox}{\sim} \mathcal{N}(0,1),\hat p_{XY}:=\frac{\sum\limits_{i=1}^n X_i+\sum\limits_{i=1}^m Y_i}{n+m}\)
+&
+\(H_1:p_X>p_Y,\quad Z_{XY}\geq z_{\alpha}\)\textless br\textgreater{}\(H_1:p_X<p_Y,\quad Z_{XY}\leq z_{1-\alpha}=-z_{\alpha}\)\textless br\textgreater{}\(H_1:p_X\neq p_Y,\quad |Z_{XY}|\geq z_{\alpha/2}\)\tabularnewline
+\bottomrule
+\end{longtable}
+
 
 <div style="font-size: 30px">
 
@@ -100,10 +187,8 @@ z&=\frac{x-n p}{\sqrt{n p(1-p)}}=\frac{151.5-192(0.75)}{\sqrt{192(0.75)(1-0.75)}
 2. $p=0.8$ now, similarly, 
 
 \begin{align}
-
 z &=\frac{x-n p}{\sqrt{n p(1-p)}}=\frac{151.5-192(0.80)}{\sqrt{192(0.8)(1-0.8)}} \approx-0.38 \\
 \beta &=P(Y<152)=P(Y<151.5)=P(z<-0.38)=P(z>0.38)=0.3520
-
 \end{align}
 
 ```{exercise, q73}
@@ -146,6 +231,7 @@ Hence, we reject $H_0$ and conclude that the advertising campaign indeed increas
 3. What would your decision be with a significance level of $\alpha=0.01 ?$ $z_{0.01}=2.326$
   
 4. What is the $p$-value of your test?
+  
 ```
 
 Solution:

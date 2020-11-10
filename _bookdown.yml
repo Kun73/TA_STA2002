@@ -5,5 +5,6 @@ language:
     chapter_name: "Chapter "
 output_dir: "docs"
 output:
+  bookdown::pdf_book:
     includes:
       in_header: preamble.tex

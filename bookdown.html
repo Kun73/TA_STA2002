@@ -1795,7 +1795,7 @@ P\left[a(X_1,X_2,...,X_n)&lt; \theta &lt;b(X_1,X_2,...,X_n)\right] = 1-\alpha
 \bar X \sim \mathcal{N}(\mu,\frac{\sigma^2}{n}), \quad \frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)
 \end{align}\]</span> It can be proved that <span class="math inline">\(\bar X\)</span> and <span class="math inline">\(S^2\)</span> are independent. Then, <span class="math display">\[\begin{equation}
 \frac{\frac{\bar X - \mu}{\sqrt{\sigma^2/n}}}{\sqrt{\frac{(n-1)S^2}{\sigma^2} / (n-1)}} = \frac{\bar X -\mu}{S/\sqrt{n}}\sim t(n-1)
-(#eq:tn)
+(\#eq:tn)
 \end{equation}\]</span> We call such a method the pivotal approach. A pivotal quantity or pivot is a function of observations and unobservable parameters such that the function’s probability distribution does not depend on the unknown parameters. For example, <span class="math inline">\(\frac{\bar X - \mu}{\sqrt{\sigma^2/n}}\sim \mathcal{N}(0,1)\)</span> is a pivot. From @ref(eq:tn), we derive the <span class="math inline">\((1-\alpha)\)</span> confidence interval for the mean <span class="math inline">\(\mu\)</span> when <span class="math inline">\(\sigma^2\)</span> is unknown, i.e., <span class="math display">\[\begin{equation}
 \bar X \pm t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}
 \end{equation}\]</span></p>
@@ -1985,29 +1985,29 @@ summary(slr)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.6303 -0.8506 -0.1883  0.9431  1.8234 
+## -1.6889 -1.0350 -0.1167  0.5554  2.6876 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  2.57486    0.63290   4.068 0.000721 ***
-## x            3.08617    0.04959  62.238  &lt; 2e-16 ***
+## (Intercept)  4.20981    0.68661   6.131 8.62e-06 ***
+## x            2.95902    0.05427  54.525  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.063 on 18 degrees of freedom
-## Multiple R-squared:  0.9954, Adjusted R-squared:  0.9951 
-## F-statistic:  3874 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1.201 on 18 degrees of freedom
+## Multiple R-squared:  0.994,  Adjusted R-squared:  0.9936 
+## F-statistic:  2973 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>names(slr)</code></pre>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
 ##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
 <pre class="r"><code>fitted(slr)</code></pre>
 <pre><code>##        1        2        3        4        5        6        7        8 
-## 29.53970 34.00000 24.87302 61.42873 21.97993 21.40451 21.48857 33.21111 
+## 22.97503 21.82489 43.52761 36.80058 63.13054 24.91791 29.70247 61.59790 
 ##        9       10       11       12       13       14       15       16 
-## 31.32808 48.19219 21.62084 59.49532 49.54471 49.17797 64.02291 57.09066 
+## 56.41732 25.82011 59.61548 59.96461 52.65185 31.47070 27.75355 21.71513 
 ##       17       18       19       20 
-## 28.27202 56.54876 41.92425 26.46908</code></pre>
+## 43.68718 26.40227 27.19373 36.08252</code></pre>
 <!--chapter:end:05-slr.Rmd-->
 </div>
 </div>
@@ -2173,10 +2173,8 @@ z&amp;=\frac{x-n p}{\sqrt{n p(1-p)}}=\frac{151.5-192(0.75)}{\sqrt{192(0.75)(1-0.
 <li><p><span class="math inline">\(p=0.8\)</span> now, similarly,</p></li>
 </ol>
 <p><span class="math display">\[\begin{align}
-
 z &amp;=\frac{x-n p}{\sqrt{n p(1-p)}}=\frac{151.5-192(0.80)}{\sqrt{192(0.8)(1-0.8)}} \approx-0.38 \\
 \beta &amp;=P(Y&lt;152)=P(Y&lt;151.5)=P(z&lt;-0.38)=P(z&gt;0.38)=0.3520
-
 \end{align}\]</span></p>
 
 <div class="exercise">

@@ -28,7 +28,7 @@ Confidence Interval of normal population $X_i\stackrel{i.i.d.}\sim \mathcal{N}(\
 It can be proved that $\bar X$ and $S^2$ are independent. Then, 
 \begin{equation}
 \frac{\frac{\bar X - \mu}{\sqrt{\sigma^2/n}}}{\sqrt{\frac{(n-1)S^2}{\sigma^2} / (n-1)}} = \frac{\bar X -\mu}{S/\sqrt{n}}\sim t(n-1)
-(#eq:tn)
+(\#eq:tn)
 \end{equation}
 We call such a method the pivotal approach. A pivotal quantity or pivot is a function of observations and unobservable parameters such that the function's probability distribution does not depend on the unknown parameters. For example, $\frac{\bar X - \mu}{\sqrt{\sigma^2/n}}\sim \mathcal{N}(0,1)$ is a pivot. From \@ref(eq:tn), we derive the $(1-\alpha)$ confidence interval for the mean $\mu$ when $\sigma^2$ is unknown, i.e., 
 \begin{equation}

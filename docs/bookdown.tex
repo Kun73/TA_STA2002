@@ -90,7 +90,7 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\usepackage{graphicx,grffile}
+\usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -107,13 +107,16 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
-\usepackage{booktabs}
-\usepackage[]{natbib}
-\bibliographystyle{apalike}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+  {\setlength{\parindent}{0pt}%
+  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces}%
+  {\par}
 
 \title{Tutorial for STA2002}
 \author{Kun HUANG(SDS)}
-\date{2020-09-04}
+\date{2020-10-27}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -138,14 +141,15 @@
 \tableofcontents
 }
 \hypertarget{prerequisites}{%
-\chapter{Prerequisites}\label{prerequisites}}
+\chapter*{Prerequisites}\label{prerequisites}}
+\addcontentsline{toc}{chapter}{Prerequisites}
 
 \emph{Probability and Statistics I(STA2001)} is the prerequisite, which mainly includes the following contents,
 
 \begin{itemize}
 \item
   Some usual distributions, like Binomial, Poisson, Normal, Exponential, Gamma, and Chi-square distributions (\href{https://www.tandfonline.com/doi/pdf/10.1080/07408170590948512?needAccess=true}{Relationships among some univariate
-  distributions}\citep{song2005relationships});
+  distributions}(Song \protect\hyperlink{ref-song2005relationships}{2005}));
 \item
   Basic terminologies, e.g.,independence, expectation, variation, correlation (coefficient), Bayes, and etc;
 \item
@@ -188,7 +192,7 @@
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\OperatorTok{-}\KeywordTok{qt}\NormalTok{(}\DecValTok{1} \OperatorTok{-}\StringTok{ }\FloatTok{0.025}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\OperatorTok{{-}}\KeywordTok{qt}\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\FloatTok{0.025}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -199,7 +203,7 @@
 \begin{itemize}
 \tightlist
 \item
-  Properties of \(F\) distribution.
+  Properties of \(F\) distribution: \(F_{0.95}(9,24)= \frac{1}{F_{0.05}(24,9)}\)
 \end{itemize}
 
 \hypertarget{q2}{%
@@ -226,18 +230,915 @@
 distributed (i.i.d.) random variables with finite expectation \(\mu\), and
 positive, finite variance \(\sigma^2\), and set \(S_n=X_1 + X_2 + \cdots + X_n\), \(n \ge 1\). Then
 \[
-    \frac{\bar{S}_n - n\mu}{\sigma \sqrt{n}}\xrightarrow{L} N(0, 1)
+    \frac{S_n - n\mu}{\sigma \sqrt{n}}\xrightarrow{L} N(0, 1)
     ~\mathrm{as}~n\rightarrow\infty.
 \]
 \end{theorem}
 
 \begin{itemize}
 \item
-  The relationship between Binimial distribution and Poisson distribution
+  The relationship between Binomial distribution \(b(n,p)\) and Poisson distribution \(\mathrm{Pois}(\lambda)\): \(\infty > np = \lambda, n\rightarrow\infty\)
 \item
   Aware the power of CLT.
 \end{itemize}
 
-  \bibliography{book.bib,packages.bib}
+\hypertarget{sec:T2}{%
+\chapter{Tutorial 2}\label{sec:T2}}
+
+\hypertarget{q1}{%
+\section{Q1}\label{q1}}
+
+\begin{itemize}
+\item
+  Derive moments from a given pdf \(f(x)\). \(EX = \int xf(x)dx, EX^2=\int x^2f(x)dx\).
+\item
+  Derive variance from the first and second moments,i.e., \(Var(X)=EX^2-E^2X\).
+\item
+  \(E(aX+bY+c) = aEX + bEY+c\), \(Var(aX+bY+c) = a^2Var(X)+b^2Var(Y)\). The latter needs \(X\) and \(Y\) are independent.
+\item
+  CLT approximation.
+\end{itemize}
+
+\hypertarget{q2}{%
+\section{Q2}\label{q2}}
+
+\begin{definition}[Poisson Process]
+\protect\hypertarget{def:unnamed-chunk-1}{}{\label{def:unnamed-chunk-1} \iffalse (Poisson Process) \fi{} }Let \(N(t)\) be the number of events happens during the time interval \([0,t]\), if \(N(t)\) satisfies the following:
+
+\begin{itemize}
+\tightlist
+\item
+  N(0) = 0;
+\item
+  has independent increments, and
+\item
+  \(\forall \tau>0\), \(P(N(t+\tau)-N(t) = n)= \frac{(\lambda \tau)^n}{n!}e^{-\lambda \tau}\)
+\end{itemize}
+
+we call \(\{N(t),t\geq0\}\) is a Poisson process with rate \(\lambda\).
+\end{definition}
+
+\begin{itemize}
+\tightlist
+\item
+  Let \((W_n>t)\) be the \(n-th\) random event happens after time \(t\), then \(W_n\sim Gamma(n, \lambda)\). In fact, \(Gamma(n,\lambda)\) can be seen as the time to be waited until the \(n-th\) event.
+\end{itemize}
+
+\hypertarget{q3}{%
+\section{Q3}\label{q3}}
+
+\begin{proposition}
+\protect\hypertarget{prp:unnamed-chunk-2}{}{\label{prp:unnamed-chunk-2} }Suppose the random variable \(X\) has a pdf \(f(x)\), let \(Y = T(X)\), where \(T:\mathbb{R}\rightarrow \mathbb{R}\) is an invertible transformation. Then the pdf \(g(y)\) of \(Y\) is
+\begin{equation*}
+g(y) = f(T^{-1}(y))\frac{d T^{-1}(y)}{dy}
+\end{equation*}
+\end{proposition}
+
+For example, suppose \(X\sim\mathcal{N}(\mu,\sigma^2)\), then \(Y=aX+b\sim\mathcal{N}(a\mu+b, (a\sigma)^2)\).
+
+\hypertarget{q4}{%
+\section{Q4}\label{q4}}
+
+\begin{theorem}[Chebyshev's Inequality]
+\protect\hypertarget{thm:unnamed-chunk-3}{}{\label{thm:unnamed-chunk-3} \iffalse (Chebyshev's Inequality) \fi{} }Let \(X\) be a random variable with finite mean \(\mu\) and variance \(\sigma^2>0\). Then \(\forall k>0\),
+\begin{equation*}
+P(|X-\mu|\geq k\sigma) \leq \frac{1}{k^2}
+\end{equation*}
+
+Additionally, let \(k\sigma = \varepsilon\), the above becomes,
+\begin{equation*}
+P(|X-\mu|\geq \varepsilon) \leq \frac{\sigma^2}{\varepsilon^2}
+\end{equation*}
+\end{theorem}
+
+\hypertarget{tutorial-3}{%
+\chapter{Tutorial 3}\label{tutorial-3}}
+
+\hypertarget{method-of-moment-estimatormme}{%
+\section{Method of moment estimator(MME)}\label{method-of-moment-estimatormme}}
+
+Suppose that the problem is to estimate \(k\) unknown parameters \(\boldsymbol{\theta} := (\theta_1,\theta_2,...,\theta_k)^{T}\) characterizing the distribution \(f_X(x;\boldsymbol{\theta})\) of the random variable \(X\). Suppose the first \(k\) moments of the true distribution can be expressed by the function of \(\boldsymbol{\theta}\), i.e.,
+\begin{align}
+\mu_{1} & \equiv \mathrm{E}[W]=g_{1}\left(\theta_{1}, \theta_{2}, \ldots, \theta_{k}\right) \\
+\mu_{2} & \equiv \mathrm{E}\left[W^{2}\right]=g_{2}\left(\theta_{1}, \theta_{2}, \ldots, \theta_{k}\right) \\
+& \vdots \\
+\mu_{k} & \equiv \mathrm{E}\left[W^{k}\right]=g_{k}\left(\theta_{1}, \theta_{2}, \ldots, \theta_{k}\right)
+\end{align}
+Suppose a sample of size \(n\) is drawn, having the values of \(x_1,x_2,...,x_n\), let
+\begin{align}
+\mu_j = \frac{1}{n}\sum_{i=1}^n x_i^j, j=1,2,...,k
+\end{align}
+Solve the above \(k\) equations, we derive the method of moment estimator of \(\boldsymbol{\theta}\).
+
+\hypertarget{maximum-likelihood-estimatormle.}{%
+\section{Maximum likelihood estimator(MLE).}\label{maximum-likelihood-estimatormle.}}
+
+Suppose we have a sample of size \(n\), \(X_1,...,X_n\) i.i.d drawn from a population distribution \(f_X(x;\boldsymbol{\theta}), \boldsymbol{\theta} = (\theta_1,\theta_2,...,\theta_k)^{T}\). Define the likelihood function to be
+\[
+L(\boldsymbol\theta) = \prod_{i=1}^n f(x_i;\boldsymbol{\theta})
+\]
+The log-likelihood function is defined by \(\ell(\boldsymbol\theta)=\log L(\boldsymbol\theta)\). The maximum likelihood estimator \(\hat{\boldsymbol\theta}\) is determined to maximize \(L(\boldsymbol\theta)\), i.e.,
+\begin{equation}
+\hat{\boldsymbol\theta} =\underset{\boldsymbol\theta\in \Theta}{\max} L(\boldsymbol\theta)
+\end{equation}
+
+\hypertarget{confidence-interval}{%
+\chapter{Confidence Interval}\label{confidence-interval}}
+
+\begin{definition}[Confidence Interval]
+\protect\hypertarget{def:unnamed-chunk-4}{}{\label{def:unnamed-chunk-4} \iffalse (Confidence Interval) \fi{} }Given a sample \(X_1,X_2,...,X_n\) of the population \(X\sim f(x;\theta)\) and \(\alpha\in[0,1]\), a \((1-\alpha)\) confidence interval \(\left(a(X_1,X_2,...,X_n), b(X_1,X_2,...,X_n)\right)\) for the parameter \(\theta\) is defined such that,
+\begin{equation}
+P\left[a(X_1,X_2,...,X_n)< \theta <b(X_1,X_2,...,X_n)\right] = 1-\alpha
+\end{equation}
+\end{definition}
+
+\textbf{\href{https://en.wikipedia.org/wiki/Confidence_interval\#Meaning_and_interpretation}{Interpretation and misunderstanding}}
+
+\hypertarget{q1}{%
+\section{Q1}\label{q1}}
+
+\begin{definition}[t-distribution]
+\protect\hypertarget{def:unnamed-chunk-5}{}{\label{def:unnamed-chunk-5} \iffalse (t-distribution) \fi{} }Suppose \(X\sim N(0, 1)\), \(U\sim \chi^2(n)\), and \(X\) are independent from \(Y\), then
+\(\frac{X}{\sqrt{U/n}}\) has a (student) t distribution with n degrees of freedom, i.e.,
+\[
+  \frac{X}{\sqrt{U/n}} \sim t(n)
+\]
+\end{definition}
+
+Confidence Interval of normal population \(X_i\stackrel{i.i.d.}\sim \mathcal{N}(\mu,\sigma^2),i=1,2,...,n\). We have
+\begin{align}
+\bar X \sim \mathcal{N}(\mu,\frac{\sigma^2}{n}), \quad \frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)
+\end{align}
+It can be proved that \(\bar X\) and \(S^2\) are independent. Then,
+\begin{equation}
+\frac{\frac{\bar X - \mu}{\sqrt{\sigma^2/n}}}{\sqrt{\frac{(n-1)S^2}{\sigma^2} / (n-1)}} = \frac{\bar X -\mu}{S/\sqrt{n}}\sim t(n-1)
+\label{eq:tn}
+\end{equation}
+We call such a method the pivotal approach. A pivotal quantity or pivot is a function of observations and unobservable parameters such that the function's probability distribution does not depend on the unknown parameters. For example, \(\frac{\bar X - \mu}{\sqrt{\sigma^2/n}}\sim \mathcal{N}(0,1)\) is a pivot. From \eqref{eq:tn}, we derive the \((1-\alpha)\) confidence interval for the mean \(\mu\) when \(\sigma^2\) is unknown, i.e.,
+\begin{equation}
+\bar X \pm t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}
+\end{equation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qt}\NormalTok{(}\FloatTok{0.05}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.306004
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.01}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.575829
+\end{verbatim}
+
+\hypertarget{q2}{%
+\section{Q2}\label{q2}}
+
+\begin{theorem}[Welch’s t-interval]
+\protect\hypertarget{thm:unnamed-chunk-7}{}{\label{thm:unnamed-chunk-7} \iffalse (Welch's t-interval) \fi{} }Let \(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\) and \(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\) be independent random variables. Then an approximate \((1-\alpha)\) C.I. for \(\mu_X-\mu_Y\) is
+\[
+  \bar{X}-\bar{Y} \pm t_{\alpha / 2}(r) \sqrt{\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}}
+\]
+where
+\[
+  r=\left\lfloor\frac{\left(\frac{S_{\mathrm{X}}^{2}}{n}+\frac{S_{\mathrm{X}}^{2}}{m}\right)^{2}}{\frac{1}{n-1}\left(\frac{S_{\mathrm{X}}^{2}}{n}\right)^{2}+\frac{1}{m-1}\left(\frac{S_{\mathrm{Y}}^{2}}{m}\right)^{2}}\right\rfloor
+\]
+\end{theorem}
+
+Let \(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\) and \(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\) be independent random variables. We have the following,
+\begin{align}
+\bar X&\sim \mathcal{N}(\mu_X, \frac{\sigma_X^2}{n}), \quad 
+\bar Y \sim \mathcal{N}(\mu_Y, \frac{\sigma_Y^2}{n})\\
+\frac{(n-1)S^2_X}{\sigma_X^2} &\sim \chi^2(n-1), \quad \frac{(m-1)S^2_Y}{\sigma_Y^2} \sim \chi^2(m-1)
+\end{align}
+The two samples are independent, hence,
+\begin{equation}
+\bar X - \bar Y \sim \mathcal{N}(\mu_X-\mu_Y,\frac{\sigma_X^2}{n}+\frac{\sigma_Y^2}{m})
+\end{equation}
+
+\begin{itemize}
+\item
+  \(\sigma_X=\sigma_Y=\sigma\) and \(\sigma\) is known, then,
+  \begin{equation}
+  \frac{\bar X - \bar Y - (\mu_X-\mu_Y)}{\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}}\sim \mathcal{N}(0,1)
+  \end{equation}
+\item
+  \(\sigma_X=\sigma_Y=\sigma\) and \(\sigma\) is unknown, then,
+  \begin{align}
+  \frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2}&\sim \chi^2(n+m-2)\\
+  \frac{\bar X - \bar Y-(\mu_X-\mu_Y)/\left(\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}\right)}{\sqrt{\frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2(n+m-2)}}}&\sim t(n+m-2)
+  \end{align}
+\item
+  \(\sigma_X\neq\sigma_Y\) and they are both unknown, use Welch's t-interval or CLT approximation.
+\item
+  \(m=n\), then \(Z_i = X_i-Y_i\sim\mathcal{N}(\mu_X-\mu_y,\sigma_Z)\) since \((X_i,Y_i)^T\sim \mathcal{N}\left((\mu_X,\mu_Y)^T, \Sigma\right)\). Then the same technique in Q1 can be used.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qt}\NormalTok{(}\FloatTok{0.05} \OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.306004
+\end{verbatim}
+
+\hypertarget{q3}{%
+\section{Q3}\label{q3}}
+
+If \(X\sim \chi^2(n)\) and \(Y\sim\chi^2(m)\) are independent, then
+\[
+\frac{X/n}{Y/m}\sim F(n, m)
+\]
+Therefore, with samples from two independent normal population, i.e., let \(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\) and \(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\) be independent, we have a pivot
+\begin{equation}
+\frac{\frac{(n-1)S_X^2}{\sigma^2_X} / (n-1)}{\frac{(m-1)S_Y^2}{\sigma^2_Y}/(m-1)} = \frac{S_X^2/\sigma^2_X}{S_Y^2/\sigma^2_Y}\sim F(n-1, m-1)
+\end{equation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha <{-}}\StringTok{ }\FloatTok{0.02}
+\KeywordTok{qf}\NormalTok{(alpha }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.666719
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qf}\NormalTok{(alpha }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.499365
+\end{verbatim}
+
+\begin{equation}
+F_{1-\alpha / 2}(r_1, r_2) = \frac{1}{F_{\alpha / 2}(r_2, r_1)}
+\end{equation}
+
+\hypertarget{q4}{%
+\section{Q4}\label{q4}}
+
+According to the central limit theorem(CLT), we have an approximate pivot
+\begin{equation}
+\frac{\bar X - EX}{\sqrt{Var X}}\rightarrow \mathcal{N}(0,1)
+\end{equation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.05} \OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+\hypertarget{solutions}{%
+\section{Solutions}\label{solutions}}
+
+\hypertarget{q1-1}{%
+\subsection{Q1}\label{q1-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{21.5}\NormalTok{, }\FloatTok{18.95}\NormalTok{, }\FloatTok{18.55}\NormalTok{, }\FloatTok{19.4}\NormalTok{, }\FloatTok{19.15}\NormalTok{, }\FloatTok{22.35}\NormalTok{, }\FloatTok{22.9}\NormalTok{, }\FloatTok{22.2}\NormalTok{, }\FloatTok{23.1}\NormalTok{)}
+\KeywordTok{t.test}\NormalTok{(x, }\DataTypeTok{conf.level =} \FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	One Sample t-test
+## 
+## data:  x
+## t = 33.738, df = 8, p-value = 6.506e-10
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  19.47149 22.32851
+## sample estimates:
+## mean of x 
+##      20.9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n <{-}}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.1}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{var}\NormalTok{(x) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\FloatTok{0.5}\NormalTok{)}\OperatorTok{\^{}}\DecValTok{2}
+\KeywordTok{print}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 37.37708
+\end{verbatim}
+
+\hypertarget{q2-1}{%
+\subsection{Q2}\label{q2-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1612}\NormalTok{, }\DecValTok{1352}\NormalTok{, }\DecValTok{1456}\NormalTok{, }\DecValTok{1222}\NormalTok{, }\DecValTok{1560}\NormalTok{, }\DecValTok{1456}\NormalTok{, }\DecValTok{1924}\NormalTok{)}
+\NormalTok{y <{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1082}\NormalTok{, }\DecValTok{1300}\NormalTok{, }\DecValTok{1092}\NormalTok{, }\DecValTok{1040}\NormalTok{, }\DecValTok{910}\NormalTok{, }\DecValTok{1248}\NormalTok{, }\DecValTok{1092}\NormalTok{, }\DecValTok{1040}\NormalTok{, }\DecValTok{1092}\NormalTok{, }\DecValTok{1288}\NormalTok{)}
+\KeywordTok{t.test}\NormalTok{(x,y, }\DataTypeTok{var.equal =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{conf.level =} \FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  x and y
+## t = 4.235, df = 8.5995, p-value = 0.002427
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  181.7191 604.9095
+## sample estimates:
+## mean of x mean of y 
+##  1511.714  1118.400
+\end{verbatim}
+
+Note that R use \(t_{\alpha/2}(8.6)\), so the result of C.I. is different from what we use where the df=8 in t distribution. The pdf of t distribution is
+\begin{equation}
+f(t)=\frac{\Gamma\left(\frac{\nu+1}{2}\right)}{\sqrt{\nu \pi} \Gamma\left(\frac{\nu}{2}\right)}\left(1+\frac{t^{2}}{\nu}\right)^{-\frac{\nu+1}{2}}
+\end{equation}
+where \(\nu\) is the degree of freedom.
+
+\hypertarget{q3-1}{%
+\subsection{Q3}\label{q3-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r1 <{-}}\StringTok{ }\DecValTok{9} \OperatorTok{{-}}\StringTok{ }\DecValTok{1}
+\NormalTok{r2 <{-}}\StringTok{ }\DecValTok{13} \OperatorTok{{-}}\StringTok{ }\DecValTok{1}
+\NormalTok{sx <{-}}\StringTok{ }\FloatTok{128.41} \OperatorTok{/}\StringTok{ }\DecValTok{12}
+\NormalTok{sy <{-}}\StringTok{ }\FloatTok{36.72} \OperatorTok{/}\StringTok{ }\DecValTok{8}
+\NormalTok{alpha <{-}}\StringTok{ }\FloatTok{0.02}
+\NormalTok{ci2 <{-}}\StringTok{ }\NormalTok{sx }\OperatorTok{/}\StringTok{ }\NormalTok{sy }\OperatorTok{*}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{qf}\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{alpha }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{, r1, r2, }\DataTypeTok{lower.tail =}\NormalTok{ F), }\KeywordTok{qf}\NormalTok{(alpha }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{, r1, r2, }\DataTypeTok{lower.tail =}\NormalTok{ F))}
+\NormalTok{ci <{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(ci2)}
+\KeywordTok{print}\NormalTok{(ci2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  0.4114085 10.4895333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(ci)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6414113 3.2387549
+\end{verbatim}
+
+\hypertarget{q4-1}{%
+\subsection{Q4}\label{q4-1}}
+
+\[
+\hat{p}_{1} \pm z_{0.05 / 2} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{p}_{1}\right)}{n_{1}}}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n1 <{-}}\StringTok{ }\DecValTok{194}
+\NormalTok{n2 <{-}}\StringTok{ }\DecValTok{162}
+\NormalTok{y1 <{-}}\StringTok{ }\DecValTok{28} 
+\NormalTok{y2 <{-}}\StringTok{ }\DecValTok{11}
+\NormalTok{p1 <{-}}\StringTok{ }\NormalTok{y1 }\OperatorTok{/}\StringTok{ }\NormalTok{n1}
+\NormalTok{s1 <{-}}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n1 }\OperatorTok{*}\StringTok{ }\NormalTok{p1 }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{p1)) }\OperatorTok{/}\StringTok{ }\NormalTok{n1}
+\NormalTok{p1 }\OperatorTok{+}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{) }\OperatorTok{*}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.05}\OperatorTok{/}\DecValTok{2}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F) }\OperatorTok{*}\StringTok{ }\NormalTok{s1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0948785 0.1937813
+\end{verbatim}
+
+\[
+z_{\alpha / 2} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{p}_{1}\right)}{n}} = \varepsilon
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha <{-}}\StringTok{ }\FloatTok{0.1}
+\NormalTok{ep <{-}}\StringTok{ }\FloatTok{0.04}
+\KeywordTok{qnorm}\NormalTok{(alpha }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F)}\OperatorTok{\^{}}\DecValTok{2} \OperatorTok{*}\StringTok{ }\NormalTok{p1 }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{p1) }\OperatorTok{/}\StringTok{ }\NormalTok{ep}\OperatorTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 208.8321
+\end{verbatim}
+
+\[
+\left(\hat{p}_{1}-\hat{p}_{2}\right)-z_{0.05} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{\rho}_{1}\right)}{n_{1}}+\frac{\hat{\rho}_{2}\left(1-\hat{p}_{2}\right)}{n_{2}}}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p2 <{-}}\StringTok{ }\NormalTok{y2 }\OperatorTok{/}\StringTok{ }\NormalTok{n2}
+\NormalTok{p1 }\OperatorTok{{-}}\StringTok{ }\NormalTok{p2 }\OperatorTok{{-}}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\DataTypeTok{lower.tail =}\NormalTok{ F) }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(p1 }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{ }\NormalTok{p1) }\OperatorTok{/}\StringTok{ }\NormalTok{n1 }\OperatorTok{+}\StringTok{ }\NormalTok{p2 }\OperatorTok{*}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{{-}}\StringTok{  }\NormalTok{p2) }\OperatorTok{/}\StringTok{ }\NormalTok{n2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.02370925
+\end{verbatim}
+
+\hypertarget{simple-linear-regression}{%
+\chapter{Simple Linear Regression}\label{simple-linear-regression}}
+
+Consider a simple linear regression model,
+\begin{equation}
+Y = \alpha + \beta(X-\bar X) + \varepsilon,
+\label{eq:slr}
+\end{equation}
+where \(\varepsilon\sim \mathcal{N}(0, \sigma^2)\). Given \(X\) is not random, we have,
+\begin{equation}
+Y\sim \mathcal{N}(\alpha + \beta(X-\bar X), \sigma^2)
+\end{equation}
+
+\hypertarget{fitting-a-simple-linear-regression-model}{%
+\section{Fitting a Simple Linear Regression Model}\label{fitting-a-simple-linear-regression-model}}
+
+Suppose we a series of samples \((x_i,y_i), i=1,2,...,n\) and we want to fit a simple linear regression which has the form of \eqref{eq:slr}. Then the fitted \((\hat \alpha,\hat\beta)\) should minimize the residual, i.e.,
+
+\begin{equation}
+(\hat \alpha,\hat\beta) = \underset{\alpha,\beta\in \mathbb{R}}{\arg\min}\sum_{i=1}^n(y_i-\alpha-\beta(x_i-\bar x))^2
+\label{eq:residual}
+\end{equation}
+
+Solving \eqref{eq:residual}, we derive
+\begin{equation}
+\hat\alpha = \bar y, \hat\beta = \frac{\sum_{i=1}^{n} y_{i}\left(x_{i}-\bar{x}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}
+\end{equation}
+
+Noting that \(y_i = \alpha+\beta(x_i-\bar x)+\varepsilon_i\sim\mathcal{N}(\alpha+\beta(x_i-\bar x), \sigma^2)\), we have
+\begin{align}
+\hat\alpha &= \bar y \sim \mathcal{N}(\alpha, \frac{\sigma^2}{n})\\
+\hat\beta &= \frac{\sum_{i=1}^{n} y_{i}\left(x_{i}-\bar{x}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}
+\sim \mathcal{N}(\beta, \frac{\sigma^2}{\sum_{i=1}^n(x_i-\bar x)^2})
+\end{align}
+
+The MLE for \(\sigma\) is
+\begin{equation}
+\hat{\sigma^{2}}=\frac{1}{n} \sum_{i=1}^{n}\left[y_{i}-\hat{\alpha}-\hat{\beta}\left(x_{i}-\bar{x}\right)\right]^{2}
+\end{equation}
+
+\hypertarget{a-toy-example}{%
+\section{A Toy Example}\label{a-toy-example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simulated data}
+\CommentTok{\#\textquotesingle{} y = 4 + 3x + \textbackslash{}epsilon}
+\NormalTok{x <{-}}\StringTok{ }\KeywordTok{runif}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DataTypeTok{min =} \DecValTok{5}\NormalTok{, }\DataTypeTok{max =} \DecValTok{20}\NormalTok{)}
+\NormalTok{y <{-}}\StringTok{ }\DecValTok{4} \OperatorTok{+}\StringTok{ }\DecValTok{3} \OperatorTok{*}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{20}\NormalTok{)}
+\NormalTok{slr <{-}}\StringTok{ }\KeywordTok{lm}\NormalTok{(y }\OperatorTok{\textasciitilde{}}\StringTok{ }\NormalTok{x)}
+\KeywordTok{summary}\NormalTok{(slr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.25867 -0.65772 -0.03311  0.51021  1.96094 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  3.68150    0.69319   5.311 4.76e-05 ***
+## x            3.01429    0.05077  59.367  < 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.093 on 18 degrees of freedom
+## Multiple R-squared:  0.9949,	Adjusted R-squared:  0.9946 
+## F-statistic:  3524 on 1 and 18 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(slr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "coefficients"  "residuals"     "effects"       "rank"         
+##  [5] "fitted.values" "assign"        "qr"            "df.residual"  
+##  [9] "xlevels"       "call"          "terms"         "model"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fitted}\NormalTok{(slr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        1        2        3        4        5        6        7        8 
+## 52.94912 34.45901 23.39097 26.15008 43.89705 63.73809 59.54406 24.01895 
+##        9       10       11       12       13       14       15       16 
+## 52.71892 61.02429 19.08463 50.77696 55.04924 33.73152 58.23259 53.07383 
+##       17       18       19       20 
+## 19.04014 38.87171 41.55155 32.51280
+\end{verbatim}
+
+\hypertarget{hypothesis-testing}{%
+\chapter{Hypothesis Testing}\label{hypothesis-testing}}
+
+\hypertarget{summary-of-hypothesis-testing-by-normal-population}{%
+\section{Summary of Hypothesis Testing by Normal Population}\label{summary-of-hypothesis-testing-by-normal-population}}
+
+Let samples \(X_1,X_2,...,X_n\) draw from a normal population \(\mathcal{N}(\mu_X,\sigma^2_X)\), then,
+
+\begin{longtable}[]{@{}ccl@{}}
+\toprule
+& Distribution Under \(H_0\) & Critical Region\tabularnewline
+\midrule
+\endhead
+\(H_0:\mu=\mu_0\),\textless br\textgreater{} \(\sigma\) known &
+\(\frac{\bar X-\mu_0}{\sigma/\sqrt{n}}\sim\mathcal{N}(0, 1)\) &
+\(H_1:\mu>\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\geq z_{\alpha}\)
+\textless br\textgreater{}
+\(H_1:\mu<\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\leq z_{1-\alpha}=-z_{\alpha}\)\textless br\textgreater{}
+\(H_1:\mu\neq\mu_0,\quad |\frac{\bar x-\mu_0}{\sigma/\sqrt{n}}|\geq z_{\alpha/2}\)\tabularnewline
+\(H_0:\mu=\mu_0\),\textless br\textgreater{} \(\sigma\) unknown &
+\(\frac{\sqrt{n}(\bar X-\mu_0)/\sigma}{\sqrt{\frac{(n-1)S_X^2}{\sigma^2}/(n-1)}}\)
+\textless br\textgreater{}\(=\frac{\bar X-\mu_0}{S_X/\sqrt{n}}\sim t(n-1)\)
+&
+\(H_1:\mu>\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\geq t_{\alpha}(n-1)\)\textless br\textgreater{}
+\(H_1:\mu<\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\leq t_{1-\alpha}(n-1)=-t_{\alpha}(n-1)\)\textless br\textgreater{}
+\(H_1:\mu\neq\mu_0,\quad |\frac{\bar X-\mu_0}{S_X/\sqrt{n}}|\geq t_{\alpha/2}\)\tabularnewline
+\(H_0:\sigma^2 = \sigma^2_0\) &
+\(\frac{(n-1)S_X^2}{\sigma_0^2}\sim \chi^2(n-1)\) &
+\(H_1:\sigma^2>\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha}(n-1)\)\textless br\textgreater{}
+\(H_1:\sigma^2<\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha}(n-1)\)\textless br\textgreater{}\(H_1:\sigma^2\neq\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha/2}(n-1)\)
+\textless br\textgreater{}
+\(\text{ or } \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha/2}(n-1)\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}ccl@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\centering
+Null Hypothesis\strut
+\end{minipage} & \begin{minipage}[b]{0.35\columnwidth}\centering
+Distribution Under \(H_0\)\strut
+\end{minipage} & \begin{minipage}[b]{0.35\columnwidth}\raggedright
+Critical Region\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.22\columnwidth}\centering
+\(H_0:\mu=\mu_0\), \(\sigma\) known\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+\(\frac{\bar X-\mu_0}{\sigma/\sqrt{n}}\sim\mathcal{N}(0, 1)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\(H_1:\mu>\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\geq z_{\alpha}\) \(H_1:\mu<\mu_0,\quad \frac{\bar x-\mu_0}{\sigma/\sqrt{n}}\leq z_{1-\alpha}=-z_{\alpha}\) \(H_1:\mu\neq\mu_0,\quad |\frac{\bar x-\mu_0}{\sigma/\sqrt{n}}|\geq z_{\alpha/2}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\centering
+\(H_0:\mu=\mu_0\), \(\sigma\) unknown\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+\(\frac{\sqrt{n}(\bar X-\mu_0)/\sigma}{\sqrt{\frac{(n-1)S_X^2}{\sigma^2}/(n-1)}}\) \(=\frac{\bar X-\mu_0}{S_X/\sqrt{n}}\sim t(n-1)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\(H_1:\mu>\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\geq t_{\alpha}(n-1)\) \(H_1:\mu<\mu_0,\quad \frac{\bar X-\mu_0}{S_X/\sqrt{n}}\leq t_{1-\alpha}(n-1)\) \(H_1:\mu\neq\mu_0,\quad |\frac{\bar X-\mu_0}{S_X/\sqrt{n}}|\geq t_{\alpha/2}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\centering
+\(H_0:\sigma^2 = \sigma^2_0\)\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\centering
+\(\frac{(n-1)S_X^2}{\sigma_0^2}\sim \chi^2(n-1)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.35\columnwidth}\raggedright
+\(H_1:\sigma^2>\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha}(n-1)\) \(H_1:\sigma^2<\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha}(n-1)\)\(H_1:\sigma^2\neq\sigma^2_0,\quad \frac{(n-1)S_X^2}{\sigma^2_0}\geq \chi_{\alpha/2}(n-1)\) \(\text{ or } \frac{(n-1)S_X^2}{\sigma^2_0}\leq \chi_{1-\alpha/2}(n-1)\)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Let samples \(X_1,X_2,...,X_n\) draw from a normal population \(\mathcal{N}(\mu_X,\sigma^2_X)\) and \(Y_1,Y_2,...,Y_m\) from another normal population \(\mathcal{N}(\mu_Y,\sigma^2_Y)\).
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Null Hypothesis & Distribution Under \(H_0\) & Critical
+Region\tabularnewline
+\midrule
+\endhead
+\(H_0:\mu_X=\mu_Y\) ,\textless br\textgreater{}
+\(\sigma_X=\sigma_Y=\sigma \), known &
+\(Z_1=\frac{\bar X-\bar Y}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma^2_Y}{m}}}\sim\mathcal{N}(0,1)\)
+&
+\(H_1:\mu_X>\mu_Y,\quad Z_1\geq z_{\alpha}\)\textless br\textgreater{}\(H_1:\mu_X<\mu_Y,\quad Z_1\leq z_{1-\alpha}=-z_{\alpha}\)\textless br\textgreater{}\(H_1:\mu_X\neq\mu_Y,\quad |Z_1|\geq z_{\alpha/2}\)\tabularnewline
+\(H_0:\mu_X=\mu_Y\),
+\textless br\textgreater{}\(\sigma_X=\sigma_Y=\sigma\), unknown &
+\(T_1=\frac{(\bar X-\bar Y)/\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}}{\sqrt{\frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2}/(n+m-2)}}\)
+\textless br\textgreater{}\(=\frac{\bar X-\bar Y}{S_p\sqrt{\frac{1}{n}+\frac{1}{m}}}\sim t(n+m-2)\)
+&
+\(H_1:\mu_X>\mu_Y,\quad T_1\geq t_{\alpha}(n+m-2)\)\textless br\textgreater{}\(H_1:\mu_X<\mu_Y,\quad T_1\leq -t_{\alpha}(n+m-2)\)\textless br\textgreater{}\(H_1:\mu_X\neq\mu_Y,\quad |T_1|\geq t_{\alpha/2}(n+m-2)\)\tabularnewline
+\(H_0:\mu_X=\mu_Y\),\textless br\textgreater{}\(\sigma_X\neq\sigma_Y\),
+unknown &
+\(T_2=\frac{\bar X-\bar Y}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma^2_Y}{m}}}\sim t(r)\),
+\textless br\textgreater{}\(r=\left\lfloor\frac{\left(\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}\right)^{2}}{\frac{1}{n-1}\left(\frac{S_{X}^{2}}{n}\right)^{2}+\frac{1}{m-1}\left(\frac{S_{Y}^{2}}{m}\right)^{2}} \right\rfloor\)
+&
+\(H_1:\mu_X>\mu_Y,\quad T_2\geq t_{\alpha}(r)\)\textless br\textgreater{}\(H_1:\mu_X<\mu_Y,\quad T_2\leq -t_{\alpha}(r)\)\textless br\textgreater{}\(H_1:\mu_X\neq\mu_Y,\quad |T_2|\geq t_{\alpha/2}(r)\)\tabularnewline
+\(H_0:\mu_X=\mu_Y\),\textless br\textgreater{}\(m=n\) & \(D_i:=X_i-Y_i\)
+\textless br\textgreater{}\(\sim \mathcal{N}(\mu_X-\mu_Y,\sigma^2_Z)\)
+\textless br\textgreater{}transform it into the one sample situation
+with \(\sigma^2_Z\) unknown &\tabularnewline
+\(H_0:\sigma_X^2=\sigma_Y^2\) &
+\(F = \frac{\frac{(n-1)S_X^2}{\sigma_X^2}/(n-1)}{\frac{(m-1)S_Y^2}{\sigma_Y^2}/(m-1)}=\frac{S_X^2}{S_Y^2}\)\textless br\textgreater{}\(\sim F(n-1,m-1)\)
+&
+\(H_1:\sigma_X^2>\sigma_Y^2,\quad F\geq F_{\alpha}(n-1,m-1)\)\textless br\textgreater{}\(H_1:\sigma_X^2<\sigma_Y^2,\quad F\leq F_{1-\alpha}(n-1,m-1)\)\textless br\textgreater{}\(H_1:\sigma_X^\neq\sigma_Y^2,\quad F\geq F_{\alpha/2}(n-1,m-1)\)\textless br\textgreater{}
+or \(F\leq F_{1-\alpha/2}(n-1,m-1)\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.30\columnwidth}\raggedright
+Null Hypothesis\strut
+\end{minipage} & \begin{minipage}[b]{0.31\columnwidth}\raggedright
+Distribution Under \(H_0\)\strut
+\end{minipage} & \begin{minipage}[b]{0.31\columnwidth}\raggedright
+Critical Region\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\(H_0:\mu_X=\mu_Y\) , \(\sigma_X=\sigma_Y=\sigma\), known\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\(Z_1=\frac{\bar X-\bar Y}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma^2_Y}{m}}}\sim\mathcal{N}(0,1)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\(H_1:\mu_X>\mu_Y,\quad Z_1\geq z_{\alpha}\)\(H_1:\mu_X<\mu_Y,\quad Z_1\leq z_{1-\alpha}=-z_{\alpha}\)\(H_1:\mu_X\neq\mu_Y,\quad |Z_1|\geq z_{\alpha/2}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\(H_0:\mu_X=\mu_Y\), \(\sigma_X=\sigma_Y=\sigma\), unknown\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\(T_1=\frac{(\bar X-\bar Y)/\sqrt{\frac{\sigma^2}{n}+\frac{\sigma^2}{m}}}{\sqrt{\frac{(n-1)S_X^2+(m-1)S_Y^2}{\sigma^2}/(n+m-2)}}\) \(=\frac{\bar X-\bar Y}{S_p\sqrt{\frac{1}{n}+\frac{1}{m}}}\sim t(n+m-2)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\(H_1:\mu_X>\mu_Y,\quad T_1\geq t_{\alpha}(n+m-2)\)\(H_1:\mu_X<\mu_Y,\quad T_1\leq -t_{\alpha}(n+m-2)\)\(H_1:\mu_X\neq\mu_Y,\quad |T_1|\geq t_{\alpha/2}(n+m-2)\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\(H_0:\mu_X=\mu_Y\),\(\sigma_X\neq\sigma_Y\), unknown\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\(T_2=\frac{\bar X-\bar Y}{\sqrt{\frac{\sigma_X^2}{n}+\frac{\sigma^2_Y}{m}}}\sim t(r)\), \(r=\left\lfloor\frac{\left(\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}\right)^{2}}{\frac{1}{n-1}\left(\frac{S_{X}^{2}}{n}\right)^{2}+\frac{1}{m-1}\left(\frac{S_{Y}^{2}}{m}\right)^{2}} \right\rfloor\)\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\(H_1:\mu_X>\mu_Y,\quad T_2\geq t_{\alpha}(r)\)\(H_1:\mu_X<\mu_Y,\quad T_2\leq -t_{\alpha}(r)\)\(H_1:\mu_X\neq\mu_Y,\quad |T_2|\geq t_{\alpha/2}(r)\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\(H_0:\mu_X=\mu_Y\),\(m=n\)\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\(D_i:=X_i-Y_i\) \(\sim \mathcal{N}(\mu_X-\mu_Y,\sigma^2_Z)\) transform it into the one sample situation with \(\sigma^2_Z\) unknown\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.30\columnwidth}\raggedright
+\(H_0:\sigma_X^2=\sigma_Y^2\)\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\(F = \frac{\frac{(n-1)S_X^2}{\sigma_X^2}/(n-1)}{\frac{(m-1)S_Y^2}{\sigma_Y^2}/(m-1)}=\frac{S_X^2}{S_Y^2}\)\(\sim F(n-1,m-1)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.31\columnwidth}\raggedright
+\(H_1:\sigma_X^2>\sigma_Y^2,\quad F\geq F_{\alpha}(n-1,m-1)\)\(H_1:\sigma_X^2<\sigma_Y^2,\quad F\leq F_{1-\alpha}(n-1,m-1)\)\(H_1:\sigma_X^\neq\sigma_Y^2,\quad F\geq F_{\alpha/2}(n-1,m-1)\) or \(F\leq F_{1-\alpha/2}(n-1,m-1)\)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+We next consider the situation of testing proportion. Let \(X_i\stackrel{i.i.d.}{\sim} Bernoulli(p_X)\) drawn from a specific event and \(Y_i\stackrel{i.i.d.}{\sim} Bernoulli(p_Y)\). We want to infer \(p_X\) and the relationship between \(p_X\) and \(p_Y\). Let \(Z=\sum\limits_{i=1}^n X_i\sim Bin(n,p)\). \(\hat p:=\frac{Z}{n}\) is an unbiased estimator for \(p\). According to the central limit theorem(CLT), we have,
+\begin{equation}
+\hat p \rightarrow \mathcal{N}(p,\frac{p(1-p)}{n}), n\rightarrow \infty
+\end{equation}
+
+Under \(H_0:p_X=p_Y=p\), \(\hat p_{XY}:=\frac{\sum\limits_{i=1}^n X_i+\sum\limits_{i=1}^m Y_i}{n+m}\) is an unbiased estimator of \(p\). Since,
+\begin{equation}
+\mathbb{E}(\hat p_{XY}) = \frac{\sum\limits_{i=1}^n \mathbb{E} X_i+\sum\limits_{i=1}^m \mathbb{E} Y_i}{n+m}=\frac{np + mp}{m+n}=p
+\end{equation}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Null Hypothesis & Distribution Under \(H_0\) & Criticall
+Region\tabularnewline
+\midrule
+\endhead
+\(H_0:p=p_0\) &
+\(Z_p=\frac{\hat p-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\stackrel{approx}{\sim}N(0,1)\)
+&
+\(H_1:p>p_0,\quad Z_p\geq z_{\alpha}\)\textless br\textgreater{}\(H_1:p<p_0,\quad Z_p\leq z_{1-\alpha}\)\textless br\textgreater{}\(H_1:p\neq p_0,\quad |Z_p|\geq z_{\alpha/2}\)\tabularnewline
+\(H_0:p_X=p_Y\) &
+\(Z_{XY} = \frac{\hat p_X-\hat p_Y}{\sqrt{\frac{\hat p_{XY}(1-\hat p_{XY})}{n} + \frac{\hat p_{XY}(1-\hat p_{XY})}{m}}}\)
+\textless br\textgreater{}\(\stackrel{apprrox}{\sim} \mathcal{N}(0,1),\hat p_{XY}:=\frac{\sum\limits_{i=1}^n X_i+\sum\limits_{i=1}^m Y_i}{n+m}\)
+&
+\(H_1:p_X>p_Y,\quad Z_{XY}\geq z_{\alpha}\)\textless br\textgreater{}\(H_1:p_X<p_Y,\quad Z_{XY}\leq z_{1-\alpha}=-z_{\alpha}\)\textless br\textgreater{}\(H_1:p_X\neq p_Y,\quad |Z_{XY}|\geq z_{\alpha/2}\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\raggedright
+Null Hypothesis\strut
+\end{minipage} & \begin{minipage}[b]{0.41\columnwidth}\raggedright
+Distribution Under \(H_0\)\strut
+\end{minipage} & \begin{minipage}[b]{0.41\columnwidth}\raggedright
+Criticall Region\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\(H_0:p=p_0\)\strut
+\end{minipage} & \begin{minipage}[t]{0.41\columnwidth}\raggedright
+\(Z_p=\frac{\hat p-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\stackrel{approx}{\sim}N(0,1)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.41\columnwidth}\raggedright
+\(H_1:p>p_0,\quad Z_p\geq z_{\alpha}\)\(H_1:p<p_0,\quad Z_p\leq z_{1-\alpha}\)\(H_1:p\neq p_0,\quad |Z_p|\geq z_{\alpha/2}\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\(H_0:p_X=p_Y\)\strut
+\end{minipage} & \begin{minipage}[t]{0.41\columnwidth}\raggedright
+\(Z_{XY} = \frac{\hat p_X-\hat p_Y}{\sqrt{\frac{\hat p_{XY}(1-\hat p_{XY})}{n} + \frac{\hat p_{XY}(1-\hat p_{XY})}{m}}}\) \(\stackrel{apprrox}{\sim} \mathcal{N}(0,1),\hat p_{XY}:=\frac{\sum\limits_{i=1}^n X_i+\sum\limits_{i=1}^m Y_i}{n+m}\)\strut
+\end{minipage} & \begin{minipage}[t]{0.41\columnwidth}\raggedright
+\(H_1:p_X>p_Y,\quad Z_{XY}\geq z_{\alpha}\)\(H_1:p_X<p_Y,\quad Z_{XY}\leq z_{1-\alpha}\)\(H_1:p_X\neq p_Y,\quad |Z_{XY}|\geq z_{\alpha/2}\)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{exercise}{%
+\section{Exercise}\label{exercise}}
+
+\begin{exercise}
+\protect\hypertarget{exr:q71}{}{\label{exr:q71} }To measure air pollution in a home, let \(X\) and \(Y\) equal the amount of suspended particulate matter (in \(\mathrm{g} / \mathrm{m} 3\) ) measured during a 24-hour period in a home in which there is no smoker and a home in which there is a smoker, respectively. We shall test the null hypothesis \(H_{0}: \sigma_{X}^{2} / \sigma_{Y}^{2}=1\) against the one-sided alternative hypothesis \(H_{1}: \sigma_{X}^{2} / \sigma_{Y}^{2}>1\). Suppose both samples are drawn from normal distribution.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  If a random sample of size \(n=9\) yielded \(\bar{x}=93\) and \(S_{x}=12.9\) while a random sample of size \(m=11\) yielded \(y=132\) and \(S_{y}=7.1,\) define a critical region and give your conclusion if \(\alpha=0.05\).
+\item
+  Now test \(H_{0}: \mu_{X}=\mu_{Y}\) against \(H_{1}: \mu_{X}<\mu_{Y}\) if \(\alpha=0.05\). \(t_{0.05}(11)=1.796\)
+\end{enumerate}
+\end{exercise}
+
+Solutions:\\
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  To test \(H_0:\sigma_X^2=\sigma_Y^2\) against \(H_1:\sigma^2_X>\sigma_Y^2\) under normal populations.\\
+  \begin{equation}
+  F=\frac{S_{x}^{2}}{S_{y}^{2}}=\frac{12.9^{2}}{7.1^{2}}=3.30>3.07=F_{0.05}(8,10)
+  \end{equation}
+  So we reject \(H_0\) and conclude that \(\sigma_X^2\neq\sigma_Y^2\).
+\item
+  To test \(H_0:\mu_X=\mu_Y\) against \(H_1:\mu_X<\mu_Y\) under normal populations with variance not being equal.
+\end{enumerate}
+
+\begin{equation}
+r=\left[\frac{\left(\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}\right)^{2}}{\frac{\left(s_{1}^{2} / n_{1}\right)^{2}}{n_{1}-1}+\frac{\left(s_{2}^{2} / n_{2}\right)^{2}}{n_{2}-1}}\right]=\left[\frac{\left(\frac{12.9^{2}}{9}+\frac{7.1^{2}}{13}\right)^{2}}{\frac{\left(12.9^{2} / 9\right)^{2}}{9-1}+\frac{\left(7.1^{2} / 11\right)^{2}}{11-1}}\right]=11, \quad t_{1-0.05}(11)=-t_{0.05}(11)=-1.796
+\end{equation}
+
+\begin{equation}
+t=\frac{\bar{x}_{1}-\bar{y}_{2}}{\sqrt{\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}}}=\frac{93-132}{\sqrt{\frac{12.9^{2}}{9}+\frac{7.1^{2}}{11}}} \approx-8.119<t_{0.95}=-1.796 \Rightarrow \text { Reject } H_{0}
+\end{equation}
+
+\begin{exercise}
+\protect\hypertarget{exr:q72}{}{\label{exr:q72} }Let \(Y\) be \(b(192, p) .\) We reject \(H_{0}: p=0.75\) and accept \(H_{1}: p>0.75\) if and only if \(Y \geq 152 .\) Use the normal approximation to determine
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\alpha=P(Y \geq 152 ; p=0.75)\).
+\item
+  \(\beta=P(Y<152)\) when \(p=0.80\).
+\end{enumerate}
+\end{exercise}
+
+Solution:\\
+
+Proportion for one sample. \(n=192\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\sum_{i=1}^n X_i = 152\), according to CLT and half-unit correction
+  \begin{align}
+  z&=\frac{x-n p}{\sqrt{n p(1-p)}}=\frac{151.5-192(0.75)}{\sqrt{192(0.75)(1-0.75)}} \approx 1.25, z\stackrel{approx}{\sim}\mathcal{N}(0,1)\\
+  \alpha&=P(Y \geq 152 ; p=0.75)=P(Y>151.5)=P(z>1.25)=0.1056
+  \end{align}
+\item
+  \(p=0.8\) now, similarly,
+\end{enumerate}
+
+\begin{align}
+z &=\frac{x-n p}{\sqrt{n p(1-p)}}=\frac{151.5-192(0.80)}{\sqrt{192(0.8)(1-0.8)}} \approx-0.38 \\
+\beta &=P(Y<152)=P(Y<151.5)=P(z<-0.38)=P(z>0.38)=0.3520
+\end{align}
+
+\begin{exercise}
+\protect\hypertarget{exr:q73}{}{\label{exr:q73} }Let \(p\) equal the proportion of drivers who use a seat belt in a state that does not have a mandatory seat belt law. It was claimed that \(p=0.14\) An advertising campaign was conducted to increase this proportion. Two months after the campaign, \(y=104\) out of a random sample of \(n=590\) drivers were wearing their seat belts. Was the campaign successful?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Define the null and alternative hypotheses.
+\item
+  Define a critical region with an \(\alpha=0.01\) significance level. \(z_{0.01} = 2.326\)
+\item
+  What is your conclusion?
+\end{enumerate}
+\end{exercise}
+
+Solution:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(H_{0}: p=0.14 \quad \text { against } \quad H_{1}: p>0.14\)
+\item
+  One sided proportion problem, \(z_{0.01} = 2.326\).
+\end{enumerate}
+
+\begin{equation}
+C=\{z: z \geq 2.326\} \quad \text { where } \quad z=\frac{y / n-0.14}{\sqrt{(0.14)(0.86) / n}}
+\end{equation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  For this problem, \(y=104, n=590\), the value of test statistics is,
+  \begin{equation}
+  z=\frac{104 / 590-0.14}{\sqrt{(0.14)(0.86) / 590}}=2.539>2.326
+  \end{equation}
+\end{enumerate}
+
+Hence, we reject \(H_0\) and conclude that the advertising campaign indeed increases this proportion.
+
+\begin{exercise}
+\protect\hypertarget{exr:q74}{}{\label{exr:q74} } For developing countries in Africa and the Americas, let \(p_{1}\) and \(p_{2}\) be the respective proportions of babies with a low birth weight (below 2500 grams). We shall test \(H_{0}: p_{1}=p_{2}\) against the alternative hypothesis \(H_{1}: p_{1}>p_{2}\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Define a critical region that has an \(\alpha=0.05\) significance level. \(z_{0.05}=1.645\)
+\item
+  If respective random samples of sizes \(n_{1}=900\) and \(n_{2}=700\) yielded \(y_{1}=135\) and \(y_{2}=77\) babies with a low birth weight, what is your conclusion?
+\item
+  What would your decision be with a significance level of \(\alpha=0.01 ?\) \(z_{0.01}=2.326\)
+\item
+  What is the \(p\)-value of your test?
+\end{enumerate}
+\end{exercise}
+
+Solution:
+
+Two samples proportion problem with \(H_0:p_1=p_2\) against \(H_1:p_1>p_2\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{align}
+  C=\{z=\frac{\hat{p}_{1}-\hat{p}_{2}}{\sqrt{\hat{p}(1-\hat{p})\left(1 / n_{1}+1 / n_{2}\right)}} \geq 1.645\}
+  \end{align}
+  where \(\hat p_1 = y_1/n_1,\hat p_2 = y_2/n_2\), and \(\hat p = \frac{y_1+y_2}{n_1+n_2}\).
+\item
+  Calculate the test statistic,
+\end{enumerate}
+
+\begin{align}
+z=\frac{0.15-0.11}{\sqrt{(0.1325)(0.8675)(1 / 900+1 / 700)}}=2.341>1.645
+\end{align}
+Hence, we reject \(H_0\) and conclude that the proportions of babies with a low birth weight in Africa is larger than that in Americas.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Since \(z=2.341>2.326=z_{0.01}\), we reject \(H_0\) and conclude that the proportions of babies with a low birth weight in Africa is larger than that in Americas.
+\item
+  The p-value is
+\end{enumerate}
+
+\begin{equation}
+P(z \geq 2.341)=0.0096
+\end{equation}
+where \(z\) asymptotically follows \(\mathcal{N}(0,1)\).
+
+\hypertarget{refs}{}
+\begin{cslreferences}
+\leavevmode\hypertarget{ref-song2005relationships}{}%
+Song, Wheyming Tina. 2005. ``Relationships Among Some Univariate Distributions.'' \emph{IIE Transactions} 37 (7): 651--56.
+\end{cslreferences}
 
 \end{document}
