@@ -1,0 +1,101 @@
+# Nonparametric Test
+
+## One-sample location
+
+### Sign Test
+
+Suppose we have a sample of $X_1,X_2,...,X_n$ an arbitary **continuous** distribution. We use the median $m$ as denote their location parameter(In normal population, we use mean instead). Therefore, $P(X_i>m) = 0.5$ and $P(X_i<m) = 0.5$. We want to test
+$$
+H_0: m =m_0
+$$
+Let 
+\begin{align}
+Y_i &= \begin{cases} 1, X_i-m_0>0 \\
+0, X_i-m_0<0
+\end{cases}
+B &= \sum_{i=1}^n Y_i
+\end{align}
+From the derivation of $B$, we can see $B\sim Bin(n,0.5)$, then $E(B) = n/2$ and $Var(B) = n/4$. Let $b^*$ be the observed value of $B$. The p-value of testing $H_0:m=m_0$ is 
+$$
+p = 
+\left\{\begin{array}{ll}
+P\left(B \geq b^{*}\right)=\sum_{b=b^{*}}^{n}\left(\begin{array}{l}
+n \\
+b
+\end{array}\right)\left(\frac{1}{2}\right)^{n} & \text { if } H_{1}: m>m_{0} \\
+P\left(B \leq b^{*}\right)=\sum_{b=0}^{b^{*}}\left(\begin{array}{l}
+n \\
+b
+\end{array}\right)\left(\frac{1}{2}\right)^{n} & \text { if } H_{1}: m<m_{0} \\
+2 \min \left\{\sum_{b=b^{*}}^{n}\left(\begin{array}{l}
+n \\
+b
+\end{array}\right)\left(\frac{1}{2}\right)^{n}, \sum_{b=0}^{b^{*}}\left(\begin{array}{l}
+n \\
+b
+\end{array}\right)\left(\frac{1}{2}\right)^{n}\right\} & \text { if } H_{1}: m \neq m_{0}
+\end{array}\right.
+$$
+
+### Wilcoxon Signed Rank Test
+
+Suppose we have a sample of $X_1,X_2,...,X_n$ an arbitary **continuous and symmetric**  distribution with median $m$. We want to test 
+$$
+H_0:m=m_0
+$$
+We let $Y_i = X_i-m_0$, sort $|Y_i|$ in ascending order and denote the corresponding rank $R_i$, let 
+\begin{equation}
+S_i = \begin{cases} 1, Y_i>0,\\
+-1, Y_i < 0
+\end{cases}
+\end{equation}
+$$
+W = \sum_{i=1}^n R_iS_i
+$$
+with $E(W) = 0$ and $Var(W) = \frac{n(n+1)(2n+1)}{6}$.
+
+## Example 
+
+<div style="font-size: 30px">
+```{r}
+x <- c(5.625,5.665,5.697,5.837,5.863,5.870,5.878,5.884,5.908,
+5.967,6.019,6.020,6.029,6.032,6.037,6.045,6.049,6.387, 
+6.050,6.079,6.116,6.159,6.186,6.199,6.307)
+
+n <- length(x)
+B <- sum(x > 5.9) # number of X_i greater than m_0 = 5.9
+p <- 1 - pbinom(B-1, n, 0.5)
+cat("p-value calculated by hand: ", p)
+binom.test(B, n, alternative = "greater")
+```
+
+```{r}
+m0 <- 5.9
+y <- x - m0
+y_abs <- abs(y)
+R <- rank(y_abs)
+S <- as.integer(y > 0) - as.integer(y < 0)
+rs1 <- R * S
+
+dt <- data.frame(x, y, y_abs, R, S, rs1)
+names(dt) <- c("X","Y","|y|","Rank of |y|","sign","sign x Rank")
+knitr::kable(dt,booktabs = TRUE)
+
+W <- sum(rs1)
+rs2 <- R * as.integer(y>0)
+p_wil <- 1 - pnorm((W - 1) / sqrt(n * (n + 1) * (2 * n + 1) / 6))
+cat("p-value calculated by hand", p_wil)
+
+wilcox.test(y, exact = FALSE, alternative = "greater")
+```
+
+```{r}
+D <- x - m0
+d <- mean(D)
+sd <- sd(x)
+test <- d / (sd / sqrt(n))
+cat("d:", d, "sd: ", sd, "test T: ", test, "\n")
+cat("p-value calculated by hand: ", 1 - pt(test, 24))
+t.test(x - m0, alternative = "greater")
+```
+</div>
