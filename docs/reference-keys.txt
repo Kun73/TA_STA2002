@@ -40,3 +40,8 @@ a-toy-example
 hypothesis-testing
 summary-of-hypothesis-testing-by-normal-population
 exercise
+nonparametric-test
+one-sample-location
+sign-test
+wilcoxon-signed-rank-test
+example

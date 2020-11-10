@@ -172,6 +172,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-hypothesis-testing-by-normal-population"><i class="fa fa-check"></i><b>6.1</b> Summary of Hypothesis Testing by Normal Population</a></li>
 <li class="chapter" data-level="6.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercise"><i class="fa fa-check"></i><b>6.2</b> Exercise</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="nonparametric-test.html"><a href="nonparametric-test.html"><i class="fa fa-check"></i><b>7</b> Nonparametric Test</a><ul>
+<li class="chapter" data-level="7.1" data-path="nonparametric-test.html"><a href="nonparametric-test.html#one-sample-location"><i class="fa fa-check"></i><b>7.1</b> One-sample location</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="nonparametric-test.html"><a href="nonparametric-test.html#sign-test"><i class="fa fa-check"></i><b>7.1.1</b> Sign Test</a></li>
+<li class="chapter" data-level="7.1.2" data-path="nonparametric-test.html"><a href="nonparametric-test.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.1.2</b> Wilcoxon Signed Rank Test</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="nonparametric-test.html"><a href="nonparametric-test.html#example"><i class="fa fa-check"></i><b>7.2</b> Example</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
@@ -237,29 +244,29 @@ Y\sim \mathcal{N}(\alpha + \beta(X-\bar X), \sigma^2)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -1.9275 -0.2927  0.2760  0.4449  1.1174 
+## -2.9451 -0.5044  0.1126  0.9883  1.5629 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  4.39259    0.49171   8.933 4.92e-08 ***
-## x            2.96908    0.03662  81.087  &lt; 2e-16 ***
+## (Intercept)  3.90861    0.85684   4.562 0.000242 ***
+## x            3.00404    0.06109  49.171  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.7601 on 18 degrees of freedom
-## Multiple R-squared:  0.9973, Adjusted R-squared:  0.9971 
-## F-statistic:  6575 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 1.235 on 18 degrees of freedom
+## Multiple R-squared:  0.9926, Adjusted R-squared:  0.9922 
+## F-statistic:  2418 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="simple-linear-regression.html#cb35-1"></a><span class="kw">names</span>(slr)</span></code></pre></div>
 <pre><code>##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
 ##  [9] &quot;xlevels&quot;       &quot;call&quot;          &quot;terms&quot;         &quot;model&quot;</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="simple-linear-regression.html#cb37-1"></a><span class="kw">fitted</span>(slr)</span></code></pre></div>
 <pre><code>##        1        2        3        4        5        6        7        8 
-## 52.71958 30.42072 50.85493 32.81960 29.61102 23.19944 53.87083 38.87273 
+## 34.14801 30.80373 40.23012 58.66470 30.82706 45.71683 20.46242 36.25849 
 ##        9       10       11       12       13       14       15       16 
-## 63.74200 26.93697 54.11727 24.79580 51.99520 33.16300 27.35056 54.91179 
+## 53.28276 27.07034 32.86610 58.86596 52.69146 60.19949 60.55752 61.46702 
 ##       17       18       19       20 
-## 21.19724 51.95728 62.23269 51.34871</code></pre>
+## 29.28813 61.15496 29.91685 51.36308</code></pre>
 
 </div>
 </div>
