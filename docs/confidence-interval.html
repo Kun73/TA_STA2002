@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Confidence Interval | Tutorial for STA2002</title>
   <meta name="description" content="Chapter 4 Confidence Interval | Tutorial for STA2002." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Confidence Interval | Tutorial for STA2002" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Kun HUANG(SDS)" />
 
 
-<meta name="date" content="2020-10-27" />
+<meta name="date" content="2020-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,20 +51,23 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -134,45 +137,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="1" data-path="sec-T1.html"><a href="sec-T1.html"><i class="fa fa-check"></i><b>1</b> Tutorial 1</a>
-<ul>
+<li class="chapter" data-level="1" data-path="sec-T1.html"><a href="sec-T1.html"><i class="fa fa-check"></i><b>1</b> Tutorial 1</a><ul>
 <li class="chapter" data-level="1.1" data-path="sec-T1.html"><a href="sec-T1.html#q1"><i class="fa fa-check"></i><b>1.1</b> Q1</a></li>
 <li class="chapter" data-level="1.2" data-path="sec-T1.html"><a href="sec-T1.html#q2"><i class="fa fa-check"></i><b>1.2</b> Q2</a></li>
 <li class="chapter" data-level="1.3" data-path="sec-T1.html"><a href="sec-T1.html#q3"><i class="fa fa-check"></i><b>1.3</b> Q3</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="sec-T2.html"><a href="sec-T2.html"><i class="fa fa-check"></i><b>2</b> Tutorial 2</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="sec-T1.html"><a href="sec-T1.html#q1"><i class="fa fa-check"></i><b>2.1</b> Q1</a></li>
-<li class="chapter" data-level="2.2" data-path="sec-T1.html"><a href="sec-T1.html#q2"><i class="fa fa-check"></i><b>2.2</b> Q2</a></li>
-<li class="chapter" data-level="2.3" data-path="sec-T1.html"><a href="sec-T1.html#q3"><i class="fa fa-check"></i><b>2.3</b> Q3</a></li>
+<li class="chapter" data-level="2" data-path="sec-T2.html"><a href="sec-T2.html"><i class="fa fa-check"></i><b>2</b> Tutorial 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="sec-T2.html"><a href="sec-T2.html#q1-1"><i class="fa fa-check"></i><b>2.1</b> Q1</a></li>
+<li class="chapter" data-level="2.2" data-path="sec-T2.html"><a href="sec-T2.html#q2-1"><i class="fa fa-check"></i><b>2.2</b> Q2</a></li>
+<li class="chapter" data-level="2.3" data-path="sec-T2.html"><a href="sec-T2.html#q3-1"><i class="fa fa-check"></i><b>2.3</b> Q3</a></li>
 <li class="chapter" data-level="2.4" data-path="sec-T2.html"><a href="sec-T2.html#q4"><i class="fa fa-check"></i><b>2.4</b> Q4</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="tutorial-3.html"><a href="tutorial-3.html"><i class="fa fa-check"></i><b>3</b> Tutorial 3</a>
-<ul>
+<li class="chapter" data-level="3" data-path="tutorial-3.html"><a href="tutorial-3.html"><i class="fa fa-check"></i><b>3</b> Tutorial 3</a><ul>
 <li class="chapter" data-level="3.1" data-path="tutorial-3.html"><a href="tutorial-3.html#method-of-moment-estimatormme"><i class="fa fa-check"></i><b>3.1</b> Method of moment estimator(MME)</a></li>
 <li class="chapter" data-level="3.2" data-path="tutorial-3.html"><a href="tutorial-3.html#maximum-likelihood-estimatormle."><i class="fa fa-check"></i><b>3.2</b> Maximum likelihood estimator(MLE).</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="confidence-interval.html"><a href="confidence-interval.html"><i class="fa fa-check"></i><b>4</b> Confidence Interval</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="sec-T1.html"><a href="sec-T1.html#q1"><i class="fa fa-check"></i><b>4.1</b> Q1</a></li>
-<li class="chapter" data-level="4.2" data-path="sec-T1.html"><a href="sec-T1.html#q2"><i class="fa fa-check"></i><b>4.2</b> Q2</a></li>
-<li class="chapter" data-level="4.3" data-path="sec-T1.html"><a href="sec-T1.html#q3"><i class="fa fa-check"></i><b>4.3</b> Q3</a></li>
-<li class="chapter" data-level="4.4" data-path="sec-T2.html"><a href="sec-T2.html#q4"><i class="fa fa-check"></i><b>4.4</b> Q4</a></li>
-<li class="chapter" data-level="4.5" data-path="confidence-interval.html"><a href="confidence-interval.html#solutions"><i class="fa fa-check"></i><b>4.5</b> Solutions</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="confidence-interval.html"><a href="confidence-interval.html#q1-1"><i class="fa fa-check"></i><b>4.5.1</b> Q1</a></li>
-<li class="chapter" data-level="4.5.2" data-path="confidence-interval.html"><a href="confidence-interval.html#q2-1"><i class="fa fa-check"></i><b>4.5.2</b> Q2</a></li>
-<li class="chapter" data-level="4.5.3" data-path="confidence-interval.html"><a href="confidence-interval.html#q3-1"><i class="fa fa-check"></i><b>4.5.3</b> Q3</a></li>
-<li class="chapter" data-level="4.5.4" data-path="confidence-interval.html"><a href="confidence-interval.html#q4-1"><i class="fa fa-check"></i><b>4.5.4</b> Q4</a></li>
+<li class="chapter" data-level="4" data-path="confidence-interval.html"><a href="confidence-interval.html"><i class="fa fa-check"></i><b>4</b> Confidence Interval</a><ul>
+<li class="chapter" data-level="4.1" data-path="confidence-interval.html"><a href="confidence-interval.html#q1-2"><i class="fa fa-check"></i><b>4.1</b> Q1</a></li>
+<li class="chapter" data-level="4.2" data-path="confidence-interval.html"><a href="confidence-interval.html#q2-2"><i class="fa fa-check"></i><b>4.2</b> Q2</a></li>
+<li class="chapter" data-level="4.3" data-path="confidence-interval.html"><a href="confidence-interval.html#q3-2"><i class="fa fa-check"></i><b>4.3</b> Q3</a></li>
+<li class="chapter" data-level="4.4" data-path="confidence-interval.html"><a href="confidence-interval.html#q4-1"><i class="fa fa-check"></i><b>4.4</b> Q4</a></li>
+<li class="chapter" data-level="4.5" data-path="confidence-interval.html"><a href="confidence-interval.html#solutions"><i class="fa fa-check"></i><b>4.5</b> Solutions</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="confidence-interval.html"><a href="confidence-interval.html#q1-3"><i class="fa fa-check"></i><b>4.5.1</b> Q1</a></li>
+<li class="chapter" data-level="4.5.2" data-path="confidence-interval.html"><a href="confidence-interval.html#q2-3"><i class="fa fa-check"></i><b>4.5.2</b> Q2</a></li>
+<li class="chapter" data-level="4.5.3" data-path="confidence-interval.html"><a href="confidence-interval.html#q3-3"><i class="fa fa-check"></i><b>4.5.3</b> Q3</a></li>
+<li class="chapter" data-level="4.5.4" data-path="confidence-interval.html"><a href="confidence-interval.html#q4-2"><i class="fa fa-check"></i><b>4.5.4</b> Q4</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
-<ul>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#fitting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>5.1</b> Fitting a Simple Linear Regression Model</a></li>
 <li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-toy-example"><i class="fa fa-check"></i><b>5.2</b> A Toy Example</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
-<ul>
+<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a><ul>
 <li class="chapter" data-level="6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-hypothesis-testing-by-normal-population"><i class="fa fa-check"></i><b>6.1</b> Summary of Hypothesis Testing by Normal Population</a></li>
 <li class="chapter" data-level="6.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercise"><i class="fa fa-check"></i><b>6.2</b> Exercise</a></li>
 </ul></li>
@@ -203,8 +199,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 P\left[a(X_1,X_2,...,X_n)&lt; \theta &lt;b(X_1,X_2,...,X_n)\right] = 1-\alpha
 \end{equation}\]</span>
 </div>
+
 <p><strong><a href="https://en.wikipedia.org/wiki/Confidence_interval#Meaning_and_interpretation">Interpretation and misunderstanding</a></strong></p>
-<div id="q1" class="section level2">
+<div id="q1-2" class="section level2">
 <h2><span class="header-section-number">4.1</span> Q1</h2>
 
 <div class="definition">
@@ -214,6 +211,7 @@ P\left[a(X_1,X_2,...,X_n)&lt; \theta &lt;b(X_1,X_2,...,X_n)\right] = 1-\alpha
   \frac{X}{\sqrt{U/n}} \sim t(n)
 \]</span>
 </div>
+
 <p>Confidence Interval of normal population <span class="math inline">\(X_i\stackrel{i.i.d.}\sim \mathcal{N}(\mu,\sigma^2),i=1,2,...,n\)</span>. We have
 <span class="math display">\[\begin{align}
 \bar X \sim \mathcal{N}(\mu,\frac{\sigma^2}{n}), \quad \frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)
@@ -232,7 +230,7 @@ We call such a method the pivotal approach. A pivotal quantity or pivot is a fun
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="confidence-interval.html#cb7-1"></a><span class="kw">qnorm</span>(<span class="fl">0.01</span><span class="op">/</span><span class="dv">2</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 2.575829</code></pre>
 </div>
-<div id="q2" class="section level2">
+<div id="q2-2" class="section level2">
 <h2><span class="header-section-number">4.2</span> Q2</h2>
 
 <div class="theorem">
@@ -245,6 +243,7 @@ where
   r=\left\lfloor\frac{\left(\frac{S_{\mathrm{X}}^{2}}{n}+\frac{S_{\mathrm{X}}^{2}}{m}\right)^{2}}{\frac{1}{n-1}\left(\frac{S_{\mathrm{X}}^{2}}{n}\right)^{2}+\frac{1}{m-1}\left(\frac{S_{\mathrm{Y}}^{2}}{m}\right)^{2}}\right\rfloor
 \]</span>
 </div>
+
 <p>Let <span class="math inline">\(X_1,X_2,...,X_n\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y_1,Y_2,...,Y_m\stackrel{i.i.d.}{\sim}\mathcal{N}(\mu_Y,\sigma^2_Y)\)</span> be independent random variables. We have the following,
 <span class="math display">\[\begin{align}
 \bar X&amp;\sim \mathcal{N}(\mu_X, \frac{\sigma_X^2}{n}), \quad 
@@ -271,7 +270,7 @@ The two samples are independent, hence,
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="confidence-interval.html#cb9-1"></a><span class="kw">qt</span>(<span class="fl">0.05</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">8</span>, <span class="dt">lower.tail =</span> F)</span></code></pre></div>
 <pre><code>## [1] 2.306004</code></pre>
 </div>
-<div id="q3" class="section level2">
+<div id="q3-2" class="section level2">
 <h2><span class="header-section-number">4.3</span> Q3</h2>
 <p>If <span class="math inline">\(X\sim \chi^2(n)\)</span> and <span class="math inline">\(Y\sim\chi^2(m)\)</span> are independent, then
 <span class="math display">\[
@@ -290,7 +289,7 @@ Therefore, with samples from two independent normal population, i.e., let <span 
 F_{1-\alpha / 2}(r_1, r_2) = \frac{1}{F_{\alpha / 2}(r_2, r_1)}
 \end{equation}\]</span></p>
 </div>
-<div id="q4" class="section level2">
+<div id="q4-1" class="section level2">
 <h2><span class="header-section-number">4.4</span> Q4</h2>
 <p>According to the central limit theorem(CLT), we have an approximate pivot
 <span class="math display">\[\begin{equation}
@@ -301,12 +300,12 @@ F_{1-\alpha / 2}(r_1, r_2) = \frac{1}{F_{\alpha / 2}(r_2, r_1)}
 </div>
 <div id="solutions" class="section level2">
 <h2><span class="header-section-number">4.5</span> Solutions</h2>
-<div id="q1-1" class="section level3">
+<div id="q1-3" class="section level3">
 <h3><span class="header-section-number">4.5.1</span> Q1</h3>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="confidence-interval.html#cb17-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">21.5</span>, <span class="fl">18.95</span>, <span class="fl">18.55</span>, <span class="fl">19.4</span>, <span class="fl">19.15</span>, <span class="fl">22.35</span>, <span class="fl">22.9</span>, <span class="fl">22.2</span>, <span class="fl">23.1</span>)</span>
 <span id="cb17-2"><a href="confidence-interval.html#cb17-2"></a><span class="kw">t.test</span>(x, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
-## 	One Sample t-test
+##  One Sample t-test
 ## 
 ## data:  x
 ## t = 33.738, df = 8, p-value = 6.506e-10
@@ -320,13 +319,13 @@ F_{1-\alpha / 2}(r_1, r_2) = \frac{1}{F_{\alpha / 2}(r_2, r_1)}
 <span id="cb19-2"><a href="confidence-interval.html#cb19-2"></a><span class="kw">print</span>(n)</span></code></pre></div>
 <pre><code>## [1] 37.37708</code></pre>
 </div>
-<div id="q2-1" class="section level3">
+<div id="q2-3" class="section level3">
 <h3><span class="header-section-number">4.5.2</span> Q2</h3>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="confidence-interval.html#cb21-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1612</span>, <span class="dv">1352</span>, <span class="dv">1456</span>, <span class="dv">1222</span>, <span class="dv">1560</span>, <span class="dv">1456</span>, <span class="dv">1924</span>)</span>
 <span id="cb21-2"><a href="confidence-interval.html#cb21-2"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1082</span>, <span class="dv">1300</span>, <span class="dv">1092</span>, <span class="dv">1040</span>, <span class="dv">910</span>, <span class="dv">1248</span>, <span class="dv">1092</span>, <span class="dv">1040</span>, <span class="dv">1092</span>, <span class="dv">1288</span>)</span>
 <span id="cb21-3"><a href="confidence-interval.html#cb21-3"></a><span class="kw">t.test</span>(x,y, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>, <span class="dt">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
-## 	Welch Two Sample t-test
+##  Welch Two Sample t-test
 ## 
 ## data:  x and y
 ## t = 4.235, df = 8.5995, p-value = 0.002427
@@ -342,7 +341,7 @@ f(t)=\frac{\Gamma\left(\frac{\nu+1}{2}\right)}{\sqrt{\nu \pi} \Gamma\left(\frac{
 \end{equation}\]</span>
 where <span class="math inline">\(\nu\)</span> is the degree of freedom.</p>
 </div>
-<div id="q3-1" class="section level3">
+<div id="q3-3" class="section level3">
 <h3><span class="header-section-number">4.5.3</span> Q3</h3>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="confidence-interval.html#cb23-1"></a>r1 &lt;-<span class="st"> </span><span class="dv">9</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
 <span id="cb23-2"><a href="confidence-interval.html#cb23-2"></a>r2 &lt;-<span class="st"> </span><span class="dv">13</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
@@ -356,7 +355,7 @@ where <span class="math inline">\(\nu\)</span> is the degree of freedom.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="confidence-interval.html#cb25-1"></a><span class="kw">print</span>(ci)</span></code></pre></div>
 <pre><code>## [1] 0.6414113 3.2387549</code></pre>
 </div>
-<div id="q4-1" class="section level3">
+<div id="q4-2" class="section level3">
 <h3><span class="header-section-number">4.5.4</span> Q4</h3>
 <p><span class="math display">\[
 \hat{p}_{1} \pm z_{0.05 / 2} \sqrt{\frac{\hat{p}_{1}\left(1-\hat{p}_{1}\right)}{n_{1}}}

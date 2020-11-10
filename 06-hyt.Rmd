@@ -135,7 +135,7 @@ Region\tabularnewline
 </div >
 ## Exercise 
 
-<div style="font-size: 40px">
+<div style="font-size: 30px">
 ```{exercise, q71}
 To measure air pollution in a home, let $X$ and $Y$ equal the amount of suspended particulate matter (in $\mathrm{g} / \mathrm{m} 3$ ) measured during a 24-hour period in a home in which there is no smoker and a home in which there is a smoker, respectively. We shall test the null hypothesis $H_{0}: \sigma_{X}^{2} / \sigma_{Y}^{2}=1$ against the one-sided alternative hypothesis $H_{1}: \sigma_{X}^{2} / \sigma_{Y}^{2}>1$. Suppose both samples are drawn from normal distribution.
 

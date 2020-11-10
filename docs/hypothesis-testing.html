@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Hypothesis Testing | Tutorial for STA2002</title>
   <meta name="description" content="Chapter 6 Hypothesis Testing | Tutorial for STA2002." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Hypothesis Testing | Tutorial for STA2002" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Kun HUANG(SDS)" />
 
 
-<meta name="date" content="2020-10-27" />
+<meta name="date" content="2020-11-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,74 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -71,45 +137,38 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="1" data-path="sec-T1.html"><a href="sec-T1.html"><i class="fa fa-check"></i><b>1</b> Tutorial 1</a>
-<ul>
+<li class="chapter" data-level="1" data-path="sec-T1.html"><a href="sec-T1.html"><i class="fa fa-check"></i><b>1</b> Tutorial 1</a><ul>
 <li class="chapter" data-level="1.1" data-path="sec-T1.html"><a href="sec-T1.html#q1"><i class="fa fa-check"></i><b>1.1</b> Q1</a></li>
 <li class="chapter" data-level="1.2" data-path="sec-T1.html"><a href="sec-T1.html#q2"><i class="fa fa-check"></i><b>1.2</b> Q2</a></li>
 <li class="chapter" data-level="1.3" data-path="sec-T1.html"><a href="sec-T1.html#q3"><i class="fa fa-check"></i><b>1.3</b> Q3</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="sec-T2.html"><a href="sec-T2.html"><i class="fa fa-check"></i><b>2</b> Tutorial 2</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="sec-T1.html"><a href="sec-T1.html#q1"><i class="fa fa-check"></i><b>2.1</b> Q1</a></li>
-<li class="chapter" data-level="2.2" data-path="sec-T1.html"><a href="sec-T1.html#q2"><i class="fa fa-check"></i><b>2.2</b> Q2</a></li>
-<li class="chapter" data-level="2.3" data-path="sec-T1.html"><a href="sec-T1.html#q3"><i class="fa fa-check"></i><b>2.3</b> Q3</a></li>
+<li class="chapter" data-level="2" data-path="sec-T2.html"><a href="sec-T2.html"><i class="fa fa-check"></i><b>2</b> Tutorial 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="sec-T2.html"><a href="sec-T2.html#q1-1"><i class="fa fa-check"></i><b>2.1</b> Q1</a></li>
+<li class="chapter" data-level="2.2" data-path="sec-T2.html"><a href="sec-T2.html#q2-1"><i class="fa fa-check"></i><b>2.2</b> Q2</a></li>
+<li class="chapter" data-level="2.3" data-path="sec-T2.html"><a href="sec-T2.html#q3-1"><i class="fa fa-check"></i><b>2.3</b> Q3</a></li>
 <li class="chapter" data-level="2.4" data-path="sec-T2.html"><a href="sec-T2.html#q4"><i class="fa fa-check"></i><b>2.4</b> Q4</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="tutorial-3.html"><a href="tutorial-3.html"><i class="fa fa-check"></i><b>3</b> Tutorial 3</a>
-<ul>
+<li class="chapter" data-level="3" data-path="tutorial-3.html"><a href="tutorial-3.html"><i class="fa fa-check"></i><b>3</b> Tutorial 3</a><ul>
 <li class="chapter" data-level="3.1" data-path="tutorial-3.html"><a href="tutorial-3.html#method-of-moment-estimatormme"><i class="fa fa-check"></i><b>3.1</b> Method of moment estimator(MME)</a></li>
 <li class="chapter" data-level="3.2" data-path="tutorial-3.html"><a href="tutorial-3.html#maximum-likelihood-estimatormle."><i class="fa fa-check"></i><b>3.2</b> Maximum likelihood estimator(MLE).</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="confidence-interval.html"><a href="confidence-interval.html"><i class="fa fa-check"></i><b>4</b> Confidence Interval</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="sec-T1.html"><a href="sec-T1.html#q1"><i class="fa fa-check"></i><b>4.1</b> Q1</a></li>
-<li class="chapter" data-level="4.2" data-path="sec-T1.html"><a href="sec-T1.html#q2"><i class="fa fa-check"></i><b>4.2</b> Q2</a></li>
-<li class="chapter" data-level="4.3" data-path="sec-T1.html"><a href="sec-T1.html#q3"><i class="fa fa-check"></i><b>4.3</b> Q3</a></li>
-<li class="chapter" data-level="4.4" data-path="sec-T2.html"><a href="sec-T2.html#q4"><i class="fa fa-check"></i><b>4.4</b> Q4</a></li>
-<li class="chapter" data-level="4.5" data-path="confidence-interval.html"><a href="confidence-interval.html#solutions"><i class="fa fa-check"></i><b>4.5</b> Solutions</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="confidence-interval.html"><a href="confidence-interval.html#q1-1"><i class="fa fa-check"></i><b>4.5.1</b> Q1</a></li>
-<li class="chapter" data-level="4.5.2" data-path="confidence-interval.html"><a href="confidence-interval.html#q2-1"><i class="fa fa-check"></i><b>4.5.2</b> Q2</a></li>
-<li class="chapter" data-level="4.5.3" data-path="confidence-interval.html"><a href="confidence-interval.html#q3-1"><i class="fa fa-check"></i><b>4.5.3</b> Q3</a></li>
-<li class="chapter" data-level="4.5.4" data-path="confidence-interval.html"><a href="confidence-interval.html#q4-1"><i class="fa fa-check"></i><b>4.5.4</b> Q4</a></li>
+<li class="chapter" data-level="4" data-path="confidence-interval.html"><a href="confidence-interval.html"><i class="fa fa-check"></i><b>4</b> Confidence Interval</a><ul>
+<li class="chapter" data-level="4.1" data-path="confidence-interval.html"><a href="confidence-interval.html#q1-2"><i class="fa fa-check"></i><b>4.1</b> Q1</a></li>
+<li class="chapter" data-level="4.2" data-path="confidence-interval.html"><a href="confidence-interval.html#q2-2"><i class="fa fa-check"></i><b>4.2</b> Q2</a></li>
+<li class="chapter" data-level="4.3" data-path="confidence-interval.html"><a href="confidence-interval.html#q3-2"><i class="fa fa-check"></i><b>4.3</b> Q3</a></li>
+<li class="chapter" data-level="4.4" data-path="confidence-interval.html"><a href="confidence-interval.html#q4-1"><i class="fa fa-check"></i><b>4.4</b> Q4</a></li>
+<li class="chapter" data-level="4.5" data-path="confidence-interval.html"><a href="confidence-interval.html#solutions"><i class="fa fa-check"></i><b>4.5</b> Solutions</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="confidence-interval.html"><a href="confidence-interval.html#q1-3"><i class="fa fa-check"></i><b>4.5.1</b> Q1</a></li>
+<li class="chapter" data-level="4.5.2" data-path="confidence-interval.html"><a href="confidence-interval.html#q2-3"><i class="fa fa-check"></i><b>4.5.2</b> Q2</a></li>
+<li class="chapter" data-level="4.5.3" data-path="confidence-interval.html"><a href="confidence-interval.html#q3-3"><i class="fa fa-check"></i><b>4.5.3</b> Q3</a></li>
+<li class="chapter" data-level="4.5.4" data-path="confidence-interval.html"><a href="confidence-interval.html#q4-2"><i class="fa fa-check"></i><b>4.5.4</b> Q4</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
-<ul>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#fitting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>5.1</b> Fitting a Simple Linear Regression Model</a></li>
 <li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#a-toy-example"><i class="fa fa-check"></i><b>5.2</b> A Toy Example</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a>
-<ul>
+<li class="chapter" data-level="6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6</b> Hypothesis Testing</a><ul>
 <li class="chapter" data-level="6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-hypothesis-testing-by-normal-population"><i class="fa fa-check"></i><b>6.1</b> Summary of Hypothesis Testing by Normal Population</a></li>
 <li class="chapter" data-level="6.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercise"><i class="fa fa-check"></i><b>6.2</b> Exercise</a></li>
 </ul></li>
@@ -136,6 +195,7 @@
 <div id="summary-of-hypothesis-testing-by-normal-population" class="section level2">
 <h2><span class="header-section-number">6.1</span> Summary of Hypothesis Testing by Normal Population</h2>
 <p>Let samples <span class="math inline">\(X_1,X_2,...,X_n\)</span> draw from a normal population <span class="math inline">\(\mathcal{N}(\mu_X,\sigma^2_X)\)</span>, then,</p>
+
 <div style="font-size: 30px">
 <table>
 <colgroup>
@@ -170,6 +230,7 @@
 </table>
 </div>
 <p>Let samples <span class="math inline">\(X_1,X_2,...,X_n\)</span> draw from a normal population <span class="math inline">\(\mathcal{N}(\mu_X,\sigma^2_X)\)</span> and <span class="math inline">\(Y_1,Y_2,...,Y_m\)</span> from another normal population <span class="math inline">\(\mathcal{N}(\mu_Y,\sigma^2_Y)\)</span>.</p>
+
 <div style="font-size: 30px">
 <table>
 <colgroup>
@@ -221,6 +282,7 @@
 <span class="math display">\[\begin{equation}
 \mathbb{E}(\hat p_{XY}) = \frac{\sum\limits_{i=1}^n \mathbb{E} X_i+\sum\limits_{i=1}^m \mathbb{E} Y_i}{n+m}=\frac{np + mp}{m+n}=p
 \end{equation}\]</span></p>
+
 <div style="font-size: 30px">
 <table>
 <colgroup>
@@ -252,7 +314,7 @@
 </div>
 <div id="exercise" class="section level2">
 <h2><span class="header-section-number">6.2</span> Exercise</h2>
-<div style="font-size: 40px">
+<div style="font-size: 30px">
 
 <div class="exercise">
 <p><span id="exr:q71" class="exercise"><strong>Exercise 6.1  </strong></span>To measure air pollution in a home, let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> equal the amount of suspended particulate matter (in <span class="math inline">\(\mathrm{g} / \mathrm{m} 3\)</span> ) measured during a 24-hour period in a home in which there is no smoker and a home in which there is a smoker, respectively. We shall test the null hypothesis <span class="math inline">\(H_{0}: \sigma_{X}^{2} / \sigma_{Y}^{2}=1\)</span> against the one-sided alternative hypothesis <span class="math inline">\(H_{1}: \sigma_{X}^{2} / \sigma_{Y}^{2}&gt;1\)</span>. Suppose both samples are drawn from normal distribution.</p>
@@ -261,6 +323,7 @@
 <li><p>Now test <span class="math inline">\(H_{0}: \mu_{X}=\mu_{Y}\)</span> against <span class="math inline">\(H_{1}: \mu_{X}&lt;\mu_{Y}\)</span> if <span class="math inline">\(\alpha=0.05\)</span>. <span class="math inline">\(t_{0.05}(11)=1.796\)</span></p></li>
 </ol>
 </div>
+
 <p>Solutions:<br />
 </p>
 <ol style="list-style-type: decimal">
@@ -285,6 +348,7 @@ t=\frac{\bar{x}_{1}-\bar{y}_{2}}{\sqrt{\frac{S_{X}^{2}}{n}+\frac{S_{Y}^{2}}{m}}}
 <li><p><span class="math inline">\(\beta=P(Y&lt;152)\)</span> when <span class="math inline">\(p=0.80\)</span>.</p></li>
 </ol>
 </div>
+
 <p>Solution:<br />
 </p>
 <p>Proportion for one sample. <span class="math inline">\(n=192\)</span></p>
@@ -309,6 +373,7 @@ z &amp;=\frac{x-n p}{\sqrt{n p(1-p)}}=\frac{151.5-192(0.80)}{\sqrt{192(0.8)(1-0.
 <li><p>What is your conclusion?</p></li>
 </ol>
 </div>
+
 <p>Solution:</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(H_{0}: p=0.14 \quad \text { against } \quad H_{1}: p&gt;0.14\)</span></p></li>
